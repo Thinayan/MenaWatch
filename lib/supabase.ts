@@ -1,9 +1,8 @@
-import { createBrowserClient } from "@supabase/ssr";
-import { SupabaseClient } from "@supabase/supabase-js";
+import { createClient, SupabaseClient } from "@supabase/supabase-js";
 
 // Lazy singleton — only initialized on first property access at runtime
-// Uses createBrowserClient from @supabase/ssr to store auth tokens in cookies
-// so the middleware can read them for server-side auth checks
+// Uses createClient (localStorage-based auth) for client-side auth.
+// Route protection is handled by AuthGuard component (client-side).
 let _client: SupabaseClient | null = null;
 
 function getClient(): SupabaseClient {
@@ -37,7 +36,7 @@ function getClient(): SupabaseClient {
         },
       }) as unknown as SupabaseClient;
     }
-    _client = createBrowserClient(url, key) as unknown as SupabaseClient;
+    _client = createClient(url, key);
   }
   return _client;
 }
