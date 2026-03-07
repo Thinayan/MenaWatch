@@ -83,6 +83,8 @@ export default function MenaWatchMap() {
   const [analysis, setAnalysis] = useState("");
   const [loadingAI, setLoadingAI] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
+  const [showCta, setShowCta] = useState(false);
+  const [ctaDismissed, setCtaDismissed] = useState(false);
   const mapRef = useRef(null);
   const leafletMap = useRef(null);
   const markersLayer = useRef(null);
@@ -90,6 +92,28 @@ export default function MenaWatchMap() {
   const layer = LAYERS.find(l => l.id === activeLayer);
   const spots = HOTSPOTS[activeLayer] || [];
   const topThreats = [...(HOTSPOTS.security || [])].sort((a,b) => b.risk - a.risk).slice(0,3);
+
+  // CTA popup: show after 3s, auto-hide after 20s, remember dismissal
+  useEffect(() => {
+    if (typeof window !== "undefined" && localStorage.getItem("mena_cta_dismissed")) {
+      setCtaDismissed(true);
+      return;
+    }
+    const t = setTimeout(() => setShowCta(true), 3000);
+    return () => clearTimeout(t);
+  }, []);
+
+  useEffect(() => {
+    if (!showCta || ctaDismissed) return;
+    const t = setTimeout(() => setShowCta(false), 20000);
+    return () => clearTimeout(t);
+  }, [showCta, ctaDismissed]);
+
+  function dismissCta() {
+    setShowCta(false);
+    setCtaDismissed(true);
+    if (typeof window !== "undefined") localStorage.setItem("mena_cta_dismissed", "1");
+  }
 
   // ── Load Leaflet dynamically ──────────────────────────
   useEffect(() => {
@@ -225,7 +249,7 @@ export default function MenaWatchMap() {
   }
 
   return (
-    <div style={{ direction:"rtl", background:"#060d18", minHeight:"100vh", color:"#e2e8f0", fontFamily:"'Segoe UI', Tahoma, Arial, sans-serif", display:"flex", flexDirection:"column" }}>
+    <div style={{ direction:"rtl", background:"#060d18", height:"100vh", color:"#e2e8f0", fontFamily:"'Segoe UI', Tahoma, Arial, sans-serif", display:"flex", flexDirection:"column", overflow:"hidden" }}>
 
       {/* ── Leaflet pulse CSS ── */}
       <style>{`
@@ -316,8 +340,8 @@ export default function MenaWatchMap() {
             </div>
           )}
 
-          {/* Spots list */}
-          <div style={{ padding:"10px 14px", flex:1 }}>
+          {/* Spots list — fills remaining sidebar space */}
+          <div style={{ padding:"10px 14px", flex:1, minHeight:0, overflowY:"auto" }}>
             <div style={{ fontSize:11, color:"#94a3b8", marginBottom:8 }}>● {spots.length} نقطة رصد نشطة</div>
             {spots.map(s => (
               <div key={s.id} onClick={() => setSelected(s)} style={{
@@ -334,23 +358,16 @@ export default function MenaWatchMap() {
               </div>
             ))}
           </div>
-
-          {/* Live RSS News Feed */}
-          <div style={{ flex:1, minHeight:200, borderTop:"1px solid #1e293b" }}>
-            <Suspense fallback={<div style={{ padding:14, color:"#94a3b8", fontSize:11 }}>جارٍ تحميل الأخبار...</div>}>
-              <NewsTicker />
-            </Suspense>
-          </div>
         </div>
 
         {/* MAP + BROADCAST PANEL (70/30 split) */}
         <div style={{ flex:1, display:"flex", minHeight:0 }}>
           {/* MAP 70% */}
           <div style={{ flex:7, position:"relative", minWidth:0 }}>
-            <div ref={mapRef} style={{ width:"100%", height:"100%", minHeight:500 }} />
+            <div ref={mapRef} style={{ width:"100%", height:"100%" }} />
 
-            {/* Risk legend */}
-            <div style={{ position:"absolute", bottom:20, left:20, background:"#0a162899", backdropFilter:"blur(10px)", border:"1px solid #1e293b", borderRadius:10, padding:"10px 14px", zIndex:1000 }}>
+            {/* Risk legend — bottom-right of map (near sidebar) */}
+            <div style={{ position:"absolute", bottom:20, right:20, background:"#0a162899", backdropFilter:"blur(10px)", border:"1px solid #1e293b", borderRadius:10, padding:"10px 14px", zIndex:1000 }}>
               <div style={{ fontSize:10, color:"#94a3b8", marginBottom:6 }}>مستوى المخاطر</div>
               {[{c:"#ef4444",l:"مرتفع +70"},{c:"#f59e0b",l:"متوسط 45-69"},{c:"#3b82f6",l:"منخفض 20-44"},{c:"#10b981",l:"مستقر 0-19"}].map(r=>(
                 <div key={r.l} style={{ display:"flex", alignItems:"center", gap:6, marginBottom:4 }}>
@@ -359,17 +376,32 @@ export default function MenaWatchMap() {
                 </div>
               ))}
             </div>
+
+            {/* NEWS BOX — bottom-left of map (near broadcast panel) */}
+            <div style={{
+              position:"absolute", bottom:20, left:20,
+              width:300, height:220,
+              background:"#0a1628ee", backdropFilter:"blur(12px)",
+              border:"1px solid #1e293b", borderRadius:10,
+              zIndex:1000, overflow:"hidden",
+              display:"flex", flexDirection:"column",
+              direction:"rtl",
+            }}>
+              <Suspense fallback={<div style={{ padding:14, color:"#94a3b8", fontSize:11 }}>جارٍ تحميل الأخبار...</div>}>
+                <NewsTicker />
+              </Suspense>
+            </div>
           </div>
 
           {/* LIVE BROADCAST PANEL + SENTIMENT 30% */}
           <div style={{ flex:3, minWidth:280, maxWidth:420, display:"flex", flexDirection:"column", overflow:"hidden" }}>
-            <div style={{ flex:"0 0 auto" }}>
+            <div style={{ flex:1, minHeight:0, overflowY:"auto" }}>
               <LiveBroadcastPanel />
-            </div>
-            <div style={{ flex:"0 0 auto", borderTop:"1px solid #1e293b" }}>
-              <Suspense fallback={<div style={{ padding:12, color:"#94a3b8", fontSize:11 }}>جارٍ التحليل...</div>}>
-                <SentimentWidget />
-              </Suspense>
+              <div style={{ borderTop:"1px solid #1e293b" }}>
+                <Suspense fallback={<div style={{ padding:12, color:"#94a3b8", fontSize:11 }}>جارٍ التحليل...</div>}>
+                  <SentimentWidget />
+                </Suspense>
+              </div>
             </div>
           </div>
         </div>
@@ -421,18 +453,36 @@ export default function MenaWatchMap() {
         )}
       </div>
 
-      {/* ── BOTTOM CTA ── */}
-      <div style={{ background:"#0a1628", borderTop:"1px solid #1e293b", padding:"10px 20px", display:"flex", alignItems:"center", justifyContent:"space-between" }}>
-        <div style={{ fontSize:12, color:"#94a3b8" }}>
-          🔒 احصل على التقرير الصباحي اليومي
-        </div>
-        <button onClick={() => setShowRegister(true)} style={{
-          background:"linear-gradient(135deg,#ef4444,#f59e0b)", color:"#fff", border:"none", borderRadius:8,
-          padding:"8px 24px", fontWeight:700, fontSize:13, cursor:"pointer",
+      {/* ── FLOATING CTA POPUP — auto-dismiss 20s ── */}
+      <style>{`
+        @keyframes cta-slide-in { 0%{transform:translateY(100px);opacity:0} 100%{transform:translateY(0);opacity:1} }
+        @keyframes cta-progress { 0%{width:100%} 100%{width:0%} }
+      `}</style>
+      {showCta && !ctaDismissed && !showRegister && (
+        <div style={{
+          position:"fixed", bottom:20, right:20, zIndex:2000,
+          background:"linear-gradient(135deg,#1a1a2e,#16213e)",
+          border:"1px solid #f59e0b55", borderRadius:14,
+          padding:"14px 18px", width:260,
+          boxShadow:"0 8px 32px #f59e0b22, 0 4px 16px #0006",
+          animation:"cta-slide-in 0.4s ease-out", direction:"rtl",
         }}>
-          سجل مجاناً الآن
-        </button>
-      </div>
+          <button onClick={dismissCta} style={{ position:"absolute", top:8, left:8, background:"none", border:"none", color:"#64748b", fontSize:14, cursor:"pointer", padding:4, lineHeight:1 }}>✕</button>
+          <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:10 }}>
+            <div style={{ width:36, height:36, borderRadius:10, background:"linear-gradient(135deg,#f59e0b,#ef4444)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:18, flexShrink:0 }}>📩</div>
+            <div>
+              <div style={{ fontSize:13, fontWeight:700, color:"#fff" }}>التقرير الصباحي</div>
+              <div style={{ fontSize:10, color:"#94a3b8" }}>تحليلات يومية + تنبيهات فورية</div>
+            </div>
+          </div>
+          <button onClick={() => { setShowCta(false); setShowRegister(true); }} style={{ width:"100%", padding:"8px 0", borderRadius:8, border:"none", cursor:"pointer", background:"linear-gradient(135deg,#f59e0b,#ef4444)", color:"#fff", fontWeight:700, fontSize:12 }}>
+            سجّل مجاناً الآن
+          </button>
+          <div style={{ marginTop:8, height:2, background:"#1e293b", borderRadius:2, overflow:"hidden" }}>
+            <div style={{ height:"100%", background:"#f59e0b", animation:"cta-progress 20s linear forwards", borderRadius:2 }} />
+          </div>
+        </div>
+      )}
 
       {/* Register modal */}
       {showRegister && (
