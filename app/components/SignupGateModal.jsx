@@ -24,67 +24,53 @@ function useCountdown(target) {
 }
 
 const FEATURES_COMING = [
-  { icon: "\u{1F6E1}\uFE0F", label: "\u062E\u0631\u064A\u0637\u0629 \u0623\u0645\u0646\u064A\u0629 \u062A\u0641\u0627\u0639\u0644\u064A\u0629", status: "\u062C\u0627\u0647\u0632 100%", color: "#22c55e", done: true },
-  { icon: "\u26A1", label: "\u0644\u0648\u062D\u0629 \u0627\u0642\u062A\u0635\u0627\u062F\u064A\u0629 \u062D\u064A\u0629", status: "\u062C\u0627\u0647\u0632 100%", color: "#22c55e", done: true },
-  { icon: "\u{1F916}", label: "\u062A\u062D\u0644\u064A\u0644 Claude AI", status: "\u062C\u0627\u0647\u0632 100%", color: "#22c55e", done: true },
-  { icon: "\u{1F4E1}", label: "\u062A\u0646\u0628\u064A\u0647\u0627\u062A \u0641\u0648\u0631\u064A\u0629", status: "\u0642\u0631\u064A\u0628\u0627\u064B", color: "#f59e0b", done: false },
-  { icon: "\u{1F4CA}", label: "\u062A\u0642\u0627\u0631\u064A\u0631 PDF \u062A\u0644\u0642\u0627\u0626\u064A\u0629", status: "\u0642\u0631\u064A\u0628\u0627\u064B", color: "#f59e0b", done: false },
-  { icon: "\u{1F517}", label: "API \u0644\u0644\u0645\u0637\u0648\u0631\u064A\u0646", status: "\u0642\u0631\u064A\u0628\u0627\u064B", color: "#3b82f6", done: false },
+  { icon: "🛡️", label: "خريطة أمنية تفاعلية", status: "جاهز 100%", color: "#22c55e", done: true },
+  { icon: "⚡", label: "لوحة اقتصادية حية", status: "جاهز 100%", color: "#22c55e", done: true },
+  { icon: "🤖", label: "تحليل Claude AI", status: "جاهز 100%", color: "#22c55e", done: true },
+  { icon: "📡", label: "تنبيهات فورية", status: "قريباً", color: "#f59e0b", done: false },
+  { icon: "📊", label: "تقارير PDF تلقائية", status: "قريباً", color: "#f59e0b", done: false },
+  { icon: "🔗", label: "API للمطورين", status: "قريباً", color: "#3b82f6", done: false },
 ];
 
-/**
- * SignupGateModal — popup that blocks browsing until the visitor
- * signs up with email + password (quick registration).
- *
- * - Shown for unauthenticated visitors on all pages except /login, /reset-password
- * - On successful signup  -> redirects to /map
- * - Sends Supabase confirmation email automatically (user completes profile later)
- * - Stores a flag so the gate doesn't re-appear after signup
- */
 export default function SignupGateModal() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [step, setStep] = useState("form"); // form | success | login
+  const [step, setStep] = useState("form");
   const [count, setCount] = useState(2347);
   const t = useCountdown("2025-12-01T00:00:00");
 
   const handleSignup = async () => {
     setError("");
-    if (!email.trim()) { setError("\u0623\u062F\u062E\u0644 \u0628\u0631\u064A\u062F\u0643 \u0627\u0644\u0625\u0644\u0643\u062A\u0631\u0648\u0646\u064A"); return; }
-    if (password.length < 6) { setError("\u0643\u0644\u0645\u0629 \u0627\u0644\u0645\u0631\u0648\u0631 \u064A\u062C\u0628 \u0623\u0646 \u062A\u0643\u0648\u0646 6 \u0623\u062D\u0631\u0641 \u0639\u0644\u0649 \u0627\u0644\u0623\u0642\u0644"); return; }
+    if (!email.trim()) { setError("أدخل بريدك الإلكتروني"); return; }
+    if (password.length < 6) { setError("كلمة المرور يجب أن تكون 6 أحرف على الأقل"); return; }
 
     setLoading(true);
     try {
       const { supabase } = await import("../../lib/supabase");
-
-      // Try signup first
       const { data, error: signupErr } = await supabase.auth.signUp({
         email: email.trim(),
         password,
       });
 
       if (signupErr) {
-        // If user already exists, try to sign in instead
         if (signupErr.message?.includes("already registered") || signupErr.message?.includes("already exists")) {
           setStep("login");
-          setError("\u0647\u0630\u0627 \u0627\u0644\u0628\u0631\u064A\u062F \u0645\u0633\u062C\u0644 \u0645\u0633\u0628\u0642\u0627\u064B. \u0633\u062C\u0651\u0644 \u062F\u062E\u0648\u0644\u0643:");
+          setError("هذا البريد مسجل مسبقاً. سجّل دخولك:");
           setLoading(false);
           return;
         }
-        setError(signupErr.message || "\u062D\u062F\u062B \u062E\u0637\u0623 \u0641\u064A \u0627\u0644\u062A\u0633\u062C\u064A\u0644");
+        setError(signupErr.message || "حدث خطأ في التسجيل");
         setLoading(false);
         return;
       }
 
-      // If signup returned a session, user is logged in
       if (data?.session) {
         setCount(c => c + 1);
         setStep("success");
         setTimeout(() => { window.location.href = "/map"; }, 1500);
       } else if (data?.user && !data?.session) {
-        // Supabase email confirmation is ON — auto sign-in anyway
         const { error: loginErr } = await supabase.auth.signInWithPassword({
           email: email.trim(),
           password,
@@ -96,18 +82,17 @@ export default function SignupGateModal() {
         } else {
           setStep("success");
           setError("");
-          // Show success message — email confirm needed
         }
       }
     } catch (e) {
-      setError("\u062E\u0637\u0623 \u0641\u064A \u0627\u0644\u0627\u062A\u0635\u0627\u0644. \u062D\u0627\u0648\u0644 \u0645\u0631\u0629 \u0623\u062E\u0631\u0649.");
+      setError("خطأ في الاتصال. حاول مرة أخرى.");
     }
     setLoading(false);
   };
 
   const handleLogin = async () => {
     setError("");
-    if (!email.trim() || !password) { setError("\u0623\u062F\u062E\u0644 \u0627\u0644\u0628\u0631\u064A\u062F \u0648\u0643\u0644\u0645\u0629 \u0627\u0644\u0645\u0631\u0648\u0631"); return; }
+    if (!email.trim() || !password) { setError("أدخل البريد وكلمة المرور"); return; }
     setLoading(true);
     try {
       const { supabase } = await import("../../lib/supabase");
@@ -116,13 +101,13 @@ export default function SignupGateModal() {
         password,
       });
       if (loginErr) {
-        setError("\u0628\u0631\u064A\u062F \u0623\u0648 \u0643\u0644\u0645\u0629 \u0645\u0631\u0648\u0631 \u063A\u064A\u0631 \u0635\u062D\u064A\u062D\u0629");
+        setError("بريد أو كلمة مرور غير صحيحة");
       } else {
         setStep("success");
         setTimeout(() => { window.location.href = "/map"; }, 1000);
       }
     } catch (e) {
-      setError("\u062E\u0637\u0623 \u0641\u064A \u0627\u0644\u0627\u062A\u0635\u0627\u0644");
+      setError("خطأ في الاتصال");
     }
     setLoading(false);
   };
@@ -179,8 +164,8 @@ export default function SignupGateModal() {
         }}>
           <img src="/logo-sm.png" alt="MENA.Watch" style={{ height: 28 }} />
           <span style={{ fontSize: 11, color: "#475569" }}>|</span>
-          <span style={{ fontSize: 11, color: "#94a3b8", fontWeight: 500 }}>
-            \u0645\u0646\u0635\u0629 \u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0633\u062A\u0631\u0627\u062A\u064A\u062C\u064A \u0644\u0644\u0634\u0631\u0642 \u0627\u0644\u0623\u0648\u0633\u0637
+          <span style={{ fontSize: 12, color: "#cbd5e1", fontWeight: 500 }}>
+            منصة الذكاء الاستراتيجي للشرق الأوسط
           </span>
         </div>
 
@@ -196,16 +181,16 @@ export default function SignupGateModal() {
               letterSpacing: 1, marginBottom: 18, width: "fit-content",
             }}>
               <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#22c55e", display: "inline-block", animation: "gatePulse 1s infinite" }} />
-              \u0642\u064A\u062F \u0627\u0644\u062A\u0637\u0648\u064A\u0631 \u0627\u0644\u0646\u0647\u0627\u0626\u064A
+              {"قيد التطوير النهائي"}
             </div>
 
             <h1 style={{ fontSize: 36, fontWeight: 800, color: "#f8fafc", lineHeight: 1.2, marginBottom: 10 }}>
-              \u0627\u0644\u0625\u0637\u0644\u0627\u0642 \u0627\u0644\u0631\u0633\u0645\u064A<br />
-              <span style={{ color: "#22c55e" }}>\u0642\u0631\u064A\u0628\u0627\u064B</span>
+              {"الإطلاق الرسمي"}<br />
+              <span style={{ color: "#22c55e" }}>{"قريباً"}</span>
             </h1>
 
             <p style={{ fontSize: 14, color: "#cbd5e1", lineHeight: 1.8, marginBottom: 24, maxWidth: 420 }}>
-              \u0645\u0646\u0635\u0629 MENA Watch \u062A\u0633\u062A\u0639\u062F \u0644\u0644\u0625\u0637\u0644\u0627\u0642 \u0627\u0644\u0643\u0627\u0645\u0644. \u0633\u062C\u0651\u0644 \u0627\u0644\u0622\u0646 \u0644\u0644\u062D\u0635\u0648\u0644 \u0639\u0644\u0649 \u0648\u0635\u0648\u0644 \u0645\u0628\u0643\u0631 \u0648\u062A\u0642\u0631\u064A\u0631 \u062A\u062C\u0631\u064A\u0628\u064A \u0645\u062C\u0627\u0646\u064A.
+              {"منصة MENA Watch تستعد للإطلاق الكامل. سجّل الآن للحصول على وصول مبكر وتقرير تجريبي مجاني."}
             </p>
 
             {/* FORM */}
@@ -215,7 +200,7 @@ export default function SignupGateModal() {
                 borderRadius: 6, padding: "16px 20px", color: "#6ee7b7",
                 fontSize: 14, fontWeight: 700, textAlign: "center",
               }}>
-                \u2705 \u062A\u0645 \u0627\u0644\u062A\u0633\u062C\u064A\u0644 \u0628\u0646\u062C\u0627\u062D! \u062C\u0627\u0631\u064A \u0627\u0644\u062A\u0648\u062C\u064A\u0647...
+                {"✅ تم التسجيل بنجاح! جاري التوجيه..."}
               </div>
             ) : (
               <div>
@@ -223,7 +208,7 @@ export default function SignupGateModal() {
                 <input
                   type="email"
                   className="gate-input"
-                  placeholder="\u0628\u0631\u064A\u062F\u0643 \u0627\u0644\u0625\u0644\u0643\u062A\u0631\u0648\u0646\u064A"
+                  placeholder="بريدك الإلكتروني"
                   value={email}
                   onChange={e => setEmail(e.target.value)}
                   style={{
@@ -237,7 +222,7 @@ export default function SignupGateModal() {
                 <input
                   type="password"
                   className="gate-input"
-                  placeholder="\u0643\u0644\u0645\u0629 \u0627\u0644\u0645\u0631\u0648\u0631 (6 \u0623\u062D\u0631\u0641 \u0639\u0644\u0649 \u0627\u0644\u0623\u0642\u0644)"
+                  placeholder="كلمة المرور (6 أحرف على الأقل)"
                   value={password}
                   onChange={e => setPassword(e.target.value)}
                   onKeyDown={e => e.key === "Enter" && (step === "login" ? handleLogin() : handleSignup())}
@@ -278,7 +263,7 @@ export default function SignupGateModal() {
                           opacity: loading ? 0.7 : 1,
                         }}
                       >
-                        {loading ? "\u062C\u0627\u0631\u064A..." : "\u062A\u0633\u062C\u064A\u0644 \u0627\u0644\u062F\u062E\u0648\u0644"}
+                        {loading ? "جاري..." : "تسجيل الدخول"}
                       </button>
                       <button
                         onClick={() => { setStep("form"); setError(""); }}
@@ -289,7 +274,7 @@ export default function SignupGateModal() {
                           fontFamily: "inherit",
                         }}
                       >
-                        \u062D\u0633\u0627\u0628 \u062C\u062F\u064A\u062F
+                        {"حساب جديد"}
                       </button>
                     </>
                   ) : (
@@ -305,7 +290,7 @@ export default function SignupGateModal() {
                         opacity: loading ? 0.7 : 1,
                       }}
                     >
-                      {loading ? "\u062C\u0627\u0631\u064A \u0627\u0644\u062A\u0633\u062C\u064A\u0644..." : "\u2190 \u062C\u0631\u0628 \u0627\u0644\u0646\u0633\u062E\u0629 \u0627\u0644\u062A\u062C\u0631\u064A\u0628\u064A\u0629 \u0627\u0644\u0622\u0646"}
+                      {loading ? "جاري التسجيل..." : "← جرب النسخة التجريبية الآن"}
                     </button>
                   )}
                 </div>
@@ -320,12 +305,12 @@ export default function SignupGateModal() {
                       fontFamily: "inherit", textDecoration: "underline",
                     }}
                   >
-                    \u0644\u062F\u064A\u0643 \u062D\u0633\u0627\u0628 \u0628\u0627\u0644\u0641\u0639\u0644\u061F \u0633\u062C\u0651\u0644 \u062F\u062E\u0648\u0644
+                    {"لديك حساب بالفعل؟ سجّل دخول"}
                   </button>
                 )}
 
-                <div style={{ fontSize: 11, color: "#475569", marginTop: 12 }}>
-                  \u0627\u0646\u0636\u0645 \u0644\u0640 {count.toLocaleString("ar-SA")} \u0641\u064A \u0642\u0627\u0626\u0645\u0629 \u0627\u0644\u0627\u0646\u062A\u0638\u0627\u0631
+                <div style={{ fontSize: 11, color: "#cbd5e1", marginTop: 12 }}>
+                  {"انضم لـ "}{count.toLocaleString("ar-SA")}{" في قائمة الانتظار"}
                 </div>
               </div>
             )}
@@ -333,7 +318,7 @@ export default function SignupGateModal() {
             {/* Progress bar */}
             <div style={{ marginTop: 24, background: "#0a1628", border: "1px solid #1e293b", borderRadius: 6, padding: "14px 16px" }}>
               <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6 }}>
-                <span style={{ fontSize: 11, color: "#cbd5e1" }}>\u062A\u0642\u062F\u0645 \u0627\u0644\u062A\u0637\u0648\u064A\u0631 \u0627\u0644\u0643\u0644\u064A</span>
+                <span style={{ fontSize: 11, color: "#cbd5e1" }}>{"تقدم التطوير الكلي"}</span>
                 <span style={{ fontSize: 11, color: "#22c55e", fontWeight: 700 }}>87%</span>
               </div>
               <div style={{ height: 5, background: "#1e293b", borderRadius: 2, overflow: "hidden", marginBottom: 10 }}>
@@ -355,14 +340,14 @@ export default function SignupGateModal() {
             {/* Countdown */}
             <div style={{ background: "#0a1628", border: "1px solid #1e293b", borderRadius: 6, overflow: "hidden" }}>
               <div style={{ background: "#080f1c", borderBottom: "1px solid #1e293b", padding: "8px 14px", fontSize: 11, color: "#cbd5e1", letterSpacing: 2 }}>
-                \u0627\u0644\u0639\u062F \u0627\u0644\u062A\u0646\u0627\u0632\u0644\u064A \u0644\u0644\u0625\u0637\u0644\u0627\u0642
+                {"العد التنازلي للإطلاق"}
               </div>
               <div style={{ padding: "18px 14px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
                 {[
-                  { v: t.d, l: "\u064A\u0648\u0645" },
-                  { v: t.h, l: "\u0633\u0627\u0639\u0629" },
-                  { v: t.m, l: "\u062F\u0642\u064A\u0642\u0629" },
-                  { v: t.s, l: "\u062B\u0627\u0646\u064A\u0629" },
+                  { v: t.d, l: "يوم" },
+                  { v: t.h, l: "ساعة" },
+                  { v: t.m, l: "دقيقة" },
+                  { v: t.s, l: "ثانية" },
                 ].map(c => (
                   <div key={c.l} style={{ background: "#080f1c", border: "1px solid #1e293b", borderRadius: 4, padding: "12px 8px", textAlign: "center" }}>
                     <div style={{ fontSize: 30, fontWeight: 800, color: "#22c55e", fontVariantNumeric: "tabular-nums" }}>
@@ -377,13 +362,13 @@ export default function SignupGateModal() {
             {/* Waitlist by country */}
             <div style={{ background: "#0a1628", border: "1px solid #1e293b", borderRadius: 6, padding: "14px" }}>
               <div style={{ fontSize: 11, color: "#cbd5e1", letterSpacing: 2, marginBottom: 12 }}>
-                \u0642\u0627\u0626\u0645\u0629 \u0627\u0644\u0627\u0646\u062A\u0638\u0627\u0631
+                {"قائمة الانتظار"}
               </div>
               {[
-                { flag: "\u{1F1F8}\u{1F1E6}", label: "\u0627\u0644\u0633\u0639\u0648\u062F\u064A\u0629", n: "843" },
-                { flag: "\u{1F1E6}\u{1F1EA}", label: "\u0627\u0644\u0625\u0645\u0627\u0631\u0627\u062A", n: "431" },
-                { flag: "\u{1F1F6}\u{1F1E6}", label: "\u0642\u0637\u0631", n: "312" },
-                { flag: "\u{1F30D}", label: "\u062F\u0648\u0644 \u0623\u062E\u0631\u0649", n: "771" },
+                { flag: "🇸🇦", label: "السعودية", n: "843" },
+                { flag: "🇦🇪", label: "الإمارات", n: "431" },
+                { flag: "🇶🇦", label: "قطر", n: "312" },
+                { flag: "🌍", label: "دول أخرى", n: "771" },
               ].map(r => (
                 <div key={r.label} style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
                   <span style={{ fontSize: 15 }}>{r.flag}</span>
@@ -392,7 +377,7 @@ export default function SignupGateModal() {
                 </div>
               ))}
               <div style={{ borderTop: "1px solid #1e293b", paddingTop: 8, marginTop: 4, display: "flex", justifyContent: "space-between" }}>
-                <span style={{ fontSize: 11, color: "#cbd5e1" }}>\u0627\u0644\u0645\u062C\u0645\u0648\u0639</span>
+                <span style={{ fontSize: 11, color: "#cbd5e1" }}>{"المجموع"}</span>
                 <span style={{ fontSize: 12, color: "#f8fafc", fontWeight: 700 }}>{count.toLocaleString("ar-SA")}</span>
               </div>
             </div>
