@@ -1,6 +1,15 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
 import BroadcastGrid from "./BroadcastGrid";
+import NavBar from "./NavBar";
+import TabHealth from "./tabs/TabHealth";
+import TabTransport from "./tabs/TabTransport";
+import TabIndicators from "./tabs/TabIndicators";
+import TabReports from "./tabs/TabReports";
+import TabRealEstate from "./tabs/TabRealEstate";
+import TabTelecom from "./tabs/TabTelecom";
+import TabTourism from "./tabs/TabTourism";
+import TabFood from "./tabs/TabFood";
 
 const FONT_URL = "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap";
 
@@ -421,12 +430,20 @@ function TabVision() {
 }
 
 const TABS = [
-  { id: "live",   label: "بث مباشر",   icon: "📡", color: "#ef4444", comp: TabLive },
-  { id: "geo",    label: "جيوسياسي",   icon: "🌍", color: "#f97316", comp: TabGeo },
-  { id: "market", label: "الأسواق",    icon: "📈", color: "#f59e0b", comp: TabMarket },
-  { id: "energy", label: "الطاقة",     icon: "⚡", color: "#3b82f6", comp: TabEnergy },
-  { id: "cma",    label: "هيئة CMA",   icon: "🏛️", color: "#8b5cf6", comp: TabCMA },
-  { id: "vision", label: "رؤية 2030",  icon: "🚀", color: "#22c55e", comp: TabVision },
+  { id: "live",       label: "بث مباشر",   icon: "📡", color: "#ef4444",  comp: TabLive },
+  { id: "geo",        label: "جيوسياسي",   icon: "🌍", color: "#f97316",  comp: TabGeo },
+  { id: "market",     label: "الأسواق",    icon: "📈", color: "#f59e0b",  comp: TabMarket },
+  { id: "energy",     label: "الطاقة",     icon: "⚡", color: "#3b82f6",  comp: TabEnergy },
+  { id: "cma",        label: "هيئة CMA",   icon: "🏛️", color: "#8b5cf6",  comp: TabCMA },
+  { id: "vision",     label: "رؤية 2030",  icon: "🚀", color: "#22c55e",  comp: TabVision },
+  { id: "health",     label: "الصحة",      icon: "🏥", color: "#10b981",  comp: TabHealth },
+  { id: "transport",  label: "النقل",      icon: "✈️", color: "#6366f1",  comp: TabTransport },
+  { id: "indicators", label: "المؤشرات",   icon: "📊", color: "#ec4899",  comp: TabIndicators },
+  { id: "reports",    label: "التقارير",   icon: "📋", color: "#14b8a6",  comp: TabReports },
+  { id: "realestate", label: "العقارات",   icon: "🏗️", color: "#f97316",  comp: TabRealEstate },
+  { id: "telecom",    label: "الاتصالات",  icon: "📶", color: "#0ea5e9",  comp: TabTelecom },
+  { id: "tourism",    label: "السياحة",    icon: "🏖️", color: "#a855f7",  comp: TabTourism },
+  { id: "food",       label: "الأغذية",    icon: "🌾", color: "#84cc16",  comp: TabFood },
 ];
 
 export default function FreeTabs() {
@@ -461,25 +478,17 @@ export default function FreeTabs() {
         .fade-in{animation:fadeIn 0.3s ease}
       `}</style>
 
-      {/* Header */}
-      <div style={{ background: "#0a1628", borderBottom: "1px solid #1e293b", padding: "0 20px", display: "flex", alignItems: "center", gap: 14, height: 52, flexShrink: 0 }}>
-        <div style={{ width: 34, height: 34, background: "#22c55e18", border: "1px solid #22c55e44", borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18 }}>🌍</div>
-        <div>
-          <div style={{ fontSize: 13, fontWeight: 800, color: "#22c55e", letterSpacing: 1 }}>MENA<span style={{ color: "#f8fafc" }}>.Watch</span></div>
-          <div style={{ fontSize: 8, color: "#475569", letterSpacing: 2 }}>مراقبة الميدان المباشرة</div>
-        </div>
-        <div style={{ width: 1, height: 28, background: "#1e293b" }} />
+      {/* NavBar */}
+      <NavBar activePath="/free" />
+
+      {/* Sub Bar */}
+      <div style={{ background: "#080f1c", borderBottom: "1px solid #1e293b", padding: "0 20px", display: "flex", alignItems: "center", gap: 14, height: 36, flexShrink: 0 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
           <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#ef4444", display: "inline-block", animation: "pulse 1s infinite" }} />
           <span style={{ fontSize: 10, color: "#ef4444", fontWeight: 700 }}>مباشر</span>
         </div>
         <div style={{ flex: 1 }} />
         <div style={{ fontSize: 13, fontWeight: 700, color: "#22c55e", fontVariantNumeric: "tabular-nums" }}>{saudiTime}</div>
-        {user ? (
-          <div style={{ fontSize: 11, color: "#22c55e", fontWeight: 600 }}>👤 {user.email?.split("@")[0]}</div>
-        ) : (
-          <a href="/login" style={{ background: "linear-gradient(135deg,#22c55e,#16a34a)", color: "#fff", border: "none", borderRadius: 6, padding: "7px 16px", fontSize: 11, fontWeight: 700, fontFamily: "inherit", cursor: "pointer", textDecoration: "none" }}>📔 سجّل مجاناً</a>
-        )}
       </div>
 
       {/* Tab Bar */}

@@ -34,8 +34,8 @@ export async function middleware(request: NextRequest) {
 
   const { pathname } = request.nextUrl;
 
-  // حماية مسارات /ops و /admin
-  if ((pathname.startsWith("/ops") || pathname.startsWith("/admin")) && !user) {
+  // حماية مسارات /ops و /admin و /profile
+  if ((pathname.startsWith("/ops") || pathname.startsWith("/admin") || pathname.startsWith("/profile")) && !user) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 

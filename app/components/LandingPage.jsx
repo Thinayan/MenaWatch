@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import NavBar from "./NavBar";
 
 // ── نفس الـ Logo Base64 الموجود في OpsRoom ─────────────────────────────────
 // يُستورد من الصفحات الأخرى — هنا نستخدم النص المباشر
@@ -98,22 +99,17 @@ export default function LandingPage() {
         .cta-primary:hover { opacity: 0.9; transform: translateY(-1px); }
       `}</style>
 
-      {/* ── TOP BAR (نفس نمط OpsRoom) ── */}
+      {/* ── NAVBAR ── */}
+      <NavBar activePath="/" />
+
+      {/* ── SUB BAR: Ticker + Markets + Time ── */}
       <div style={{
-        background: "linear-gradient(90deg, #0a1628 0%, #0f1f3d 50%, #0a1628 100%)",
+        background: "#080f1c",
         borderBottom: "1px solid #1e293b",
         padding: "0 20px",
         display: "flex", alignItems: "center", gap: 12,
-        height: 44, position: "sticky", top: 0, zIndex: 100,
+        height: 36,
       }}>
-        {/* Logo */}
-        <a href="/" style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0, textDecoration: "none" }}>
-          <img src="/logo-sm.png" alt="MENA.Watch" style={{ height: 34, width: "auto" }} />
-        </a>
-
-        {/* Divider */}
-        <div style={{ width: 1, height: 28, background: "#1e293b", flexShrink: 0 }} />
-
         {/* Live ticker */}
         <div style={{ flex: 1, overflow: "hidden" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
@@ -132,23 +128,17 @@ export default function LandingPage() {
         ].map(s => (
           <div key={s.l} style={{ textAlign: "center", flexShrink: 0 }}>
             <div style={{ fontSize: 9, color: "#475569" }}>{s.l}</div>
-            <div style={{ fontSize: 12, fontWeight: 700, color: "#f8fafc", fontVariantNumeric: "tabular-nums" }}>{s.v}</div>
+            <div style={{ fontSize: 11, fontWeight: 700, color: "#f8fafc", fontVariantNumeric: "tabular-nums" }}>{s.v}</div>
             <div style={{ fontSize: 9, color: s.up ? "#22c55e" : "#ef4444" }}>{s.c}</div>
           </div>
         ))}
 
-        <div style={{ width: 1, height: 28, background: "#1e293b", flexShrink: 0 }} />
+        <div style={{ width: 1, height: 20, background: "#1e293b", flexShrink: 0 }} />
 
         {/* Time */}
         <div style={{ textAlign: "center", flexShrink: 0 }}>
-          <div style={{ fontSize: 9, color: "#475569" }}>توقيت الرياض</div>
-          <div style={{ fontSize: 13, fontWeight: 700, color: "#22c55e", fontVariantNumeric: "tabular-nums", letterSpacing: 1 }}>{time}</div>
-        </div>
-
-        {/* Nav buttons */}
-        <div style={{ display: "flex", gap: 6, flexShrink: 0 }}>
-          <a href="/free" style={{ padding: "5px 12px", borderRadius: 4, background: "transparent", border: "1px solid #1e293b", color: "#64748b", fontSize: 11, textDecoration: "none" }} className="nav-link">استكشف مجاناً</a>
-          <a href="/login" style={{ padding: "5px 12px", borderRadius: 4, background: "#22c55e", color: "#000", fontSize: 11, fontWeight: 700, textDecoration: "none" }}>دخول</a>
+          <div style={{ fontSize: 9, color: "#475569" }}>الرياض</div>
+          <div style={{ fontSize: 12, fontWeight: 700, color: "#22c55e", fontVariantNumeric: "tabular-nums" }}>{time}</div>
         </div>
       </div>
 
