@@ -83,6 +83,30 @@ export default function MenaWatchMap() {
   const [analysis, setAnalysis] = useState("");
   const [loadingAI, setLoadingAI] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
+  const [showCta, setShowCta] = useState(false);
+  const [ctaDismissed, setCtaDismissed] = useState(false);
+
+  // CTA popup: show after 3s, auto-hide after 20s, remember dismissal
+  useEffect(() => {
+    if (typeof window !== "undefined" && localStorage.getItem("mena_cta_dismissed")) {
+      setCtaDismissed(true);
+      return;
+    }
+    const showTimer = setTimeout(() => setShowCta(true), 3000);
+    return () => clearTimeout(showTimer);
+  }, []);
+
+  useEffect(() => {
+    if (!showCta || ctaDismissed) return;
+    const hideTimer = setTimeout(() => setShowCta(false), 20000);
+    return () => clearTimeout(hideTimer);
+  }, [showCta, ctaDismissed]);
+
+  function dismissCta() {
+    setShowCta(false);
+    setCtaDismissed(true);
+    if (typeof window !== "undefined") localStorage.setItem("mena_cta_dismissed", "1");
+  }
   const mapRef = useRef(null);
   const leafletMap = useRef(null);
   const markersLayer = useRef(null);
@@ -362,11 +386,11 @@ export default function MenaWatchMap() {
           </div>
 
           {/* LIVE BROADCAST PANEL + SENTIMENT 30% */}
-          <div style={{ flex:3, minWidth:280, maxWidth:420, display:"flex", flexDirection:"column", overflow:"hidden" }}>
-            <div style={{ flex:"0 0 auto" }}>
+          <div style={{ flex:3, minWidth:280, maxWidth:420, display:"flex", flexDirection:"column", overflowY:"auto" }}>
+            <div style={{ flexShrink:0 }}>
               <LiveBroadcastPanel />
             </div>
-            <div style={{ flex:"0 0 auto", borderTop:"1px solid #1e293b" }}>
+            <div style={{ flexShrink:0, borderTop:"1px solid #1e293b" }}>
               <Suspense fallback={<div style={{ padding:12, color:"#94a3b8", fontSize:11 }}>جارٍ التحليل...</div>}>
                 <SentimentWidget />
               </Suspense>
@@ -421,34 +445,69 @@ export default function MenaWatchMap() {
         )}
       </div>
 
-      {/* ── FLOATING CTA BADGE ── */}
-      {!showRegister && (
+      {/* ── FLOATING CTA POPUP — auto-dismiss 20s + remember close ── */}
+      <style>{`
+        @keyframes cta-slide-in {
+          0% { transform: translateY(100px); opacity: 0; }
+          100% { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes cta-progress {
+          0% { width: 100%; }
+          100% { width: 0%; }
+        }
+      `}</style>
+      {showCta && !ctaDismissed && !showRegister && (
         <div style={{
-          position:"fixed", bottom:16, left:16, zIndex:1000,
-          background:"linear-gradient(135deg,#0f172aee,#1e293bee)",
-          backdropFilter:"blur(10px)",
-          border:"1px solid #334155",
-          borderRadius:12,
-          padding:"10px 16px",
-          display:"flex", alignItems:"center", gap:10,
-          boxShadow:"0 4px 20px #0008",
-          cursor:"pointer",
-          transition:"all 0.2s",
-        }}
-          onClick={() => setShowRegister(true)}
-          onMouseEnter={e => { e.currentTarget.style.borderColor="#f59e0b"; e.currentTarget.style.transform="translateY(-2px)"; }}
-          onMouseLeave={e => { e.currentTarget.style.borderColor="#334155"; e.currentTarget.style.transform="translateY(0)"; }}
-        >
-          <span style={{ fontSize:14 }}>📩</span>
-          <div>
-            <div style={{ fontSize:11, fontWeight:700, color:"#e2e8f0" }}>التقرير الصباحي</div>
-            <div style={{ fontSize:9, color:"#94a3b8" }}>سجل مجاناً</div>
+          position:"fixed", bottom:20, left:20, zIndex:1000,
+          background:"linear-gradient(135deg,#1a1a2e,#16213e)",
+          border:"1px solid #f59e0b55",
+          borderRadius:14,
+          padding:"14px 18px",
+          width:260,
+          boxShadow:"0 8px 32px #f59e0b22, 0 4px 16px #0006",
+          animation:"cta-slide-in 0.4s ease-out",
+          direction:"rtl",
+        }}>
+          {/* Close button */}
+          <button onClick={dismissCta} style={{
+            position:"absolute", top:8, left:8, background:"none", border:"none",
+            color:"#64748b", fontSize:14, cursor:"pointer", padding:4, lineHeight:1,
+          }}>✕</button>
+
+          {/* Content */}
+          <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:10 }}>
+            <div style={{
+              width:36, height:36, borderRadius:10,
+              background:"linear-gradient(135deg,#f59e0b,#ef4444)",
+              display:"flex", alignItems:"center", justifyContent:"center",
+              fontSize:18, flexShrink:0,
+            }}>📩</div>
+            <div>
+              <div style={{ fontSize:13, fontWeight:700, color:"#fff" }}>التقرير الصباحي</div>
+              <div style={{ fontSize:10, color:"#94a3b8" }}>تحليلات يومية + تنبيهات فورية</div>
+            </div>
           </div>
-          <div style={{
-            width:6, height:6, borderRadius:"50%",
-            background:"#f59e0b",
-            animation:"pulse-dot 2s infinite",
-          }} />
+
+          <button onClick={() => { setShowCta(false); setShowRegister(true); }} style={{
+            width:"100%", padding:"8px 0", borderRadius:8, border:"none", cursor:"pointer",
+            background:"linear-gradient(135deg,#f59e0b,#ef4444)",
+            color:"#fff", fontWeight:700, fontSize:12,
+            transition:"transform 0.15s",
+          }}
+            onMouseEnter={e => e.currentTarget.style.transform="scale(1.02)"}
+            onMouseLeave={e => e.currentTarget.style.transform="scale(1)"}
+          >
+            سجّل مجاناً الآن
+          </button>
+
+          {/* Auto-dismiss progress bar */}
+          <div style={{ marginTop:8, height:2, background:"#1e293b", borderRadius:2, overflow:"hidden" }}>
+            <div style={{
+              height:"100%", background:"#f59e0b",
+              animation:"cta-progress 20s linear forwards",
+              borderRadius:2,
+            }} />
+          </div>
         </div>
       )}
 
