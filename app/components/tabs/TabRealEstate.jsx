@@ -1,4 +1,5 @@
 "use client";
+import LiveNewsFeed from "../LiveNewsFeed";
 
 const MEGAPROJECTS = [
   { name: "نيوم", budget: "$500B", area: "26,500 km²", status: "تحت الإنشاء", progress: 12, color: "#22c55e" },
@@ -94,6 +95,13 @@ export default function TabRealEstate() {
           ))}
         </div>
       </div>
+
+      {/* Live Real Estate News */}
+      <LiveNewsFeed
+        category="economic"
+        title="📰 آخر أخبار العقارات"
+        limit={5}
+      />
     </div>
   );
 }

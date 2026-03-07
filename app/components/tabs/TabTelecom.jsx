@@ -1,4 +1,5 @@
 "use client";
+import LiveNewsFeed from "../LiveNewsFeed";
 
 const OPERATORS = [
   { name: "STC (stc)", country: "🇸🇦", subs: "142M", revenue: "$16.8B", g5: "98%", stock: "43.70", chg: "+0.8%" },
@@ -66,6 +67,13 @@ export default function TabTelecom() {
           </div>
         ))}
       </div>
+
+      {/* Live Tech News */}
+      <LiveNewsFeed
+        category="tech"
+        title="📰 آخر أخبار التقنية والاتصالات"
+        limit={5}
+      />
     </div>
   );
 }

@@ -1,4 +1,5 @@
 "use client";
+import LiveNewsFeed from "../LiveNewsFeed";
 
 const CORRIDORS = [
   { name: "مضيق هرمز", traffic: "21M برميل/يوم", status: "مفتوح", risk: "متوسط", riskColor: "#f59e0b" },
@@ -84,19 +85,13 @@ export default function TabTransport() {
         </div>
       </div>
 
-      {/* News */}
-      <div>
-        <div style={{ fontSize: 11, color: "#64748b", marginBottom: 10 }}>📰 أخبار النقل واللوجستيات</div>
-        {LOGISTICS_NEWS.map((n, i) => (
-          <div key={i} style={{ background: "#0a1628", border: "1px solid #1e293b", borderRadius: 6, padding: "10px 14px", marginBottom: 5, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <div>
-              <div style={{ fontSize: 11, color: "#cbd5e1" }}>{n.title}</div>
-              <div style={{ fontSize: 9, color: "#475569", marginTop: 2 }}>{n.date}</div>
-            </div>
-            <span style={{ fontSize: 9, padding: "2px 8px", borderRadius: 3, background: "#6366f122", color: "#6366f1", flexShrink: 0 }}>{n.tag}</span>
-          </div>
-        ))}
-      </div>
+      {/* Live News Feed */}
+      <LiveNewsFeed
+        category="economic"
+        title="📰 أخبار النقل واللوجستيات"
+        limit={5}
+        fallbackNews={LOGISTICS_NEWS}
+      />
     </div>
   );
 }

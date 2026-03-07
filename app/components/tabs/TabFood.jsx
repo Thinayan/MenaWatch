@@ -1,4 +1,5 @@
 "use client";
+import LiveNewsFeed from "../LiveNewsFeed";
 
 const FOOD_STATS = [
   { label: "الأمن الغذائي MENA", val: "62/100", icon: "🌾", color: "#84cc16" },
@@ -74,18 +75,13 @@ export default function TabFood() {
         ))}
       </div>
 
-      <div>
-        <div style={{ fontSize: 11, color: "#64748b", marginBottom: 10 }}>📰 أخبار الأغذية والزراعة</div>
-        {FOOD_NEWS.map((n, i) => (
-          <div key={i} style={{ background: "#0a1628", border: "1px solid #1e293b", borderRadius: 6, padding: "10px 14px", marginBottom: 5, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <div>
-              <div style={{ fontSize: 11, color: "#cbd5e1" }}>{n.title}</div>
-              <div style={{ fontSize: 9, color: "#475569", marginTop: 2 }}>{n.date}</div>
-            </div>
-            <span style={{ fontSize: 9, padding: "2px 8px", borderRadius: 3, background: "#84cc1622", color: "#84cc16", flexShrink: 0 }}>{n.tag}</span>
-          </div>
-        ))}
-      </div>
+      {/* Live Food News */}
+      <LiveNewsFeed
+        category="general"
+        title="📰 أخبار الأغذية والزراعة"
+        limit={5}
+        fallbackNews={FOOD_NEWS}
+      />
     </div>
   );
 }

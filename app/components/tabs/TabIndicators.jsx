@@ -1,4 +1,5 @@
 "use client";
+import LiveNewsFeed from "../LiveNewsFeed";
 
 const INDICATORS = [
   { country: "🇸🇦 السعودية", gdp: "$1.06T", growth: "+4.7%", inflation: "1.6%", unemployment: "4.9%", trade: "+$112B" },
@@ -53,6 +54,13 @@ export default function TabIndicators() {
           ))}
         </div>
       </div>
+
+      {/* Live Economic News */}
+      <LiveNewsFeed
+        category="economic"
+        title="📰 آخر الأخبار الاقتصادية"
+        limit={5}
+      />
     </div>
   );
 }

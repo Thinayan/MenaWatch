@@ -1,4 +1,5 @@
 "use client";
+import LiveNewsFeed from "../LiveNewsFeed";
 
 const TOURISM_STATS = [
   { label: "سياح 2025", val: "115M+", icon: "✈️", color: "#a855f7" },
@@ -74,6 +75,13 @@ export default function TabTourism() {
           ))}
         </div>
       </div>
+
+      {/* Live Tourism News */}
+      <LiveNewsFeed
+        category="general"
+        title="📰 آخر أخبار السياحة"
+        limit={5}
+      />
     </div>
   );
 }

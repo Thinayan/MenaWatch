@@ -1,4 +1,5 @@
 "use client";
+import LiveNewsFeed from "../LiveNewsFeed";
 
 const HEALTH_CITIES = [
   { name: "مدينة الملك فهد الطبية", city: "الرياض", beds: 1200, specialty: "شامل", status: "تشغيل كامل" },
@@ -76,19 +77,13 @@ export default function TabHealth() {
         ))}
       </div>
 
-      {/* News */}
-      <div>
-        <div style={{ fontSize: 11, color: "#64748b", marginBottom: 10 }}>📰 آخر الأخبار الصحية</div>
-        {HEALTH_NEWS.map((n, i) => (
-          <div key={i} style={{ background: "#0a1628", border: "1px solid #1e293b", borderRadius: 6, padding: "10px 14px", marginBottom: 5, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <div>
-              <div style={{ fontSize: 11, color: "#cbd5e1" }}>{n.title}</div>
-              <div style={{ fontSize: 9, color: "#475569", marginTop: 2 }}>{n.date}</div>
-            </div>
-            <span style={{ fontSize: 9, padding: "2px 8px", borderRadius: 3, background: "#10b98122", color: "#10b981", flexShrink: 0 }}>{n.tag}</span>
-          </div>
-        ))}
-      </div>
+      {/* Live News Feed */}
+      <LiveNewsFeed
+        category="health"
+        title="📰 آخر الأخبار الصحية"
+        limit={5}
+        fallbackNews={HEALTH_NEWS}
+      />
     </div>
   );
 }
