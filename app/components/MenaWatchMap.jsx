@@ -225,7 +225,7 @@ export default function MenaWatchMap() {
   }
 
   return (
-    <div style={{ direction:"rtl", background:"#060d18", minHeight:"100vh", color:"#e2e8f0", fontFamily:"'Segoe UI', Tahoma, Arial, sans-serif", display:"flex", flexDirection:"column" }}>
+    <div style={{ direction:"rtl", background:"#060d18", height:"100vh", color:"#e2e8f0", fontFamily:"'Segoe UI', Tahoma, Arial, sans-serif", display:"flex", flexDirection:"column", overflow:"hidden" }}>
 
       {/* ── Leaflet pulse CSS ── */}
       <style>{`
@@ -316,8 +316,8 @@ export default function MenaWatchMap() {
             </div>
           )}
 
-          {/* Spots list */}
-          <div style={{ padding:"10px 14px", flex:1 }}>
+          {/* Spots list — scrollable with max height */}
+          <div style={{ padding:"10px 14px", maxHeight:220, overflowY:"auto", flexShrink:0 }}>
             <div style={{ fontSize:11, color:"#94a3b8", marginBottom:8 }}>● {spots.length} نقطة رصد نشطة</div>
             {spots.map(s => (
               <div key={s.id} onClick={() => setSelected(s)} style={{
@@ -335,8 +335,8 @@ export default function MenaWatchMap() {
             ))}
           </div>
 
-          {/* Live RSS News Feed */}
-          <div style={{ flex:1, minHeight:200, borderTop:"1px solid #1e293b" }}>
+          {/* Live RSS News Feed — takes remaining space */}
+          <div style={{ flex:1, minHeight:0, borderTop:"1px solid #1e293b", overflow:"hidden" }}>
             <Suspense fallback={<div style={{ padding:14, color:"#94a3b8", fontSize:11 }}>جارٍ تحميل الأخبار...</div>}>
               <NewsTicker />
             </Suspense>
@@ -347,7 +347,7 @@ export default function MenaWatchMap() {
         <div style={{ flex:1, display:"flex", minHeight:0 }}>
           {/* MAP 70% */}
           <div style={{ flex:7, position:"relative", minWidth:0 }}>
-            <div ref={mapRef} style={{ width:"100%", height:"100%", minHeight:500 }} />
+            <div ref={mapRef} style={{ width:"100%", height:"100%" }} />
 
             {/* Risk legend */}
             <div style={{ position:"absolute", bottom:20, left:20, background:"#0a162899", backdropFilter:"blur(10px)", border:"1px solid #1e293b", borderRadius:10, padding:"10px 14px", zIndex:1000 }}>

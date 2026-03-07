@@ -18,17 +18,18 @@ const SOURCES = {
   alarabiya_biz: { nameAr: "العربية بزنس",         color: "#c4161c" },
   aawsat:        { nameAr: "الشرق الأوسط",         color: "#1a1a6c" },
   alekhbariya:   { nameAr: "الإخبارية",            color: "#00695c" },
+  aitnews:       { nameAr: "البوابة التقنية",      color: "#ff6b35" },
 };
 
 const CATEGORIES = [
   { id: "all",      label: "الكل",    sources: null },
   { id: "main",     label: "رئيسي",   sources: ["bbc_ar", "rt", "alarabiya", "alhadath", "aljazeera", "france24", "dw"] },
   { id: "economy",  label: "اقتصاد",  sources: ["aleqt", "argaam", "alarabiya_biz"] },
-  { id: "saudi",    label: "سعودي",   sources: ["spa", "ain", "okaz", "alekhbariya", "aawsat"] },
+  { id: "saudi",    label: "سعودي",   sources: ["spa", "ain", "okaz", "alekhbariya", "aawsat", "aitnews"] },
 ];
 
 // BBC Arabic and RT work reliably on Vercel — others added as fallback
-const FETCH_SOURCES = ["bbc_ar", "rt", "france24", "dw", "aawsat", "alarabiya", "alarabiya_biz", "alhadath", "spa", "alekhbariya", "aljazeera", "aleqt", "argaam"];
+const FETCH_SOURCES = ["bbc_ar", "rt", "france24", "dw", "aawsat", "aitnews", "alarabiya", "alarabiya_biz", "alhadath", "spa", "alekhbariya", "aljazeera", "aleqt", "argaam"];
 
 const REFRESH_INTERVAL = 5 * 60 * 1000; // 5 minutes
 
