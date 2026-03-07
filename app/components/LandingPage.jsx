@@ -15,34 +15,12 @@ const STATS = [
 ];
 
 const FEATURES = [
-  { icon: "🛡️", title: "خريطة أمنية تفاعلية",     color: "#ef4444", desc: "تصور حي لمناطق التوتر والنزاعات مع مؤشرات DEFCON إقليمية" },
-  { icon: "⚡", title: "تحليل اقتصادي فوري",       color: "#f59e0b", desc: "أسواق الخليج، النفط، الممرات التجارية — في لوحة واحدة" },
-  { icon: "🌐", title: "رصد البنية الرقمية",        color: "#3b82f6", desc: "كابلات بحرية، مراكز بيانات، شبكات اتصالات المنطقة" },
-  { icon: "🚀", title: "فرص الاستثمار والمشاريع",   color: "#22c55e", desc: "مشاريع رؤية 2030 والصفقات الكبرى في الشرق الأوسط" },
-  { icon: "🤖", title: "تحليل Claude AI",           color: "#8b5cf6", desc: "تحليل استراتيجي فوري لأي منطقة أو حدث بالذكاء الاصطناعي" },
-  { icon: "📡", title: "غرفة عمليات متكاملة",       color: "#22c55e", desc: "تتبع الأحداث والتنبؤات الاستراتيجية في الوقت الحقيقي" },
-];
-
-const PLANS = [
-  {
-    name: "مجاني", price: "$0", period: "دائماً",
-    accent: "#64748b", border: "#1e293b", bg: "#0a1628",
-    features: ["الخريطة الأساسية", "٥ تحليلات AI / شهر", "الأخبار الإقليمية", "بث مباشر محدود"],
-    cta: "ابدأ مجاناً", ctaBg: "#1e293b", ctaColor: "#94a3b8",
-  },
-  {
-    name: "خبير", price: "$49", period: "/شهر",
-    accent: "#22c55e", border: "#22c55e44", bg: "#0a1628",
-    badge: "الأكثر طلباً",
-    features: ["كل المميزات المجانية", "تحليلات Claude AI غير محدودة", "غرفة عمليات كاملة", "تنبيهات فورية", "تقارير يومية صباحية"],
-    cta: "ابدأ تجربة مجانية", ctaBg: "#22c55e", ctaColor: "#000",
-  },
-  {
-    name: "مؤسسي", price: "$299", period: "/شهر",
-    accent: "#f59e0b", border: "#f59e0b44", bg: "#0a1628",
-    features: ["كل مميزات الخبير", "API للبيانات", "لوحات مخصصة", "٥ مستخدمين", "دعم مباشر ٢٤/٧"],
-    cta: "تواصل معنا", ctaBg: "#f59e0b22", ctaColor: "#f59e0b",
-  },
+  { icon: "🛡️", title: "خريطة أمنية تفاعلية",     color: "#ef4444", desc: "تصوّر حي لمناطق التوتر والنزاعات مع مستويات التأهب الإقليمية لكل دولة" },
+  { icon: "⚡", title: "تحليل اقتصادي فوري",       color: "#f59e0b", desc: "متابعة أسواق الخليج والنفط والممرات التجارية البحرية في لوحة واحدة" },
+  { icon: "🌐", title: "رصد إقليمي شامل",          color: "#3b82f6", desc: "تغطية ١٢٠+ دولة مع ٥٠٠ مصدر إخباري ورصد ميداني على مدار الساعة" },
+  { icon: "🚀", title: "فرص الاستثمار والمشاريع",   color: "#22c55e", desc: "مشاريع رؤية 2030 والصفقات الكبرى والفرص الاقتصادية في المنطقة" },
+  { icon: "📊", title: "تحليل استراتيجي بالذكاء الاصطناعي", color: "#8b5cf6", desc: "تحليل فوري للأحداث والمخاطر الجيوسياسية مدعوم بأحدث تقنيات الذكاء الاصطناعي" },
+  { icon: "📡", title: "غرفة عمليات متكاملة",       color: "#22c55e", desc: "تتبع الأحداث والتنبيهات والتنبؤات الاستراتيجية لصانعي القرار" },
 ];
 
 const NEWS_TICKER = [
@@ -152,20 +130,20 @@ export default function LandingPage() {
           مباشر — رصد ٢٤/٧ للشرق الأوسط وشمال أفريقيا
         </div>
 
-        <h1 style={{ fontSize: 48, fontWeight: 800, color: "#f8fafc", lineHeight: 1.25, margin: "0 0 16px", letterSpacing: -0.5 }}>
+        <h1 style={{ fontSize: 56, fontWeight: 800, color: "#f8fafc", lineHeight: 1.3, margin: "0 0 20px", letterSpacing: -0.5 }}>
           منصة الذكاء الاستراتيجي<br />
           <span style={{ color: "#22c55e" }}>للشرق الأوسط</span>
         </h1>
 
-        <p style={{ fontSize: 16, color: "#64748b", maxWidth: 520, margin: "0 auto 40px", lineHeight: 1.8 }}>
-          تحليلات جيوسياسية فورية، خرائط تفاعلية، ومؤشرات أمنية واقتصادية لصانعي القرار في المنطقة.
+        <p style={{ fontSize: 20, color: "#94a3b8", maxWidth: 600, margin: "0 auto 40px", lineHeight: 1.8 }}>
+          تحليلات جيوسياسية فورية، خرائط تفاعلية، ومؤشرات أمنية واقتصادية لصانعي القرار والمحللين والمستثمرين في المنطقة.
         </p>
 
         <div style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" }}>
-          <a href="/free" className="cta-primary" style={{ padding: "10px 24px", borderRadius: 4, background: "#22c55e", color: "#000", fontWeight: 700, fontSize: 13, textDecoration: "none", transition: "all 0.2s" }}>
-            🗺️ استكشف الخريطة مجاناً
+          <a href="/free" className="cta-primary" style={{ padding: "14px 32px", borderRadius: 6, background: "#22c55e", color: "#000", fontWeight: 700, fontSize: 16, textDecoration: "none", transition: "all 0.2s" }}>
+            🗺️ استكشف المنصة مجاناً
           </a>
-          <a href="/ops" style={{ padding: "10px 24px", borderRadius: 4, background: "transparent", border: "1px solid #1e293b", color: "#94a3b8", fontSize: 13, textDecoration: "none", transition: "all 0.2s" }}>
+          <a href="/ops" style={{ padding: "14px 32px", borderRadius: 6, background: "transparent", border: "1px solid #1e293b", color: "#94a3b8", fontSize: 16, textDecoration: "none", transition: "all 0.2s" }}>
             ▶ غرفة العمليات
           </a>
         </div>
@@ -211,8 +189,8 @@ export default function LandingPage() {
         <div style={{ maxWidth: 700, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 0 }}>
           {STATS.map((s, i) => (
             <div key={s.l} style={{ textAlign: "center", borderLeft: i > 0 ? "1px solid #1e293b" : "none", padding: "0 20px" }}>
-              <div style={{ fontSize: 30, fontWeight: 800, color: "#22c55e", fontVariantNumeric: "tabular-nums" }}>{s.n}</div>
-              <div style={{ fontSize: 11, color: "#475569", marginTop: 4 }}>{s.l}</div>
+              <div style={{ fontSize: 36, fontWeight: 800, color: "#22c55e", fontVariantNumeric: "tabular-nums" }}>{s.n}</div>
+              <div style={{ fontSize: 14, color: "#64748b", marginTop: 6 }}>{s.l}</div>
             </div>
           ))}
         </div>
@@ -221,47 +199,15 @@ export default function LandingPage() {
       {/* ── FEATURES ── */}
       <section style={{ padding: "60px 40px" }}>
         <div style={{ textAlign: "center", marginBottom: 40 }}>
-          <div style={{ fontSize: 10, color: "#475569", letterSpacing: 3, marginBottom: 10 }}>الميزات</div>
-          <h2 style={{ fontSize: 28, fontWeight: 700, color: "#f8fafc" }}>كل ما تحتاجه في منصة واحدة</h2>
+          <div style={{ fontSize: 13, color: "#475569", letterSpacing: 3, marginBottom: 12 }}>لماذا MENA Watch</div>
+          <h2 style={{ fontSize: 34, fontWeight: 700, color: "#f8fafc" }}>كل ما يحتاجه صانع القرار في منصة واحدة</h2>
         </div>
         <div style={{ maxWidth: 900, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 12 }}>
           {FEATURES.map(f => (
             <div key={f.title} className="feature-card" style={{ "--accent": f.color, background: "#0a1628", border: "1px solid #1e293b", borderRadius: 6, padding: "20px 18px", transition: "border-color 0.2s" }}>
-              <div style={{ fontSize: 24, marginBottom: 12 }}>{f.icon}</div>
-              <div style={{ fontSize: 13, fontWeight: 700, color: "#f8fafc", marginBottom: 6 }}>{f.title}</div>
-              <div style={{ fontSize: 11, color: "#64748b", lineHeight: 1.7 }}>{f.desc}</div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── PRICING ── */}
-      <section style={{ padding: "60px 40px", borderTop: "1px solid #1e293b" }}>
-        <div style={{ textAlign: "center", marginBottom: 40 }}>
-          <div style={{ fontSize: 10, color: "#475569", letterSpacing: 3, marginBottom: 10 }}>الأسعار</div>
-          <h2 style={{ fontSize: 28, fontWeight: 700, color: "#f8fafc" }}>خطط تناسب احتياجاتك</h2>
-        </div>
-        <div style={{ maxWidth: 820, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 14, alignItems: "start" }}>
-          {PLANS.map(p => (
-            <div key={p.name} className="plan-card" style={{ background: p.bg, border: `1px solid ${p.border}`, borderRadius: 6, padding: "24px 20px", position: "relative", boxShadow: p.badge ? `0 0 20px ${p.accent}11` : "none" }}>
-              {p.badge && (
-                <div style={{ position: "absolute", top: -10, left: "50%", transform: "translateX(-50%)", background: p.accent, color: "#000", fontSize: 9, fontWeight: 700, padding: "3px 10px", borderRadius: 2, letterSpacing: 1 }}>{p.badge}</div>
-              )}
-              <div style={{ fontSize: 13, fontWeight: 700, color: p.accent, marginBottom: 4, letterSpacing: 1 }}>{p.name}</div>
-              <div style={{ display: "flex", alignItems: "baseline", gap: 3, marginBottom: 3 }}>
-                <span style={{ fontSize: 32, fontWeight: 800, color: "#f8fafc" }}>{p.price}</span>
-                <span style={{ fontSize: 12, color: "#475569" }}>{p.period}</span>
-              </div>
-              <div style={{ height: 1, background: p.border, margin: "14px 0" }} />
-              {p.features.map(f => (
-                <div key={f} style={{ display: "flex", gap: 7, alignItems: "center", marginBottom: 8 }}>
-                  <span style={{ color: p.accent, fontSize: 11 }}>✓</span>
-                  <span style={{ fontSize: 12, color: "#94a3b8" }}>{f}</span>
-                </div>
-              ))}
-              <a href="/login" style={{ display: "block", textAlign: "center", marginTop: 18, padding: "9px 0", borderRadius: 4, background: p.ctaBg, color: p.ctaColor, fontWeight: 700, fontSize: 12, textDecoration: "none", border: `1px solid ${p.border}` }}>
-                {p.cta}
-              </a>
+              <div style={{ fontSize: 30, marginBottom: 14 }}>{f.icon}</div>
+              <div style={{ fontSize: 16, fontWeight: 700, color: "#f8fafc", marginBottom: 8 }}>{f.title}</div>
+              <div style={{ fontSize: 14, color: "#94a3b8", lineHeight: 1.8 }}>{f.desc}</div>
             </div>
           ))}
         </div>
@@ -269,15 +215,15 @@ export default function LandingPage() {
 
       {/* ── NEWSLETTER CTA ── */}
       <section style={{ padding: "50px 40px", borderTop: "1px solid #1e293b", textAlign: "center" }}>
-        <div style={{ fontSize: 10, color: "#475569", letterSpacing: 3, marginBottom: 10 }}>التقرير اليومي</div>
-        <h2 style={{ fontSize: 24, fontWeight: 700, color: "#f8fafc", marginBottom: 8 }}>ابدأ بتقرير صباحي مجاني</h2>
-        <p style={{ fontSize: 13, color: "#475569", marginBottom: 28 }}>انضم لأكثر من ١٢,٠٠٠ محلل وصانع قرار يستخدمون MENA Watch</p>
+        <div style={{ fontSize: 13, color: "#475569", letterSpacing: 3, marginBottom: 12 }}>التقرير اليومي</div>
+        <h2 style={{ fontSize: 30, fontWeight: 700, color: "#f8fafc", marginBottom: 10 }}>ابدأ بتقرير صباحي مجاني</h2>
+        <p style={{ fontSize: 16, color: "#94a3b8", marginBottom: 32 }}>انضم لأكثر من ١٢,٠٠٠ محلل وصانع قرار يستخدمون MENA Watch</p>
         {!submitted ? (
           <div style={{ display: "flex", gap: 8, justifyContent: "center", maxWidth: 400, margin: "0 auto" }}>
             <input type="email" placeholder="بريدك الإلكتروني" value={email} onChange={e => setEmail(e.target.value)}
-              style={{ flex: 1, padding: "9px 12px", borderRadius: 4, border: "1px solid #1e293b", background: "#0a1628", color: "#e2e8f0", fontSize: 12, textAlign: "right", outline: "none", fontFamily: "inherit" }} />
+              style={{ flex: 1, padding: "12px 16px", borderRadius: 6, border: "1px solid #1e293b", background: "#0a1628", color: "#e2e8f0", fontSize: 15, textAlign: "right", outline: "none", fontFamily: "inherit" }} />
             <button onClick={() => setSubmitted(true)}
-              style={{ padding: "9px 20px", borderRadius: 4, background: "#22c55e", color: "#000", fontWeight: 700, fontSize: 12, border: "none", cursor: "pointer", fontFamily: "inherit" }}>
+              style={{ padding: "12px 24px", borderRadius: 6, background: "#22c55e", color: "#000", fontWeight: 700, fontSize: 15, border: "none", cursor: "pointer", fontFamily: "inherit" }}>
               اشترك
             </button>
           </div>
