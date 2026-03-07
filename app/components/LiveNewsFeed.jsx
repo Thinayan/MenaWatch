@@ -64,7 +64,7 @@ export default function LiveNewsFeed({
       if (diff < 3600) return `منذ ${Math.floor(diff / 60)} د`;
       if (diff < 86400) return `منذ ${Math.floor(diff / 3600)} س`;
       if (diff < 604800) return `منذ ${Math.floor(diff / 86400)} يوم`;
-      return new Date(dateStr).toLocaleDateString("ar-SA", { month: "short", day: "numeric" });
+      return new Date(dateStr).toLocaleDateString("ar-EG", { month: "short", day: "numeric" });
     } catch { return ""; }
   }
 
@@ -76,7 +76,7 @@ export default function LiveNewsFeed({
 
   return (
     <div>
-      <div style={{ fontSize: 11, color: "#64748b", marginBottom: 10, display: "flex", alignItems: "center", gap: 6 }}>
+      <div style={{ fontSize: 11, color: "#94a3b8", marginBottom: 10, display: "flex", alignItems: "center", gap: 6 }}>
         {icon && <span>{icon}</span>}
         <span>{title}</span>
         {!loading && articles.length > 0 && (
@@ -135,9 +135,9 @@ export default function LiveNewsFeed({
                   {a.title}
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 3 }}>
-                  <span style={{ fontSize: 9, color: "#475569" }}>{a.source_name}</span>
+                  <span style={{ fontSize: 9, color: "#94a3b8" }}>{a.source_name}</span>
                   <span style={{ fontSize: 9, color: "#334155" }}>·</span>
-                  <span style={{ fontSize: 9, color: "#475569" }}>{timeAgo(a.pub_date)}</span>
+                  <span style={{ fontSize: 9, color: "#94a3b8" }}>{timeAgo(a.pub_date)}</span>
                   <span style={{
                     width: 5, height: 5, borderRadius: "50%",
                     background: SENTIMENT_DOT[a.sentiment_label] || "#94a3b8",
@@ -174,7 +174,7 @@ export default function LiveNewsFeed({
             }}>
               <div>
                 <div style={{ fontSize: 11, color: "#cbd5e1" }}>{n.title}</div>
-                <div style={{ fontSize: 9, color: "#475569", marginTop: 2 }}>{n.date}</div>
+                <div style={{ fontSize: 9, color: "#94a3b8", marginTop: 2 }}>{n.date}</div>
               </div>
               {n.tag && (
                 <span style={{
@@ -191,7 +191,7 @@ export default function LiveNewsFeed({
 
       {!loading && !showFallback && displayArticles.length === 0 && (
         <div style={{
-          padding: 16, textAlign: "center", fontSize: 11, color: "#475569",
+          padding: 16, textAlign: "center", fontSize: 11, color: "#94a3b8",
           background: "#0a1628", border: "1px solid #1e293b", borderRadius: 6,
         }}>
           لا توجد أخبار حالياً

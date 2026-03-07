@@ -34,7 +34,7 @@ export default function TabHealth() {
         ].map(s => (
           <div key={s.label} style={{ background: "#0a1628", border: "1px solid #1e293b", borderRadius: 8, padding: "12px 14px", textAlign: "center" }}>
             <div style={{ fontSize: 20, marginBottom: 4 }}>{s.icon}</div>
-            <div style={{ fontSize: 9, color: "#475569" }}>{s.label}</div>
+            <div style={{ fontSize: 9, color: "#94a3b8" }}>{s.label}</div>
             <div style={{ fontSize: 18, fontWeight: 800, color: s.color }}>{s.val}</div>
           </div>
         ))}
@@ -42,9 +42,9 @@ export default function TabHealth() {
 
       {/* Medical Cities */}
       <div>
-        <div style={{ fontSize: 11, color: "#64748b", marginBottom: 10 }}>🏥 أبرز المنشآت الصحية</div>
+        <div style={{ fontSize: 11, color: "#94a3b8", marginBottom: 10 }}>🏥 أبرز المنشآت الصحية</div>
         <div style={{ background: "#0a1628", border: "1px solid #1e293b", borderRadius: 8, overflow: "hidden" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 80px 60px 100px 80px", padding: "8px 14px", background: "#080f1c", borderBottom: "1px solid #1e293b", fontSize: 10, color: "#475569", fontWeight: 600 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 80px 60px 100px 80px", padding: "8px 14px", background: "#080f1c", borderBottom: "1px solid #1e293b", fontSize: 10, color: "#94a3b8", fontWeight: 600 }}>
             <span>المنشأة</span><span style={{ textAlign: "center" }}>المدينة</span><span style={{ textAlign: "center" }}>الأسرّة</span><span style={{ textAlign: "center" }}>التخصص</span><span style={{ textAlign: "center" }}>الحالة</span>
           </div>
           {HEALTH_CITIES.map(h => (
@@ -52,7 +52,7 @@ export default function TabHealth() {
               <span style={{ fontSize: 11, fontWeight: 600, color: "#e2e8f0" }}>{h.name}</span>
               <span style={{ fontSize: 10, color: "#94a3b8", textAlign: "center" }}>{h.city}</span>
               <span style={{ fontSize: 11, color: "#10b981", textAlign: "center", fontWeight: 700 }}>{h.beds}</span>
-              <span style={{ fontSize: 10, color: "#64748b", textAlign: "center" }}>{h.specialty}</span>
+              <span style={{ fontSize: 10, color: "#94a3b8", textAlign: "center" }}>{h.specialty}</span>
               <span style={{ fontSize: 9, padding: "2px 6px", borderRadius: 3, background: "#14532d", color: "#22c55e", textAlign: "center" }}>{h.status}</span>
             </div>
           ))}
@@ -61,14 +61,14 @@ export default function TabHealth() {
 
       {/* Health Initiatives */}
       <div>
-        <div style={{ fontSize: 11, color: "#64748b", marginBottom: 10 }}>📊 مبادرات التحول الصحي</div>
+        <div style={{ fontSize: 11, color: "#94a3b8", marginBottom: 10 }}>📊 مبادرات التحول الصحي</div>
         {HEALTH_INITIATIVES.map(i => (
           <div key={i.name} style={{ background: "#0a1628", border: "1px solid #1e293b", borderRadius: 6, padding: "10px 14px", marginBottom: 6 }}>
             <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6 }}>
               <span style={{ fontSize: 11, fontWeight: 600, color: "#e2e8f0" }}>{i.name}</span>
-              <span style={{ fontSize: 10, color: "#475569" }}>الميزانية: {i.budget}</span>
+              <span style={{ fontSize: 10, color: "#94a3b8" }}>الميزانية: {i.budget}</span>
             </div>
-            <div style={{ fontSize: 10, color: "#64748b", marginBottom: 6 }}>{i.target}</div>
+            <div style={{ fontSize: 10, color: "#94a3b8", marginBottom: 6 }}>{i.target}</div>
             <div style={{ background: "#1e293b", borderRadius: 3, height: 4, overflow: "hidden" }}>
               <div style={{ width: i.progress + "%", height: "100%", background: i.color, borderRadius: 3 }} />
             </div>

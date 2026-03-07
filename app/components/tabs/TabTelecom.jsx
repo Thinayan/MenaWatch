@@ -31,16 +31,16 @@ export default function TabTelecom() {
         {DIGITAL_STATS.map(s => (
           <div key={s.label} style={{ background: "#0a1628", border: "1px solid #1e293b", borderRadius: 8, padding: "12px 14px", textAlign: "center" }}>
             <div style={{ fontSize: 20, marginBottom: 4 }}>{s.icon}</div>
-            <div style={{ fontSize: 9, color: "#475569" }}>{s.label}</div>
+            <div style={{ fontSize: 9, color: "#94a3b8" }}>{s.label}</div>
             <div style={{ fontSize: 18, fontWeight: 800, color: s.color }}>{s.val}</div>
           </div>
         ))}
       </div>
 
       <div>
-        <div style={{ fontSize: 11, color: "#64748b", marginBottom: 10 }}>📶 شركات الاتصالات الكبرى</div>
+        <div style={{ fontSize: 11, color: "#94a3b8", marginBottom: 10 }}>📶 شركات الاتصالات الكبرى</div>
         <div style={{ background: "#0a1628", border: "1px solid #1e293b", borderRadius: 8, overflow: "hidden" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 40px 60px 70px 50px", padding: "8px 14px", background: "#080f1c", borderBottom: "1px solid #1e293b", fontSize: 10, color: "#475569", fontWeight: 600 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 40px 60px 70px 50px", padding: "8px 14px", background: "#080f1c", borderBottom: "1px solid #1e293b", fontSize: 10, color: "#94a3b8", fontWeight: 600 }}>
             <span>الشركة</span><span style={{ textAlign: "center" }}>الدولة</span><span style={{ textAlign: "center" }}>المشتركين</span><span style={{ textAlign: "center" }}>الإيرادات</span><span style={{ textAlign: "center" }}>5G</span>
           </div>
           {OPERATORS.map(o => (
@@ -56,12 +56,12 @@ export default function TabTelecom() {
       </div>
 
       <div>
-        <div style={{ fontSize: 11, color: "#64748b", marginBottom: 10 }}>🔌 البنية التحتية الرقمية</div>
+        <div style={{ fontSize: 11, color: "#94a3b8", marginBottom: 10 }}>🔌 البنية التحتية الرقمية</div>
         {INFRA.map(inf => (
           <div key={inf.name} style={{ background: "#0a1628", border: `1px solid ${inf.color}33`, borderRadius: 6, padding: "10px 14px", marginBottom: 6, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <div>
               <div style={{ fontSize: 11, fontWeight: 600, color: "#e2e8f0" }}>{inf.name}</div>
-              <div style={{ fontSize: 9, color: "#475569" }}>{inf.type} {inf.length !== "—" ? `| ${inf.length}` : ""}</div>
+              <div style={{ fontSize: 9, color: "#94a3b8" }}>{inf.type} {inf.length !== "—" ? `| ${inf.length}` : ""}</div>
             </div>
             <span style={{ fontSize: 9, padding: "2px 8px", borderRadius: 3, background: inf.color + "22", color: inf.color }}>{inf.status}</span>
           </div>

@@ -38,16 +38,16 @@ export default function TabFood() {
         {FOOD_STATS.map(s => (
           <div key={s.label} style={{ background: "#0a1628", border: "1px solid #1e293b", borderRadius: 8, padding: "12px 14px", textAlign: "center" }}>
             <div style={{ fontSize: 20, marginBottom: 4 }}>{s.icon}</div>
-            <div style={{ fontSize: 9, color: "#475569" }}>{s.label}</div>
+            <div style={{ fontSize: 9, color: "#94a3b8" }}>{s.label}</div>
             <div style={{ fontSize: 18, fontWeight: 800, color: s.color }}>{s.val}</div>
           </div>
         ))}
       </div>
 
       <div>
-        <div style={{ fontSize: 11, color: "#64748b", marginBottom: 10 }}>🌾 مؤشر الأمن الغذائي</div>
+        <div style={{ fontSize: 11, color: "#94a3b8", marginBottom: 10 }}>🌾 مؤشر الأمن الغذائي</div>
         <div style={{ background: "#0a1628", border: "1px solid #1e293b", borderRadius: 8, overflow: "hidden" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 60px 70px 60px 1fr", padding: "8px 14px", background: "#080f1c", borderBottom: "1px solid #1e293b", fontSize: 10, color: "#475569", fontWeight: 600 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 60px 70px 60px 1fr", padding: "8px 14px", background: "#080f1c", borderBottom: "1px solid #1e293b", fontSize: 10, color: "#94a3b8", fontWeight: 600 }}>
             <span>الدولة</span><span style={{ textAlign: "center" }}>المؤشر</span><span style={{ textAlign: "center" }}>الواردات</span><span style={{ textAlign: "center" }}>اكتفاء</span><span style={{ textAlign: "center" }}>الاستراتيجية</span>
           </div>
           {FOOD_SECURITY.map(c => (
@@ -56,19 +56,19 @@ export default function TabFood() {
               <span style={{ fontSize: 11, fontWeight: 700, color: c.index >= 70 ? "#22c55e" : c.index >= 60 ? "#f59e0b" : "#ef4444", textAlign: "center" }}>{c.index}</span>
               <span style={{ fontSize: 10, color: "#94a3b8", textAlign: "center" }}>{c.imports}</span>
               <span style={{ fontSize: 10, color: "#84cc16", textAlign: "center" }}>{c.selfSufficiency}</span>
-              <span style={{ fontSize: 9, color: "#64748b", textAlign: "center" }}>{c.strategy}</span>
+              <span style={{ fontSize: 9, color: "#94a3b8", textAlign: "center" }}>{c.strategy}</span>
             </div>
           ))}
         </div>
       </div>
 
       <div>
-        <div style={{ fontSize: 11, color: "#64748b", marginBottom: 10 }}>🌱 مشاريع زراعية وغذائية</div>
+        <div style={{ fontSize: 11, color: "#94a3b8", marginBottom: 10 }}>🌱 مشاريع زراعية وغذائية</div>
         {AG_PROJECTS.map(p => (
           <div key={p.name} style={{ background: "#0a1628", border: `1px solid ${p.color}33`, borderRadius: 6, padding: "10px 14px", marginBottom: 6, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <div>
               <div style={{ fontSize: 11, fontWeight: 600, color: "#e2e8f0" }}>{p.name}</div>
-              <div style={{ fontSize: 9, color: "#475569" }}>{p.type} | الميزانية: {p.budget}</div>
+              <div style={{ fontSize: 9, color: "#94a3b8" }}>{p.type} | الميزانية: {p.budget}</div>
             </div>
             <span style={{ fontSize: 9, padding: "2px 8px", borderRadius: 3, background: p.color + "22", color: p.color }}>{p.status}</span>
           </div>

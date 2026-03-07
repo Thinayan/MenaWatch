@@ -173,7 +173,7 @@ async function gatherPlatformStats() {
       features: PLATFORM_FEATURES,
     },
     // التاريخ
-    generatedAt: now.toLocaleString("ar-SA", {
+    generatedAt: now.toLocaleString("en-US", {
       timeZone: "Asia/Riyadh",
       weekday: "long",
       year: "numeric",
@@ -187,7 +187,7 @@ async function gatherPlatformStats() {
 
 // ── بناء قالب الإيميل HTML ───────────────────────────────────
 function buildAdminStatsEmail(stats: Awaited<ReturnType<typeof gatherPlatformStats>>): string {
-  const s = (n: number) => n.toLocaleString("ar-SA");
+  const s = (n: number) => n.toLocaleString("en-US");
 
   const featureRows = stats.development.features.map(f => {
     const barColor = f.done ? "#22c55e" : f.percent >= 50 ? "#f59e0b" : "#3b82f6";
@@ -204,7 +204,7 @@ function buildAdminStatsEmail(stats: Awaited<ReturnType<typeof gatherPlatformSta
   }).join("");
 
   const recentUsersRows = stats.users.recentSignups.map((u: any) => {
-    const date = new Date(u.created_at).toLocaleDateString("ar-SA", { timeZone: "Asia/Riyadh", month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" });
+    const date = new Date(u.created_at).toLocaleDateString("ar-EG", { timeZone: "Asia/Riyadh", month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" });
     const roleLabel = u.role === "admin" ? "أدمن" : u.role === "pro" ? "خبير" : "مجاني";
     const roleColor = u.role === "admin" ? "#f59e0b" : u.role === "pro" ? "#8b5cf6" : "#64748b";
     return `

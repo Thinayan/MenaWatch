@@ -33,7 +33,7 @@ export default function TabTransport() {
     <div style={{ padding: 16, display: "flex", flexDirection: "column", gap: 16 }}>
       {/* Maritime Corridors */}
       <div>
-        <div style={{ fontSize: 11, color: "#64748b", marginBottom: 10 }}>🚢 الممرات البحرية الاستراتيجية</div>
+        <div style={{ fontSize: 11, color: "#94a3b8", marginBottom: 10 }}>🚢 الممرات البحرية الاستراتيجية</div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 8 }}>
           {CORRIDORS.map(c => (
             <div key={c.name} style={{ background: "#0a1628", border: `1px solid ${c.riskColor}33`, borderRadius: 8, padding: "12px 14px" }}>
@@ -50,9 +50,9 @@ export default function TabTransport() {
 
       {/* Ports */}
       <div>
-        <div style={{ fontSize: 11, color: "#64748b", marginBottom: 10 }}>⚓ الموانئ الرئيسية</div>
+        <div style={{ fontSize: 11, color: "#94a3b8", marginBottom: 10 }}>⚓ الموانئ الرئيسية</div>
         <div style={{ background: "#0a1628", border: "1px solid #1e293b", borderRadius: 8, overflow: "hidden" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 40px 80px 80px 60px", padding: "8px 14px", background: "#080f1c", borderBottom: "1px solid #1e293b", fontSize: 10, color: "#475569", fontWeight: 600 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 40px 80px 80px 60px", padding: "8px 14px", background: "#080f1c", borderBottom: "1px solid #1e293b", fontSize: 10, color: "#94a3b8", fontWeight: 600 }}>
             <span>الميناء</span><span style={{ textAlign: "center" }}>الدولة</span><span style={{ textAlign: "center" }}>الترتيب</span><span style={{ textAlign: "center" }}>السعة</span><span style={{ textAlign: "center" }}>النمو</span>
           </div>
           {PORTS.map(p => (
@@ -69,7 +69,7 @@ export default function TabTransport() {
 
       {/* Airports */}
       <div>
-        <div style={{ fontSize: 11, color: "#64748b", marginBottom: 10 }}>✈️ المطارات الكبرى</div>
+        <div style={{ fontSize: 11, color: "#94a3b8", marginBottom: 10 }}>✈️ المطارات الكبرى</div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 8 }}>
           {AIRPORTS.map(a => (
             <div key={a.code} style={{ background: "#0a1628", border: "1px solid #1e293b", borderRadius: 8, padding: "12px 14px" }}>

@@ -64,7 +64,7 @@ export default function ComparisonDashboard() {
         <select value={c1} onChange={e => setC1(e.target.value)} style={selectStyle}>
           {COUNTRIES.map(c => <option key={c.value} value={c.value}>{c.label}</option>)}
         </select>
-        <span style={{ color: "#475569", fontSize: 12, fontWeight: 700 }}>⚔️ vs</span>
+        <span style={{ color: "#94a3b8", fontSize: 12, fontWeight: 700 }}>⚔️ vs</span>
         <select value={c2} onChange={e => setC2(e.target.value)} style={selectStyle}>
           {COUNTRIES.map(c => <option key={c.value} value={c.value}>{c.label}</option>)}
         </select>
@@ -77,7 +77,7 @@ export default function ComparisonDashboard() {
       {loading ? (
         <div style={{ height: 300, background: "#0a1628", borderRadius: 10, animation: "pulse 1.5s infinite" }} />
       ) : !data ? (
-        <div style={{ textAlign: "center", padding: 40, color: "#475569" }}>
+        <div style={{ textAlign: "center", padding: 40, color: "#94a3b8" }}>
           <div style={{ fontSize: 13 }}>لا توجد بيانات للمقارنة</div>
         </div>
       ) : (
@@ -97,8 +97,8 @@ export default function ComparisonDashboard() {
               <ResponsiveContainer width="100%" height={280}>
                 <BarChart data={chartData}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
-                  <XAxis dataKey="year" stroke="#475569" fontSize={10} />
-                  <YAxis stroke="#475569" fontSize={10} />
+                  <XAxis dataKey="year" stroke="#94a3b8" fontSize={10} />
+                  <YAxis stroke="#94a3b8" fontSize={10} />
                   <Tooltip
                     contentStyle={{ background: "#0a1628", border: "1px solid #1e293b", borderRadius: 6, fontSize: 11, direction: "rtl" }}
                     labelStyle={{ color: "#f8fafc" }}
@@ -118,8 +118,8 @@ export default function ComparisonDashboard() {
               <ResponsiveContainer width="100%" height={220}>
                 <LineChart data={chartData}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
-                  <XAxis dataKey="year" stroke="#475569" fontSize={10} />
-                  <YAxis stroke="#475569" fontSize={10} />
+                  <XAxis dataKey="year" stroke="#94a3b8" fontSize={10} />
+                  <YAxis stroke="#94a3b8" fontSize={10} />
                   <Tooltip
                     contentStyle={{ background: "#0a1628", border: "1px solid #1e293b", borderRadius: 6, fontSize: 11 }}
                   />
@@ -143,14 +143,14 @@ function CountryCard({ code, label, data, color, indicator }) {
       <div style={{ fontSize: 20, marginBottom: 4 }}>{label}</div>
       <div style={{ fontSize: 24, fontWeight: 800, color, marginBottom: 4 }}>
         {latestValue ? latestValue.value : "—"}
-        <span style={{ fontSize: 11, color: "#475569", marginRight: 4 }}>
+        <span style={{ fontSize: 11, color: "#94a3b8", marginRight: 4 }}>
           {latestValue?.unit || ""}
         </span>
       </div>
-      <div style={{ fontSize: 10, color: "#475569" }}>
+      <div style={{ fontSize: 10, color: "#94a3b8" }}>
         {latestValue ? `آخر تحديث: ${latestValue.period?.slice(0, 4)}` : "لا توجد بيانات"}
       </div>
-      <div style={{ fontSize: 10, color: "#64748b", marginTop: 4 }}>
+      <div style={{ fontSize: 10, color: "#94a3b8", marginTop: 4 }}>
         أحداث مسجلة: {data?.eventCount || 0}
       </div>
     </div>

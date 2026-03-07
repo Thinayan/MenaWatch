@@ -1,6 +1,8 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
 import BroadcastGrid from "./BroadcastGrid";
+import DateDisplay from "./DateDisplay";
+import StockTicker from "./StockTicker";
 
 import TabHealth from "./tabs/TabHealth";
 import TabTransport from "./tabs/TabTransport";
@@ -146,7 +148,7 @@ function TabGeo() {
           style={{ background: "#0a1628", border: "1px solid #1e293b", borderRadius: 6, padding: "5px 12px", color: "#e2e8f0", fontSize: 12, fontFamily: "inherit", outline: "none", width: 150, marginRight: "auto" }} />
       </div>
       <div style={{ background: "#0a1628", border: "1px solid #1e293b", borderRadius: 8, overflow: "hidden" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 60px 80px 50px 50px", padding: "8px 14px", background: "#080f1c", borderBottom: "1px solid #1e293b", fontSize: 11, color: "#64748b", fontWeight: 600 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 60px 80px 50px 50px", padding: "8px 14px", background: "#080f1c", borderBottom: "1px solid #1e293b", fontSize: 11, color: "#94a3b8", fontWeight: 600 }}>
           <span>الدولة</span><span style={{ textAlign: "center" }}>المستوى</span><span style={{ textAlign: "center" }}>الأحداث</span><span style={{ textAlign: "center" }}>الاتجاه</span><span style={{ textAlign: "center" }}>GDP</span>
         </div>
         {filtered.map(c => (
@@ -156,7 +158,7 @@ function TabGeo() {
               <div style={{ width: 10, height: 10, borderRadius: "50%", background: RC(c.risk), flexShrink: 0 }} />
               <div>
                 <div style={{ fontSize: 12, fontWeight: 600, color: "#e2e8f0" }}>{c.name}</div>
-                <div style={{ fontSize: 10, color: "#475569" }}>{c.code}</div>
+                <div style={{ fontSize: 10, color: "#94a3b8" }}>{c.code}</div>
               </div>
             </div>
             <div style={{ textAlign: "center" }}>
@@ -182,7 +184,7 @@ function TabMarket() {
       .then(r => r.json())
       .then(d => {
         setData(d);
-        setLastUpdate(new Date().toLocaleTimeString("ar-SA", { timeZone: "Asia/Riyadh", hour: "2-digit", minute: "2-digit" }));
+        setLastUpdate(new Date().toLocaleTimeString("en-US", { timeZone: "Asia/Riyadh", hour: "2-digit", minute: "2-digit" }));
         setLoading(false);
       })
       .catch(() => {
@@ -202,13 +204,13 @@ function TabMarket() {
   return (
     <div style={{ padding: 16, display: "flex", flexDirection: "column", gap: 16 }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <span style={{ fontSize: 12, color: "#64748b" }}>🕐 آخر تحديث: {lastUpdate}</span>
+        <span style={{ fontSize: 12, color: "#94a3b8" }}>🕐 آخر تحديث: {lastUpdate}</span>
         <span style={{ fontSize: 10, padding: "3px 8px", borderRadius: 3, background: data?.source==="live"?"#14532d":"#1e293b", color: data?.source==="live"?"#22c55e":"#64748b" }}>
           {data?.source==="live" ? "بيانات حية" : "بيانات نموذجية"}
         </span>
       </div>
       <div>
-        <div style={{ fontSize: 11, color: "#64748b", marginBottom: 10 }}>📈 مؤشرات البورصات الخليجية</div>
+        <div style={{ fontSize: 11, color: "#94a3b8", marginBottom: 10 }}>📈 مؤشرات البورصات الخليجية</div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 8 }}>
           {mkts.map(m => (
             <div key={m.id} style={{ background: "#0a1628", border: "1px solid "+(m.up?"#22c55e22":"#ef444422"), borderRadius: 8, padding: "12px 14px" }}>
@@ -222,14 +224,14 @@ function TabMarket() {
         </div>
       </div>
       <div>
-        <div style={{ fontSize: 11, color: "#64748b", marginBottom: 10 }}>🏆 أبرز الأسهم السعودية</div>
+        <div style={{ fontSize: 11, color: "#94a3b8", marginBottom: 10 }}>🏆 أبرز الأسهم السعودية</div>
         <div style={{ display: "flex", flexDirection: "column", gap: 5 }}>
           {stks.map(s => (
             <div key={s.sym} style={{ background: "#0a1628", border: "1px solid #1e293b", borderRadius: 6, padding: "10px 14px", display: "flex", alignItems: "center", gap: 12 }}>
               <div style={{ width: 36, height: 36, borderRadius: 8, background: s.up?"#14532d":"#7f1d1d", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 10, fontWeight: 700, color: s.up?"#22c55e":"#ef4444", flexShrink: 0 }}>{s.sym}</div>
               <div style={{ flex: 1 }}>
                 <div style={{ fontSize: 12, fontWeight: 700, color: "#e2e8f0" }}>{s.name}</div>
-                <div style={{ fontSize: 10, color: "#475569" }}>{s.sector}</div>
+                <div style={{ fontSize: 10, color: "#94a3b8" }}>{s.sector}</div>
               </div>
               <div style={{ textAlign: "left" }}>
                 <div style={{ fontSize: 13, fontWeight: 700, color: "#f8fafc" }}>{s.val}</div>
@@ -240,12 +242,12 @@ function TabMarket() {
         </div>
       </div>
       <div>
-        <div style={{ fontSize: 11, color: "#64748b", marginBottom: 10 }}>💱 العملات والأصول الرقمية</div>
+        <div style={{ fontSize: 11, color: "#94a3b8", marginBottom: 10 }}>💱 العملات والأصول الرقمية</div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 6 }}>
           {currs.map(c => (
             <div key={c.pair} style={{ background: "#0a1628", border: "1px solid #1e293b", borderRadius: 6, padding: "8px 12px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
               <div>
-                <div style={{ fontSize: 11, color: "#64748b" }}>{c.pair}</div>
+                <div style={{ fontSize: 11, color: "#94a3b8" }}>{c.pair}</div>
                 <div style={{ fontSize: 14, fontWeight: 700, color: "#f8fafc", fontVariantNumeric: "tabular-nums" }}>{c.val}</div>
               </div>
               <span style={{ fontSize: 11, fontWeight: 700, color: c.up===true?"#22c55e":c.up===false?"#ef4444":"#64748b" }}>{c.chg}</span>
@@ -261,25 +263,25 @@ function TabEnergy() {
   return (
     <div style={{ padding: 16, display: "flex", flexDirection: "column", gap: 16 }}>
       <div>
-        <div style={{ fontSize: 11, color: "#64748b", marginBottom: 10 }}>⚡ أسعار الطاقة اللحظية</div>
+        <div style={{ fontSize: 11, color: "#94a3b8", marginBottom: 10 }}>⚡ أسعار الطاقة اللحظية</div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 8 }}>
           {ENERGY.map(e => (
             <div key={e.name} style={{ background: "#0a1628", border: "1px solid "+(e.up?"#22c55e22":"#ef444422"), borderRadius: 8, padding: "12px 14px" }}>
               <div style={{ fontSize: 20, marginBottom: 4 }}>{e.icon}</div>
-              <div style={{ fontSize: 11, color: "#64748b" }}>{e.name}</div>
+              <div style={{ fontSize: 11, color: "#94a3b8" }}>{e.name}</div>
               <div style={{ fontSize: 22, fontWeight: 800, color: "#f8fafc" }}>{e.val}</div>
-              <div style={{ fontSize: 10, color: "#475569" }}>{e.unit}</div>
+              <div style={{ fontSize: 10, color: "#94a3b8" }}>{e.unit}</div>
               <div style={{ fontSize: 11, fontWeight: 700, color: e.up?"#22c55e":"#ef4444", marginTop: 4 }}>{e.chg}</div>
             </div>
           ))}
         </div>
       </div>
       <div>
-        <div style={{ fontSize: 11, color: "#64748b", marginBottom: 10 }}>🛢️ قرارات أوبك+</div>
+        <div style={{ fontSize: 11, color: "#94a3b8", marginBottom: 10 }}>🛢️ قرارات أوبك+</div>
         <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
           {OPEC.map((d,i) => (
             <div key={i} style={{ background: "#0a1628", border: "1px solid #1e293b", borderRadius: 6, padding: "10px 14px", display: "flex", gap: 12, alignItems: "flex-start" }}>
-              <div style={{ flexShrink: 0, width: 80, fontSize: 11, color: "#475569", paddingTop: 1 }}>{d.date}</div>
+              <div style={{ flexShrink: 0, width: 80, fontSize: 11, color: "#94a3b8", paddingTop: 1 }}>{d.date}</div>
               <div style={{ flex: 1, fontSize: 12, color: "#cbd5e1", lineHeight: 1.6 }}>{d.dec}</div>
               <span style={{ flexShrink: 0, fontSize: 10, padding: "2px 8px", borderRadius: 3, background: d.impact==="صاعد"?"#14532d":"#1e293b", color: d.impact==="صاعد"?"#22c55e":"#64748b" }}>{d.impact}</span>
             </div>
@@ -295,9 +297,9 @@ function TabEnergy() {
             { label: "كفاءة الطاقة", target: "43%", current: "28%", p: 65 },
           ].map(t => (
             <div key={t.label} style={{ textAlign: "center" }}>
-              <div style={{ fontSize: 9, color: "#64748b", marginBottom: 4 }}>{t.label}</div>
+              <div style={{ fontSize: 9, color: "#94a3b8", marginBottom: 4 }}>{t.label}</div>
               <div style={{ fontSize: 16, fontWeight: 700, color: "#22c55e" }}>{t.current}</div>
-              <div style={{ fontSize: 9, color: "#475569", marginBottom: 4 }}>هدف: {t.target}</div>
+              <div style={{ fontSize: 9, color: "#94a3b8", marginBottom: 4 }}>هدف: {t.target}</div>
               <div style={{ background: "#1e293b", borderRadius: 3, height: 4, overflow: "hidden" }}>
                 <div style={{ width: t.p+"%", height: "100%", background: "#22c55e", borderRadius: 3 }} />
               </div>
@@ -318,7 +320,7 @@ function TabCMA() {
           <span style={{ fontSize: 24 }}>🏛️</span>
           <div>
             <div style={{ fontSize: 14, fontWeight: 800, color: "#f8fafc" }}>هيئة السوق المالية السعودية</div>
-            <div style={{ fontSize: 10, color: "#64748b" }}>Capital Market Authority — CMA</div>
+            <div style={{ fontSize: 10, color: "#94a3b8" }}>Capital Market Authority — CMA</div>
           </div>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 10 }}>
@@ -329,7 +331,7 @@ function TabCMA() {
             { label: "مستثمرو تداول", val: "11.4M", color: "#8b5cf6" },
           ].map(s => (
             <div key={s.label} style={{ textAlign: "center" }}>
-              <div style={{ fontSize: 9, color: "#475569", marginBottom: 4 }}>{s.label}</div>
+              <div style={{ fontSize: 9, color: "#94a3b8", marginBottom: 4 }}>{s.label}</div>
               <div style={{ fontSize: 18, fontWeight: 800, color: s.color }}>{s.val}</div>
               {s.unit && <div style={{ fontSize: 9, color: "#334155" }}>{s.unit}</div>}
             </div>
@@ -337,17 +339,17 @@ function TabCMA() {
         </div>
       </div>
       <div>
-        <div style={{ fontSize: 11, color: "#64748b", marginBottom: 10 }}>📊 القطاعات المدرجة</div>
+        <div style={{ fontSize: 11, color: "#94a3b8", marginBottom: 10 }}>📊 القطاعات المدرجة</div>
         <div style={{ display: "flex", flexDirection: "column", gap: 5 }}>
           {CMA_SECTORS.map(s => (
             <div key={s.name} style={{ display: "grid", gridTemplateColumns: "1fr 60px 120px 60px", alignItems: "center", gap: 12, background: "#0a1628", border: "1px solid #1e293b", borderRadius: 6, padding: "8px 12px" }}>
               <span style={{ fontSize: 11, color: "#e2e8f0" }}>{s.name}</span>
-              <span style={{ fontSize: 10, color: "#64748b", textAlign: "center" }}>{s.count} شركة</span>
+              <span style={{ fontSize: 10, color: "#94a3b8", textAlign: "center" }}>{s.count} شركة</span>
               <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
                 <div style={{ flex: 1, height: 4, background: "#1e293b", borderRadius: 2, overflow: "hidden" }}>
                   <div style={{ width: Math.min(parseFloat(s.mcap)/4.5*100,100)+"%", height: "100%", background: "#3b82f6", borderRadius: 2 }} />
                 </div>
-                <span style={{ fontSize: 9, color: "#64748b", flexShrink: 0 }}>{s.mcap}T</span>
+                <span style={{ fontSize: 9, color: "#94a3b8", flexShrink: 0 }}>{s.mcap}T</span>
               </div>
               <span style={{ fontSize: 10, fontWeight: 700, color: s.chg.startsWith("+")?"#22c55e":"#ef4444" }}>{s.chg}</span>
             </div>
@@ -376,25 +378,25 @@ function TabVision() {
   return (
     <div style={{ padding: 16, display: "flex", flexDirection: "column", gap: 16 }}>
       <div style={{ background: "linear-gradient(135deg,#0a1f0a,#0f2d0f)", border: "1px solid #22c55e44", borderRadius: 12, padding: 16, textAlign: "center" }}>
-        <div style={{ fontSize: 11, color: "#64748b", marginBottom: 6 }}>الإنجاز الكلي — رؤية المملكة العربية السعودية 2030</div>
+        <div style={{ fontSize: 11, color: "#94a3b8", marginBottom: 6 }}>الإنجاز الكلي — رؤية المملكة العربية السعودية 2030</div>
         <div style={{ fontSize: 64, fontWeight: 900, color: "#22c55e", lineHeight: 1 }}>73%</div>
         <div style={{ fontSize: 11, color: "#16a34a", marginTop: 4 }}>متقدم على الجدول الزمني ✅</div>
         <div style={{ background: "#0a1628", borderRadius: 6, height: 8, margin: "12px 0 4px", overflow: "hidden" }}>
           <div style={{ width: "73%", height: "100%", background: "linear-gradient(90deg,#22c55e,#16a34a)", borderRadius: 6 }} />
         </div>
-        <div style={{ display: "flex", justifyContent: "space-between", fontSize: 9, color: "#475569" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", fontSize: 9, color: "#94a3b8" }}>
           <span>2016</span><span>الهدف 2030</span>
         </div>
       </div>
       <div>
-        <div style={{ fontSize: 11, color: "#64748b", marginBottom: 10 }}>📊 المؤشرات الرئيسية</div>
+        <div style={{ fontSize: 11, color: "#94a3b8", marginBottom: 10 }}>📊 المؤشرات الرئيسية</div>
         <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
           {VISION_KPI.map(k => (
             <div key={k.label} style={{ background: "#0a1628", border: "1px solid #1e293b", borderRadius: 6, padding: "8px 12px" }}>
               <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 5 }}>
                 <span style={{ fontSize: 11, color: "#cbd5e1" }}>{k.label}</span>
                 <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-                  <span style={{ fontSize: 10, color: "#475569" }}>هدف: {k.target}</span>
+                  <span style={{ fontSize: 10, color: "#94a3b8" }}>هدف: {k.target}</span>
                   <span style={{ fontSize: 12, fontWeight: 700, color: k.color }}>{k.val}</span>
                   {k.p >= 100 && <span style={{ fontSize: 10 }}>✅</span>}
                 </div>
@@ -407,14 +409,14 @@ function TabVision() {
         </div>
       </div>
       <div>
-        <div style={{ fontSize: 11, color: "#64748b", marginBottom: 10 }}>🏗️ المشاريع الكبرى</div>
+        <div style={{ fontSize: 11, color: "#94a3b8", marginBottom: 10 }}>🏗️ المشاريع الكبرى</div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 8 }}>
           {VISION_PROJ.map(p => (
             <div key={p.name} style={{ background: "#0a1628", border: "1px solid #1e293b", borderRadius: 8, padding: "12px 14px" }}>
               <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6 }}>
                 <span style={{ fontSize: 11, fontWeight: 700, color: "#e2e8f0" }}>{p.name}</span>
               </div>
-              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6, fontSize: 10, color: "#64748b" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6, fontSize: 10, color: "#94a3b8" }}>
                 <span>الميزانية: {p.budget}</span><span>وظائف: {p.jobs}</span>
               </div>
               <div style={{ background: "#1e293b", borderRadius: 3, height: 6, overflow: "hidden" }}>
@@ -448,13 +450,7 @@ const TABS = [
 
 export default function FreeTabs() {
   const [active, setActive] = useState("live");
-  const [time, setTime] = useState(new Date());
   const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const t = setInterval(() => setTime(new Date()), 1000);
-    return () => clearInterval(t);
-  }, []);
 
   useEffect(() => {
     import("../../lib/supabase").then(({ supabase }) => {
@@ -462,7 +458,7 @@ export default function FreeTabs() {
     }).catch(() => {});
   }, []);
 
-  const saudiTime = time.toLocaleTimeString("ar-SA", { timeZone: "Asia/Riyadh", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false });
+  // saudiTime moved to DateDisplay component
   const tab = TABS.find(t => t.id === active);
   const ActiveComp = tab?.comp;
 
@@ -480,6 +476,9 @@ export default function FreeTabs() {
 
 
 
+      {/* Stock Ticker */}
+      <StockTicker />
+
       {/* Sub Bar */}
       <div style={{ background: "#080f1c", borderBottom: "1px solid #1e293b", padding: "0 20px", display: "flex", alignItems: "center", gap: 14, height: 36, flexShrink: 0 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
@@ -487,7 +486,7 @@ export default function FreeTabs() {
           <span style={{ fontSize: 10, color: "#ef4444", fontWeight: 700 }}>مباشر</span>
         </div>
         <div style={{ flex: 1 }} />
-        <div style={{ fontSize: 13, fontWeight: 700, color: "#22c55e", fontVariantNumeric: "tabular-nums" }}>{saudiTime}</div>
+        <DateDisplay variant="inline" />
       </div>
 
       {/* Tab Bar */}

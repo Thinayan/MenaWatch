@@ -30,7 +30,7 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        color: "#475569",
+        color: "#94a3b8",
         fontFamily: "'IBM Plex Sans Arabic', sans-serif",
         direction: "rtl",
       }}>

@@ -34,7 +34,7 @@ export default function PollWidget({ category, user, compact = false }) {
     return (
       <div style={{
         background: "#0a1628", border: "1px solid #1e293b", borderRadius: 10,
-        padding: 16, textAlign: "center", color: "#64748b", fontSize: 13,
+        padding: 16, textAlign: "center", color: "#94a3b8", fontSize: 13,
       }}>
         جارٍ تحميل الاستطلاعات...
       </div>
@@ -219,7 +219,7 @@ function SinglePoll({ poll, user, compact, onVoted }) {
 
       {!user && (
         <div style={{
-          marginTop: 10, textAlign: "center", fontSize: 11, color: "#64748b",
+          marginTop: 10, textAlign: "center", fontSize: 11, color: "#94a3b8",
         }}>
           <a href="/login" style={{ color: "#22c55e", textDecoration: "none" }}>
             سجّل دخولك للتصويت
@@ -234,12 +234,12 @@ function SinglePoll({ poll, user, compact, onVoted }) {
         justifyContent: "space-between",
         alignItems: "center",
       }}>
-        <span style={{ fontSize: 11, color: "#475569" }}>
+        <span style={{ fontSize: 11, color: "#94a3b8" }}>
           {totalVotes} صوت
         </span>
         {poll.ends_at && (
-          <span style={{ fontSize: 11, color: "#475569" }}>
-            ينتهي: {new Date(poll.ends_at).toLocaleDateString("ar-SA", { month: "short", day: "numeric" })}
+          <span style={{ fontSize: 11, color: "#94a3b8" }}>
+            ينتهي: {new Date(poll.ends_at).toLocaleDateString("ar-EG", { month: "short", day: "numeric" })}
           </span>
         )}
       </div>

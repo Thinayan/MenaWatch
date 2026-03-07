@@ -28,7 +28,7 @@ export default function TimelineView({ events = [], loading = false }) {
 
   if (events.length === 0) {
     return (
-      <div style={{ textAlign: "center", padding: 40, color: "#475569" }}>
+      <div style={{ textAlign: "center", padding: 40, color: "#94a3b8" }}>
         <div style={{ fontSize: 30, marginBottom: 8 }}>📅</div>
         <div style={{ fontSize: 13 }}>لا توجد أحداث مطابقة</div>
       </div>
@@ -36,7 +36,7 @@ export default function TimelineView({ events = [], loading = false }) {
   }
 
   const formatDate = (d) => {
-    try { return new Date(d).toLocaleDateString("ar-SA", { year: "numeric", month: "long", day: "numeric" }); }
+    try { return new Date(d).toLocaleDateString("ar-EG", { year: "numeric", month: "long", day: "numeric" }); }
     catch { return d; }
   };
 
@@ -83,7 +83,7 @@ export default function TimelineView({ events = [], loading = false }) {
                     تأثير: {ev.impact_score}/10
                   </span>
                 )}
-                <span style={{ fontSize: 10, color: "#475569", marginRight: "auto" }}>
+                <span style={{ fontSize: 10, color: "#94a3b8", marginRight: "auto" }}>
                   {formatDate(ev.occurred_at)}
                 </span>
               </div>
@@ -116,7 +116,7 @@ export default function TimelineView({ events = [], loading = false }) {
                   {ev.tags && ev.tags.length > 0 && (
                     <div style={{ display: "flex", gap: 4, flexWrap: "wrap" }}>
                       {ev.tags.map(t => (
-                        <span key={t} style={{ fontSize: 9, padding: "2px 6px", borderRadius: 3, background: "#1e293b", color: "#64748b" }}>
+                        <span key={t} style={{ fontSize: 9, padding: "2px 6px", borderRadius: 3, background: "#1e293b", color: "#94a3b8" }}>
                           #{t}
                         </span>
                       ))}
@@ -125,7 +125,7 @@ export default function TimelineView({ events = [], loading = false }) {
                 </div>
               )}
 
-              <div style={{ fontSize: 9, color: "#475569", marginTop: 6 }}>
+              <div style={{ fontSize: 9, color: "#94a3b8", marginTop: 6 }}>
                 {isExpanded ? "▲ إخفاء التفاصيل" : "▼ عرض التفاصيل"}
               </div>
             </div>

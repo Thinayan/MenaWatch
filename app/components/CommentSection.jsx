@@ -146,7 +146,7 @@ export default function CommentSection({ articleId, reportId, user }) {
               {submitting ? "..." : "إرسال"}
             </button>
           </div>
-          <div style={{ fontSize: 10, color: "#475569", marginTop: 4 }}>
+          <div style={{ fontSize: 10, color: "#94a3b8", marginTop: 4 }}>
             {text.length}/1000
           </div>
           {msg && (
@@ -172,11 +172,11 @@ export default function CommentSection({ articleId, reportId, user }) {
 
       {/* Comments List */}
       {loading ? (
-        <div style={{ textAlign: "center", padding: 20, color: "#64748b", fontSize: 13 }}>
+        <div style={{ textAlign: "center", padding: 20, color: "#94a3b8", fontSize: 13 }}>
           جارٍ تحميل التعليقات...
         </div>
       ) : rootComments.length === 0 ? (
-        <div style={{ textAlign: "center", padding: 20, color: "#475569", fontSize: 13 }}>
+        <div style={{ textAlign: "center", padding: 20, color: "#94a3b8", fontSize: 13 }}>
           لا توجد تعليقات بعد. كن أول من يعلق!
         </div>
       ) : (
@@ -238,7 +238,7 @@ function CommentBubble({ comment, user, onReply, onDelete, timeAgo, isReply }) {
             {roleBadge}
           </span>
         )}
-        <span style={{ fontSize: 10, color: "#475569" }}>
+        <span style={{ fontSize: 10, color: "#94a3b8" }}>
           {timeAgo(comment.created_at)}
         </span>
       </div>

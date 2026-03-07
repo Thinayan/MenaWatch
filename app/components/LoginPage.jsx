@@ -8,6 +8,7 @@ export default function LoginPage() {
   const [mode, setMode] = useState("login");
   const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState(null);
+  const [rememberMe, setRememberMe] = useState(true);
 
   async function handleSubmit() {
     setLoading(true); setMsg(null);
@@ -82,6 +83,19 @@ export default function LoginPage() {
             )}
           </div>
 
+          {/* Remember Me — login mode only */}
+          {mode === "login" && (
+            <label style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 12, cursor: "pointer", fontSize: 13, color: "#94a3b8", userSelect: "none" }}>
+              <input
+                type="checkbox"
+                checked={rememberMe}
+                onChange={e => setRememberMe(e.target.checked)}
+                style={{ width: 16, height: 16, accentColor: "#22c55e", cursor: "pointer" }}
+              />
+              ابقني مسجلاً
+            </label>
+          )}
+
           {msg && (
             <div style={{ marginTop: 12, padding: "10px 14px", borderRadius: 6, background: msg.type==="success"?"#14532d":"#7f1d1d", color: msg.type==="success"?"#22c55e":"#ef4444", fontSize: 12 }}>{msg.text}</div>
           )}
@@ -91,8 +105,8 @@ export default function LoginPage() {
           </button>
 
           <div style={{ marginTop: 14, display: "flex", justifyContent: "space-between" }}>
-            {mode === "login" && <button onClick={() => setMode("reset")} style={{ background: "none", border: "none", color: "#64748b", fontSize: 12, cursor: "pointer", fontFamily: "inherit" }}>نسيت كلمة المرور؟</button>}
-            {mode === "reset" && <button onClick={() => setMode("login")} style={{ background: "none", border: "none", color: "#64748b", fontSize: 12, cursor: "pointer", fontFamily: "inherit" }}>← العودة</button>}
+            {mode === "login" && <button onClick={() => setMode("reset")} style={{ background: "none", border: "none", color: "#94a3b8", fontSize: 12, cursor: "pointer", fontFamily: "inherit" }}>نسيت كلمة المرور؟</button>}
+            {mode === "reset" && <button onClick={() => setMode("login")} style={{ background: "none", border: "none", color: "#94a3b8", fontSize: 12, cursor: "pointer", fontFamily: "inherit" }}>← العودة</button>}
           </div>
         </div>
 

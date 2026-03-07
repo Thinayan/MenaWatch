@@ -98,13 +98,13 @@ export default function SearchPage() {
   const sentimentDot = (s) => {
     if (s === "positive") return "#22c55e";
     if (s === "negative") return "#ef4444";
-    return "#475569";
+    return "#94a3b8";
   };
 
   const formatDate = (d) => {
     if (!d) return "";
     try {
-      return new Date(d).toLocaleDateString("ar-SA", { year: "numeric", month: "short", day: "numeric" });
+      return new Date(d).toLocaleDateString("ar-EG", { year: "numeric", month: "short", day: "numeric" });
     } catch { return d; }
   };
 
@@ -167,7 +167,7 @@ export default function SearchPage() {
               {TYPES.map(t => <option key={t.value} value={t.value}>{t.label}</option>)}
             </select>
             <input type="date" value={fromDate} onChange={e => setFromDate(e.target.value)} style={{ ...selectStyle, width: 130 }} />
-            <span style={{ color: "#475569", fontSize: 11 }}>→</span>
+            <span style={{ color: "#94a3b8", fontSize: 11 }}>→</span>
             <input type="date" value={toDate} onChange={e => setToDate(e.target.value)} style={{ ...selectStyle, width: 130 }} />
             {(category || country || type !== "all" || fromDate || toDate) && (
               <button onClick={() => { setCategory(""); setCountry(""); setType("all"); setFromDate(""); setToDate(""); }} style={{
@@ -186,7 +186,7 @@ export default function SearchPage() {
             <span style={{ fontSize: 12, color: "#94a3b8" }}>
               {total} نتيجة {query && `لـ "${query}"`}
             </span>
-            <span style={{ fontSize: 10, color: "#475569" }}>
+            <span style={{ fontSize: 10, color: "#94a3b8" }}>
               ({breakdown.articles} مقال • {breakdown.reports} تقرير)
             </span>
           </div>
@@ -231,8 +231,8 @@ export default function SearchPage() {
                     {r.category && (
                       <span style={{
                         fontSize: 9, padding: "1px 6px", borderRadius: 3,
-                        background: (CATEGORY_COLORS[r.category] || "#475569") + "22",
-                        color: CATEGORY_COLORS[r.category] || "#475569",
+                        background: (CATEGORY_COLORS[r.category] || "#94a3b8") + "22",
+                        color: CATEGORY_COLORS[r.category] || "#94a3b8",
                       }}>
                         {r.category}
                       </span>
@@ -240,7 +240,7 @@ export default function SearchPage() {
                     {r.sentiment && (
                       <span style={{ width: 6, height: 6, borderRadius: "50%", background: sentimentDot(r.sentiment) }} />
                     )}
-                    <span style={{ fontSize: 9, color: "#475569", marginRight: "auto" }}>
+                    <span style={{ fontSize: 9, color: "#94a3b8", marginRight: "auto" }}>
                       {r.source} • {formatDate(r.date)}
                     </span>
                   </div>
@@ -248,7 +248,7 @@ export default function SearchPage() {
                     {r.title}
                   </div>
                   {r.description && (
-                    <div style={{ fontSize: 11, color: "#64748b", lineHeight: 1.5 }}>
+                    <div style={{ fontSize: 11, color: "#94a3b8", lineHeight: 1.5 }}>
                       {r.description.slice(0, 150)}{r.description.length > 150 ? "..." : ""}
                     </div>
                   )}
@@ -272,13 +272,13 @@ export default function SearchPage() {
             )}
           </div>
         ) : !loading && query.length >= 2 && total === 0 ? (
-          <div style={{ textAlign: "center", padding: 60, color: "#475569" }}>
+          <div style={{ textAlign: "center", padding: 60, color: "#94a3b8" }}>
             <div style={{ fontSize: 40, marginBottom: 12 }}>🔍</div>
             <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 4 }}>لا توجد نتائج</div>
             <div style={{ fontSize: 12 }}>حاول تغيير كلمات البحث أو الفلاتر</div>
           </div>
         ) : !loading && query.length < 2 ? (
-          <div style={{ textAlign: "center", padding: 60, color: "#475569" }}>
+          <div style={{ textAlign: "center", padding: 60, color: "#94a3b8" }}>
             <div style={{ fontSize: 40, marginBottom: 12 }}>🔍</div>
             <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 4 }}>ابدأ البحث</div>
             <div style={{ fontSize: 12 }}>اكتب كلمتين على الأقل في مربع البحث</div>

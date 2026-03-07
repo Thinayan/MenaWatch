@@ -36,14 +36,14 @@ export default function TabRealEstate() {
           { label: "نمو سنوي", val: "+9.3%", color: "#f59e0b" },
         ].map(s => (
           <div key={s.label} style={{ background: "#0a1628", border: "1px solid #1e293b", borderRadius: 8, padding: "12px 14px", textAlign: "center" }}>
-            <div style={{ fontSize: 9, color: "#475569" }}>{s.label}</div>
+            <div style={{ fontSize: 9, color: "#94a3b8" }}>{s.label}</div>
             <div style={{ fontSize: 20, fontWeight: 800, color: s.color }}>{s.val}</div>
           </div>
         ))}
       </div>
 
       <div>
-        <div style={{ fontSize: 11, color: "#64748b", marginBottom: 10 }}>🏗️ المشاريع الكبرى</div>
+        <div style={{ fontSize: 11, color: "#94a3b8", marginBottom: 10 }}>🏗️ المشاريع الكبرى</div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 8 }}>
           {MEGAPROJECTS.map(p => (
             <div key={p.name} style={{ background: "#0a1628", border: "1px solid #1e293b", borderRadius: 8, padding: "12px 14px" }}>
@@ -51,7 +51,7 @@ export default function TabRealEstate() {
                 <span style={{ fontSize: 12, fontWeight: 700, color: "#e2e8f0" }}>{p.name}</span>
                 <span style={{ fontSize: 9, color: p.color }}>{p.status}</span>
               </div>
-              <div style={{ fontSize: 10, color: "#64748b", marginBottom: 6 }}>الميزانية: {p.budget} | {p.area || p.units}</div>
+              <div style={{ fontSize: 10, color: "#94a3b8", marginBottom: 6 }}>الميزانية: {p.budget} | {p.area || p.units}</div>
               <div style={{ background: "#1e293b", borderRadius: 3, height: 4, overflow: "hidden" }}>
                 <div style={{ width: p.progress + "%", height: "100%", background: p.color, borderRadius: 3 }} />
               </div>
@@ -62,9 +62,9 @@ export default function TabRealEstate() {
       </div>
 
       <div>
-        <div style={{ fontSize: 11, color: "#64748b", marginBottom: 10 }}>💰 أسعار العقارات</div>
+        <div style={{ fontSize: 11, color: "#94a3b8", marginBottom: 10 }}>💰 أسعار العقارات</div>
         <div style={{ background: "#0a1628", border: "1px solid #1e293b", borderRadius: 8, overflow: "hidden" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 60px", padding: "8px 14px", background: "#080f1c", borderBottom: "1px solid #1e293b", fontSize: 10, color: "#475569", fontWeight: 600 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 60px", padding: "8px 14px", background: "#080f1c", borderBottom: "1px solid #1e293b", fontSize: 10, color: "#94a3b8", fontWeight: 600 }}>
             <span>المدينة</span><span style={{ textAlign: "center" }}>سكني</span><span style={{ textAlign: "center" }}>تجاري</span><span style={{ textAlign: "center" }}>الاتجاه</span>
           </div>
           {PRICES.map(p => (
@@ -79,13 +79,13 @@ export default function TabRealEstate() {
       </div>
 
       <div>
-        <div style={{ fontSize: 11, color: "#64748b", marginBottom: 10 }}>📈 صناديق REITs</div>
+        <div style={{ fontSize: 11, color: "#94a3b8", marginBottom: 10 }}>📈 صناديق REITs</div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 8 }}>
           {REITS.map(r => (
             <div key={r.name} style={{ background: "#0a1628", border: `1px solid ${r.up ? "#22c55e22" : "#ef444422"}`, borderRadius: 6, padding: "10px 12px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
               <div>
                 <div style={{ fontSize: 11, fontWeight: 600, color: "#e2e8f0" }}>{r.name}</div>
-                <div style={{ fontSize: 9, color: "#475569" }}>عائد: {r.yield}</div>
+                <div style={{ fontSize: 9, color: "#94a3b8" }}>عائد: {r.yield}</div>
               </div>
               <div style={{ textAlign: "left" }}>
                 <div style={{ fontSize: 13, fontWeight: 700, color: "#f8fafc" }}>{r.val}</div>

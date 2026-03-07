@@ -1,5 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
+import DateDisplay from "./DateDisplay";
+import StockTicker from "./StockTicker";
 
 
 // ── نفس الـ Logo Base64 الموجود في OpsRoom ─────────────────────────────────
@@ -8,16 +10,16 @@ import { useState, useEffect } from "react";
 const FONT_URL = "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap";
 
 const STATS = [
-  { n: "١٢٠+",   l: "دولة تحت المراقبة",      trend: "↑" },
-  { n: "٥٠٠+",   l: "مصدر إخباري مرتبط",       trend: "↑" },
-  { n: "٩٨%",    l: "دقة التنبؤات",            trend: "↑" },
-  { n: "٢٤/٧",   l: "رصد متواصل بلا انقطاع",  trend: "→" },
+  { n: "120+",   l: "دولة تحت المراقبة",      trend: "↑" },
+  { n: "500+",   l: "مصدر إخباري مرتبط",       trend: "↑" },
+  { n: "98%",    l: "دقة التنبؤات",            trend: "↑" },
+  { n: "24/7",   l: "رصد متواصل بلا انقطاع",  trend: "→" },
 ];
 
 const FEATURES = [
   { icon: "🛡️", title: "خريطة أمنية تفاعلية",     color: "#ef4444", desc: "تصوّر حي لمناطق التوتر والنزاعات مع مستويات التأهب الإقليمية لكل دولة" },
   { icon: "⚡", title: "تحليل اقتصادي فوري",       color: "#f59e0b", desc: "متابعة أسواق الخليج والنفط والممرات التجارية البحرية في لوحة واحدة" },
-  { icon: "🌐", title: "رصد إقليمي شامل",          color: "#3b82f6", desc: "تغطية ١٢٠+ دولة مع ٥٠٠ مصدر إخباري ورصد ميداني على مدار الساعة" },
+  { icon: "🌐", title: "رصد إقليمي شامل",          color: "#3b82f6", desc: "تغطية 120+ دولة مع 500 مصدر إخباري ورصد ميداني على مدار الساعة" },
   { icon: "🚀", title: "فرص الاستثمار والمشاريع",   color: "#22c55e", desc: "مشاريع رؤية 2030 والصفقات الكبرى والفرص الاقتصادية في المنطقة" },
   { icon: "📊", title: "تحليل استراتيجي بالذكاء الاصطناعي", color: "#8b5cf6", desc: "تحليل فوري للأحداث والمخاطر الجيوسياسية مدعوم بأحدث تقنيات الذكاء الاصطناعي" },
   { icon: "📡", title: "غرفة عمليات متكاملة",       color: "#22c55e", desc: "تتبع الأحداث والتنبيهات والتنبؤات الاستراتيجية لصانعي القرار" },
@@ -35,19 +37,10 @@ export default function LandingPage() {
   const [tickerIdx, setTickerIdx] = useState(0);
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
-  const [time, setTime] = useState("");
-
   useEffect(() => {
     const id = setInterval(() => {
       setTickerIdx(i => (i + 1) % NEWS_TICKER.length);
     }, 4000);
-    return () => clearInterval(id);
-  }, []);
-
-  useEffect(() => {
-    const tick = () => setTime(new Date().toLocaleTimeString("ar-SA"));
-    tick();
-    const id = setInterval(tick, 1000);
     return () => clearInterval(id);
   }, []);
 
@@ -79,6 +72,9 @@ export default function LandingPage() {
 
 
 
+      {/* ── STOCK TICKER ── */}
+      <StockTicker />
+
       {/* ── SUB BAR: Ticker + Markets + Time ── */}
       <div style={{
         background: "#080f1c",
@@ -104,7 +100,7 @@ export default function LandingPage() {
           { l: "ذهب",  v: "$2,318", c: "+0.3%", up: true },
         ].map(s => (
           <div key={s.l} style={{ textAlign: "center", flexShrink: 0 }}>
-            <div style={{ fontSize: 11, color: "#64748b" }}>{s.l}</div>
+            <div style={{ fontSize: 11, color: "#94a3b8" }}>{s.l}</div>
             <div style={{ fontSize: 14, fontWeight: 700, color: "#f8fafc", fontVariantNumeric: "tabular-nums" }}>{s.v}</div>
             <div style={{ fontSize: 11, color: s.up ? "#22c55e" : "#ef4444", fontWeight: 600 }}>{s.c}</div>
           </div>
@@ -112,11 +108,8 @@ export default function LandingPage() {
 
         <div style={{ width: 1, height: 24, background: "#1e293b", flexShrink: 0 }} />
 
-        {/* Time */}
-        <div style={{ textAlign: "center", flexShrink: 0 }}>
-          <div style={{ fontSize: 11, color: "#64748b" }}>الرياض</div>
-          <div style={{ fontSize: 14, fontWeight: 700, color: "#22c55e", fontVariantNumeric: "tabular-nums" }}>{time}</div>
-        </div>
+        {/* Time + Hijri */}
+        <DateDisplay variant="inline" />
       </div>
 
       {/* ── HERO ── */}
@@ -126,7 +119,7 @@ export default function LandingPage() {
 
         <div style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "#22c55e12", border: "1px solid #22c55e33", borderRadius: 3, padding: "4px 12px", fontSize: 10, color: "#22c55e", fontWeight: 700, letterSpacing: 1, marginBottom: 24 }}>
           <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#22c55e", display: "inline-block", animation: "pulse 1s infinite" }} />
-          مباشر — رصد ٢٤/٧ للشرق الأوسط وشمال أفريقيا
+          مباشر — رصد 24/7 للشرق الأوسط وشمال أفريقيا
         </div>
 
         <h1 style={{ fontSize: 56, fontWeight: 800, color: "#f8fafc", lineHeight: 1.3, margin: "0 0 20px", letterSpacing: -0.5 }}>
@@ -175,7 +168,7 @@ export default function LandingPage() {
                 </div>
               ))}
               <div style={{ position: "relative", textAlign: "center" }}>
-                <div style={{ fontSize: 12, color: "#475569", marginBottom: 8 }}>خريطة الشرق الأوسط التفاعلية</div>
+                <div style={{ fontSize: 12, color: "#94a3b8", marginBottom: 8 }}>خريطة الشرق الأوسط التفاعلية</div>
                 <a href="/free" style={{ display: "inline-block", padding: "7px 18px", borderRadius: 4, background: "#22c55e", color: "#000", fontSize: 12, fontWeight: 700, textDecoration: "none" }}>افتح الخريطة</a>
               </div>
             </div>
@@ -189,7 +182,7 @@ export default function LandingPage() {
           {STATS.map((s, i) => (
             <div key={s.l} style={{ textAlign: "center", borderLeft: i > 0 ? "1px solid #1e293b" : "none", padding: "0 20px" }}>
               <div style={{ fontSize: 36, fontWeight: 800, color: "#22c55e", fontVariantNumeric: "tabular-nums" }}>{s.n}</div>
-              <div style={{ fontSize: 14, color: "#64748b", marginTop: 6 }}>{s.l}</div>
+              <div style={{ fontSize: 14, color: "#94a3b8", marginTop: 6 }}>{s.l}</div>
             </div>
           ))}
         </div>
@@ -198,7 +191,7 @@ export default function LandingPage() {
       {/* ── FEATURES ── */}
       <section style={{ padding: "60px 40px" }}>
         <div style={{ textAlign: "center", marginBottom: 40 }}>
-          <div style={{ fontSize: 13, color: "#475569", letterSpacing: 3, marginBottom: 12 }}>لماذا MENA Watch</div>
+          <div style={{ fontSize: 13, color: "#94a3b8", letterSpacing: 3, marginBottom: 12 }}>لماذا MENA Watch</div>
           <h2 style={{ fontSize: 34, fontWeight: 700, color: "#f8fafc" }}>كل ما يحتاجه صانع القرار في منصة واحدة</h2>
         </div>
         <div style={{ maxWidth: 900, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 12 }}>
@@ -214,9 +207,9 @@ export default function LandingPage() {
 
       {/* ── NEWSLETTER CTA ── */}
       <section style={{ padding: "50px 40px", borderTop: "1px solid #1e293b", textAlign: "center" }}>
-        <div style={{ fontSize: 13, color: "#475569", letterSpacing: 3, marginBottom: 12 }}>التقرير اليومي</div>
+        <div style={{ fontSize: 13, color: "#94a3b8", letterSpacing: 3, marginBottom: 12 }}>التقرير اليومي</div>
         <h2 style={{ fontSize: 30, fontWeight: 700, color: "#f8fafc", marginBottom: 10 }}>ابدأ بتقرير صباحي مجاني</h2>
-        <p style={{ fontSize: 16, color: "#94a3b8", marginBottom: 32 }}>انضم لأكثر من ١٢,٠٠٠ محلل وصانع قرار يستخدمون MENA Watch</p>
+        <p style={{ fontSize: 16, color: "#94a3b8", marginBottom: 32 }}>انضم لأكثر من 12,000 محلل وصانع قرار يستخدمون MENA Watch</p>
         {!submitted ? (
           <div style={{ display: "flex", gap: 8, justifyContent: "center", maxWidth: 400, margin: "0 auto" }}>
             <input type="email" placeholder="بريدك الإلكتروني" value={email} onChange={e => setEmail(e.target.value)}
@@ -235,10 +228,10 @@ export default function LandingPage() {
 
       {/* ── FOOTER ── */}
       <div style={{ borderTop: "1px solid #1e293b", padding: "14px 40px", display: "flex", justifyContent: "space-between", alignItems: "center", background: "#080f1c" }}>
-        <div style={{ fontSize: 11, color: "#475569", display: "flex", alignItems: "center", gap: 6 }}><img src="/logo-sm.png" alt="" style={{ height: 14, opacity: 0.5 }} /> © 2025 MENA Watch — منصة الاستخبارات الإقليمية</div>
+        <div style={{ fontSize: 11, color: "#94a3b8", display: "flex", alignItems: "center", gap: 6 }}><img src="/logo-sm.png" alt="" style={{ height: 14, opacity: 0.5 }} /> © 2025 MENA Watch — منصة الاستخبارات الإقليمية</div>
         <div style={{ display: "flex", gap: 16 }}>
           {["الخصوصية", "الشروط", "تواصل معنا"].map(l => (
-            <a key={l} href="#" style={{ fontSize: 11, color: "#475569", textDecoration: "none" }}>{l}</a>
+            <a key={l} href="#" style={{ fontSize: 11, color: "#94a3b8", textDecoration: "none" }}>{l}</a>
           ))}
         </div>
       </div>

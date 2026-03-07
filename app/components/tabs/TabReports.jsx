@@ -55,14 +55,14 @@ export default function TabReports() {
           { label: "PDF متاحة", val: "✓", color: "#22c55e" },
         ].map(s => (
           <div key={s.label} style={{ background: "#0a1628", border: "1px solid #1e293b", borderRadius: 8, padding: "12px", textAlign: "center" }}>
-            <div style={{ fontSize: 9, color: "#475569" }}>{s.label}</div>
+            <div style={{ fontSize: 9, color: "#94a3b8" }}>{s.label}</div>
             <div style={{ fontSize: 20, fontWeight: 800, color: s.color }}>{s.val}</div>
           </div>
         ))}
       </div>
 
       <div>
-        <div style={{ fontSize: 11, color: "#64748b", marginBottom: 10 }}>📋 آخر التقارير اليومية</div>
+        <div style={{ fontSize: 11, color: "#94a3b8", marginBottom: 10 }}>📋 آخر التقارير اليومية</div>
         {loading ? (
           <div style={{ padding: 24, textAlign: "center", color: "#14b8a6" }}>جارٍ التحميل...</div>
         ) : (
@@ -74,7 +74,7 @@ export default function TabReports() {
                     <span style={{ fontSize: 12, fontWeight: 700, color: "#e2e8f0" }}>{r.title}</span>
                     {r.status === "جديد" && <span style={{ fontSize: 9, padding: "1px 6px", borderRadius: 3, background: "#14b8a622", color: "#14b8a6", marginRight: 6 }}>جديد</span>}
                   </div>
-                  <span style={{ fontSize: 10, color: "#475569" }}>{r.date}</span>
+                  <span style={{ fontSize: 10, color: "#94a3b8" }}>{r.date}</span>
                 </div>
                 <div style={{ fontSize: 10, color: "#94a3b8", marginBottom: 8 }}>{r.summary}</div>
                 <button onClick={() => handleDownloadPDF(r.date)} style={{ background: "#14b8a622", border: "1px solid #14b8a644", borderRadius: 4, padding: "4px 12px", color: "#14b8a6", fontSize: 10, fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}>

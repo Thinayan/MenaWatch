@@ -73,7 +73,7 @@ function riskLabel(r) {
 function Clock() {
   const [t, setT] = useState(new Date());
   useEffect(() => { const id = setInterval(() => setT(new Date()), 1000); return () => clearInterval(id); }, []);
-  return <span style={{fontFamily:"monospace", fontSize:13, color:"#94a3b8"}}>{t.toLocaleTimeString("ar-SA")}</span>;
+  return <span style={{fontFamily:"monospace", fontSize:13, color:"#94a3b8"}}>{t.toLocaleTimeString("en-US")}</span>;
 }
 
 // ── Main Component ────────────────────────────────────────
@@ -252,9 +252,9 @@ export default function MenaWatchMap() {
 
         {/* Metrics */}
         <div style={{ display:"flex", gap:16, alignItems:"center" }}>
-          {[{l:"الرياض",v:"٧:٤٣"},{l:"USD/SAR",v:"3.751"},{l:"برنت",v:"$82.1"},{l:"تاسي",v:"12,847"}].map(m=>(
+          {[{l:"الرياض",v:"7:43"},{l:"USD/SAR",v:"3.751"},{l:"برنت",v:"$82.1"},{l:"تاسي",v:"12,847"}].map(m=>(
             <div key={m.l} style={{ textAlign:"center" }}>
-              <div style={{ fontSize:10, color:"#64748b" }}>{m.l}</div>
+              <div style={{ fontSize:10, color:"#94a3b8" }}>{m.l}</div>
               <div style={{ fontSize:13, fontWeight:600, color:"#e2e8f0" }}>{m.v}</div>
             </div>
           ))}
@@ -264,7 +264,7 @@ export default function MenaWatchMap() {
 
       {/* ── LAYER TABS ── */}
       <div style={{ background:"#0a1628", borderBottom:"1px solid #1e293b", padding:"0 16px", display:"flex", alignItems:"center", gap:4, overflowX:"auto" }}>
-        <span style={{ fontSize:11, color:"#475569", marginLeft:8 }}>الطبقة:</span>
+        <span style={{ fontSize:11, color:"#94a3b8", marginLeft:8 }}>الطبقة:</span>
         {LAYERS.map(l => (
           <button key={l.id} onClick={() => { setActiveLayer(l.id); setSelected(null); }} style={{
             padding:"8px 14px", borderRadius:"6px 6px 0 0", border:"none", cursor:"pointer", fontSize:12, fontWeight:600,
@@ -295,7 +295,7 @@ export default function MenaWatchMap() {
               <span style={{ fontSize:20 }}>{layer.icon}</span>
               <span style={{ fontWeight:700, color:layer.color }}>{layer.ar}</span>
             </div>
-            <div style={{ fontSize:11, color:"#64748b" }}>{layer.desc}</div>
+            <div style={{ fontSize:11, color:"#94a3b8" }}>{layer.desc}</div>
           </div>
 
           {/* Top threats (security) */}
@@ -306,7 +306,7 @@ export default function MenaWatchMap() {
                 <div key={t.id} onClick={() => setSelected(t)} style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"6px 0", cursor:"pointer", borderBottom:"1px solid #0f172a" }}>
                   <div>
                     <div style={{ fontSize:13, fontWeight:600, color:"#e2e8f0" }}>{t.name}</div>
-                    <div style={{ fontSize:10, color:"#64748b", marginTop:2 }}>{t.detail.substring(0,40)}...</div>
+                    <div style={{ fontSize:10, color:"#94a3b8", marginTop:2 }}>{t.detail.substring(0,40)}...</div>
                   </div>
                   <div style={{ width:34, height:34, borderRadius:"50%", border:`2px solid ${riskColor(t.risk)}`, display:"flex", alignItems:"center", justifyContent:"center", color:riskColor(t.risk), fontWeight:700, fontSize:13 }}>
                     {t.risk}
@@ -318,7 +318,7 @@ export default function MenaWatchMap() {
 
           {/* Spots list */}
           <div style={{ padding:"10px 14px", flex:1 }}>
-            <div style={{ fontSize:11, color:"#64748b", marginBottom:8 }}>● {spots.length} نقطة رصد نشطة</div>
+            <div style={{ fontSize:11, color:"#94a3b8", marginBottom:8 }}>● {spots.length} نقطة رصد نشطة</div>
             {spots.map(s => (
               <div key={s.id} onClick={() => setSelected(s)} style={{
                 padding:"8px 10px", marginBottom:6, borderRadius:8, cursor:"pointer",
@@ -330,14 +330,14 @@ export default function MenaWatchMap() {
                   <span style={{ fontSize:13, fontWeight:600, color:"#e2e8f0" }}>{s.name}</span>
                   <span style={{ fontSize:12, color:riskColor(s.risk), fontWeight:700 }}>{s.risk} {s.trend}</span>
                 </div>
-                <div style={{ fontSize:11, color:"#64748b", marginTop:3 }}>{s.detail.substring(0,45)}...</div>
+                <div style={{ fontSize:11, color:"#94a3b8", marginTop:3 }}>{s.detail.substring(0,45)}...</div>
               </div>
             ))}
           </div>
 
           {/* Live RSS News Feed */}
           <div style={{ flex:1, minHeight:200, borderTop:"1px solid #1e293b" }}>
-            <Suspense fallback={<div style={{ padding:14, color:"#64748b", fontSize:11 }}>جارٍ تحميل الأخبار...</div>}>
+            <Suspense fallback={<div style={{ padding:14, color:"#94a3b8", fontSize:11 }}>جارٍ تحميل الأخبار...</div>}>
               <NewsTicker />
             </Suspense>
           </div>
@@ -351,7 +351,7 @@ export default function MenaWatchMap() {
 
             {/* Risk legend */}
             <div style={{ position:"absolute", bottom:20, left:20, background:"#0a162899", backdropFilter:"blur(10px)", border:"1px solid #1e293b", borderRadius:10, padding:"10px 14px", zIndex:1000 }}>
-              <div style={{ fontSize:10, color:"#64748b", marginBottom:6 }}>مستوى المخاطر</div>
+              <div style={{ fontSize:10, color:"#94a3b8", marginBottom:6 }}>مستوى المخاطر</div>
               {[{c:"#ef4444",l:"مرتفع +70"},{c:"#f59e0b",l:"متوسط 45-69"},{c:"#3b82f6",l:"منخفض 20-44"},{c:"#10b981",l:"مستقر 0-19"}].map(r=>(
                 <div key={r.l} style={{ display:"flex", alignItems:"center", gap:6, marginBottom:4 }}>
                   <div style={{ width:10, height:10, borderRadius:"50%", background:r.c }} />
@@ -367,7 +367,7 @@ export default function MenaWatchMap() {
               <LiveBroadcastPanel />
             </div>
             <div style={{ flex:"0 0 auto", borderTop:"1px solid #1e293b" }}>
-              <Suspense fallback={<div style={{ padding:12, color:"#64748b", fontSize:11 }}>جارٍ التحليل...</div>}>
+              <Suspense fallback={<div style={{ padding:12, color:"#94a3b8", fontSize:11 }}>جارٍ التحليل...</div>}>
                 <SentimentWidget />
               </Suspense>
             </div>
@@ -393,7 +393,7 @@ export default function MenaWatchMap() {
               {/* Risk meter */}
               <div style={{ marginBottom:14 }}>
                 <div style={{ display:"flex", justifyContent:"space-between", marginBottom:4 }}>
-                  <span style={{ fontSize:11, color:"#64748b" }}>مؤشر الخطر</span>
+                  <span style={{ fontSize:11, color:"#94a3b8" }}>مؤشر الخطر</span>
                   <span style={{ fontSize:11, color:riskColor(selected.risk) }}>{selected.risk}%</span>
                 </div>
                 <div style={{ height:6, background:"#1e293b", borderRadius:3, overflow:"hidden" }}>
@@ -423,7 +423,7 @@ export default function MenaWatchMap() {
 
       {/* ── BOTTOM CTA ── */}
       <div style={{ background:"#0a1628", borderTop:"1px solid #1e293b", padding:"10px 20px", display:"flex", alignItems:"center", justifyContent:"space-between" }}>
-        <div style={{ fontSize:12, color:"#64748b" }}>
+        <div style={{ fontSize:12, color:"#94a3b8" }}>
           🔒 احصل على التقرير الصباحي اليومي
         </div>
         <button onClick={() => setShowRegister(true)} style={{
@@ -440,7 +440,7 @@ export default function MenaWatchMap() {
           <div style={{ background:"#0f172a", border:"1px solid #334155", borderRadius:14, padding:32, width:360, textAlign:"center" }}>
             <img src="/logo-md.png" alt="MENA.Watch" style={{ height:60, width:"auto", marginBottom:8 }} />
             <div style={{ fontSize:18, fontWeight:700, color:"#fff", marginBottom:8 }}>سجل في MENA Watch</div>
-            <div style={{ fontSize:12, color:"#64748b", marginBottom:20 }}>تقارير يومية + تنبيهات فورية + تحليلات Claude AI</div>
+            <div style={{ fontSize:12, color:"#94a3b8", marginBottom:20 }}>تقارير يومية + تنبيهات فورية + تحليلات Claude AI</div>
             <input placeholder="بريدك الإلكتروني" style={{ width:"100%", padding:"10px 14px", borderRadius:8, border:"1px solid #334155", background:"#1e293b", color:"#e2e8f0", marginBottom:12, boxSizing:"border-box", textAlign:"right", fontSize:13 }} />
             <button style={{ width:"100%", padding:"10px 0", borderRadius:8, border:"none", background:"linear-gradient(135deg,#ef4444,#f59e0b)", color:"#fff", fontWeight:700, fontSize:13, cursor:"pointer", marginBottom:8 }}>
               ابدأ مجاناً

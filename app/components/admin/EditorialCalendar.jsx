@@ -160,9 +160,9 @@ export default function EditorialCalendar() {
 
       {/* Table */}
       {loading ? (
-        <div style={{ textAlign: "center", padding: 24, color: "#64748b", fontSize: 13 }}>جارٍ التحميل...</div>
+        <div style={{ textAlign: "center", padding: 24, color: "#94a3b8", fontSize: 13 }}>جارٍ التحميل...</div>
       ) : filteredEntries.length === 0 ? (
-        <div style={{ textAlign: "center", padding: 24, color: "#475569", fontSize: 13, background: "#0f172a", borderRadius: 8, border: "1px solid #1e293b" }}>
+        <div style={{ textAlign: "center", padding: 24, color: "#94a3b8", fontSize: 13, background: "#0f172a", borderRadius: 8, border: "1px solid #1e293b" }}>
           لا توجد عناصر
         </div>
       ) : (
@@ -181,8 +181,8 @@ export default function EditorialCalendar() {
                       {st.label}
                     </span>
                   </div>
-                  <div style={{ fontSize: 10, color: "#475569", marginTop: 3 }}>
-                    {entry.category} · {entry.publish_at ? new Date(entry.publish_at).toLocaleDateString("ar-SA") : "بدون موعد"}
+                  <div style={{ fontSize: 10, color: "#94a3b8", marginTop: 3 }}>
+                    {entry.category} · {entry.publish_at ? new Date(entry.publish_at).toLocaleDateString("ar-EG") : "بدون موعد"}
                   </div>
                 </div>
                 <div style={{ display: "flex", gap: 6 }}>

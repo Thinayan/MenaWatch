@@ -20,7 +20,7 @@ const LOGO_B64 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAAGQCAYAAACA
 
 // ── Mock data (existing) ─────────────────────────────────────
 const MOCK_DRAFT_REPORT = {
-  id: "rpt_2026_03_06", date: "الخميس، ٦ مارس ٢٠٢٦",
+  id: "rpt_2026_03_06", date: "الخميس، 6 مارس 2026",
   status: "draft", generated_at: "05:45:12", subscribers_count: 1247,
   market: {
     tasi:  { val: "12,847", chg: "+0.42%", up: true  },
@@ -38,10 +38,10 @@ const MOCK_DRAFT_REPORT = {
 };
 
 const MOCK_ARCHIVE = [
-  { id: "arc_2026_02", period: "فبراير ٢٠٢٦", type: "monthly", reports: 28, pages: 112, status: "published", price: 49, downloads: 23 },
-  { id: "arc_2026_01", period: "يناير ٢٠٢٦",  type: "monthly", reports: 31, pages: 124, status: "published", price: 49, downloads: 41 },
-  { id: "arc_2025",    period: "العام ٢٠٢٥",  type: "annual",  reports: 365, pages: 1460, status: "published", price: 199, downloads: 18 },
-  { id: "arc_2026_03", period: "مارس ٢٠٢٦",  type: "monthly", reports: 6,  pages: 24,  status: "in_progress", price: 49, downloads: 0 },
+  { id: "arc_2026_02", period: "فبراير 2026", type: "monthly", reports: 28, pages: 112, status: "published", price: 49, downloads: 23 },
+  { id: "arc_2026_01", period: "يناير 2026",  type: "monthly", reports: 31, pages: 124, status: "published", price: 49, downloads: 41 },
+  { id: "arc_2025",    period: "العام 2025",  type: "annual",  reports: 365, pages: 1460, status: "published", price: 199, downloads: 18 },
+  { id: "arc_2026_03", period: "مارس 2026",  type: "monthly", reports: 6,  pages: 24,  status: "in_progress", price: 49, downloads: 0 },
 ];
 
 const MOCK_SETTINGS = {
@@ -51,9 +51,9 @@ const MOCK_SETTINGS = {
 };
 
 const MOCK_EMAIL_TEMPLATES = [
-  { id: "welcome",      name: "إيميل الترحيب",    subject: "🌍 أهلاً بك في MENA Watch", last_edited: "١٥ فبراير ٢٠٢٦", sends: 1247, html: "<div>ترحيب</div>" },
-  { id: "daily_report", name: "التقرير الصباحي",   subject: "📊 تقرير MENA Watch — {{date}}", last_edited: "٢٠ فبراير ٢٠٢٦", sends: 38641, html: "<div>تقرير</div>" },
-  { id: "defcon_alert", name: "تنبيه DEFCON",       subject: "🚨 تنبيه DEFCON — {{region}}", last_edited: "١ مارس ٢٠٢٦", sends: 892, html: "<div>تنبيه</div>" },
+  { id: "welcome",      name: "إيميل الترحيب",    subject: "🌍 أهلاً بك في MENA Watch", last_edited: "15 فبراير 2026", sends: 1247, html: "<div>ترحيب</div>" },
+  { id: "daily_report", name: "التقرير الصباحي",   subject: "📊 تقرير MENA Watch — {{date}}", last_edited: "20 فبراير 2026", sends: 38641, html: "<div>تقرير</div>" },
+  { id: "defcon_alert", name: "تنبيه DEFCON",       subject: "🚨 تنبيه DEFCON — {{region}}", last_edited: "1 مارس 2026", sends: 892, html: "<div>تنبيه</div>" },
 ];
 
 // ── Mock: Social Media ────────────────────────────────────────
@@ -118,7 +118,7 @@ function Toggle({ value, onChange }) {
 function Input({ label, value, onChange, placeholder, type="text", mono=false }) {
   return (
     <div>
-      {label && <label style={{ fontSize:10, color:"#475569", display:"block", marginBottom:6, letterSpacing:1 }}>{label}</label>}
+      {label && <label style={{ fontSize:10, color:"#94a3b8", display:"block", marginBottom:6, letterSpacing:1 }}>{label}</label>}
       <input type={type} value={value} onChange={e => onChange(e.target.value)} placeholder={placeholder}
         style={{
           width:"100%", background:"#060d18", border:"1px solid #1e293b", borderRadius:5,
@@ -144,7 +144,7 @@ function ReviewSection() {
     <Card style={{ textAlign:"center", padding:40 }}>
       <div style={{ fontSize:40, marginBottom:12 }}>✅</div>
       <div style={{ fontSize:16, fontWeight:700, color:"#22c55e" }}>تم الإرسال بنجاح!</div>
-      <div style={{ fontSize:12, color:"#64748b", marginTop:6 }}>أُرسل لـ {r.subscribers_count.toLocaleString("ar")} مشترك</div>
+      <div style={{ fontSize:12, color:"#94a3b8", marginTop:6 }}>أُرسل لـ {r.subscribers_count.toLocaleString("en-US")} مشترك</div>
     </Card>
   );
 
@@ -152,8 +152,8 @@ function ReviewSection() {
     <div style={{ display:"flex", flexDirection:"column", gap:14 }}>
       <Card>
         <div style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:12 }}>
-          {[ { label:"التاريخ", val:r.date, c:"#f8fafc" }, { label:"وقت التوليد", val:r.generated_at, c:"#f59e0b" }, { label:"المشتركون", val:r.subscribers_count.toLocaleString("ar"), c:"#22c55e" }, { label:"الحالة", val:"مسودة", c:"#f59e0b" } ].map(s => (
-            <div key={s.label}><div style={{ fontSize:9, color:"#475569", marginBottom:4 }}>{s.label}</div><div style={{ fontSize:13, fontWeight:700, color:s.c }}>{s.val}</div></div>
+          {[ { label:"التاريخ", val:r.date, c:"#f8fafc" }, { label:"وقت التوليد", val:r.generated_at, c:"#f59e0b" }, { label:"المشتركون", val:r.subscribers_count.toLocaleString("en-US"), c:"#22c55e" }, { label:"الحالة", val:"مسودة", c:"#f59e0b" } ].map(s => (
+            <div key={s.label}><div style={{ fontSize:9, color:"#94a3b8", marginBottom:4 }}>{s.label}</div><div style={{ fontSize:13, fontWeight:700, color:s.c }}>{s.val}</div></div>
           ))}
         </div>
       </Card>
@@ -170,20 +170,20 @@ function ReviewSection() {
         }
       </Card>
       <Card>
-        <div style={{ fontSize:10, color:"#64748b", marginBottom:10 }}>مؤشرات DEFCON</div>
+        <div style={{ fontSize:10, color:"#94a3b8", marginBottom:10 }}>مؤشرات DEFCON</div>
         <div style={{ display:"flex", gap:8 }}>
           {r.defcon.map(d => (
             <div key={d.region} style={{ padding:"6px 12px", borderRadius:6, background:defconColors[d.level]+"22", border:`1px solid ${defconColors[d.level]}55` }}>
               <div style={{ fontSize:11, color:"#e2e8f0" }}>{d.region}</div>
               <div style={{ fontSize:14, fontWeight:800, color:defconColors[d.level] }}>D{d.level}</div>
-              <div style={{ fontSize:9, color:"#64748b" }}>{d.trend}</div>
+              <div style={{ fontSize:9, color:"#94a3b8" }}>{d.trend}</div>
             </div>
           ))}
         </div>
       </Card>
       <div style={{ display:"flex", gap:10 }}>
         <button onClick={async () => { setSending(true); await new Promise(r=>setTimeout(r,2000)); setSending(false); setSent(true); }} disabled={sending} style={{ flex:1, padding:"14px 0", borderRadius:8, border:"none", background:sending?"#1e293b":"linear-gradient(135deg,#22c55e,#16a34a)", color:"#fff", fontSize:14, fontWeight:800, fontFamily:"inherit", cursor:sending?"default":"pointer" }}>
-          {sending ? `⏳ جاري الإرسال لـ ${r.subscribers_count.toLocaleString("ar")} مشترك...` : "✅ اعتماد وإرسال الآن"}
+          {sending ? `⏳ جاري الإرسال لـ ${r.subscribers_count.toLocaleString("en-US")} مشترك...` : "✅ اعتماد وإرسال الآن"}
         </button>
         <button style={{ padding:"14px 20px", borderRadius:8, border:"1px solid #ef444455", background:"#7f1d1d22", color:"#ef4444", fontSize:13, fontWeight:700, fontFamily:"inherit", cursor:"pointer" }}>❌ رفض</button>
         <button style={{ padding:"14px 20px", borderRadius:8, border:"1px solid #334155", background:"#1e293b", color:"#94a3b8", fontSize:13, fontWeight:700, fontFamily:"inherit", cursor:"pointer" }}>🔄 إعادة توليد</button>
@@ -203,14 +203,14 @@ function SettingsSection() {
   return (
     <div style={{ display:"flex", flexDirection:"column", gap:14 }}>
       <Card>
-        <div style={{ fontSize:11, color:"#64748b", marginBottom:14, fontWeight:700 }}>⏰ جدول الإرسال</div>
+        <div style={{ fontSize:11, color:"#94a3b8", marginBottom:14, fontWeight:700 }}>⏰ جدول الإرسال</div>
         <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:12 }}>
           <div>
-            <label style={{ fontSize:10, color:"#64748b", display:"block", marginBottom:6 }}>وقت الإرسال</label>
+            <label style={{ fontSize:10, color:"#94a3b8", display:"block", marginBottom:6 }}>وقت الإرسال</label>
             <input type="time" value={s.send_time} onChange={e => update("send_time", e.target.value)} style={{ width:"100%", background:"#060d18", border:"1px solid #1e293b", borderRadius:6, padding:"8px 12px", color:"#f8fafc", fontSize:14, fontFamily:"inherit" }} />
           </div>
           <div>
-            <label style={{ fontSize:10, color:"#64748b", display:"block", marginBottom:6 }}>المنطقة الزمنية</label>
+            <label style={{ fontSize:10, color:"#94a3b8", display:"block", marginBottom:6 }}>المنطقة الزمنية</label>
             <select value={s.timezone} onChange={e => update("timezone", e.target.value)} style={{ width:"100%", background:"#060d18", border:"1px solid #1e293b", borderRadius:6, padding:"8px 12px", color:"#f8fafc", fontSize:12, fontFamily:"inherit" }}>
               <option value="Asia/Riyadh">Asia/Riyadh (UTC+3)</option>
               <option value="Asia/Dubai">Asia/Dubai (UTC+4)</option>
@@ -220,10 +220,10 @@ function SettingsSection() {
         </div>
       </Card>
       <Card>
-        <div style={{ fontSize:11, color:"#64748b", marginBottom:14, fontWeight:700 }}>🔍 وضع المراجعة</div>
+        <div style={{ fontSize:11, color:"#94a3b8", marginBottom:14, fontWeight:700 }}>🔍 وضع المراجعة</div>
         {[ { k:"review_mode", l:"تفعيل المراجعة قبل الإرسال", d:"التقرير يُحفظ كمسودة وينتظر اعتمادك" }, { k:"auto_send_if_no_review", l:"إرسال تلقائي إذا لم يُراجع", d:"يُرسل تلقائياً إذا انتهت مهلة المراجعة" } ].map(opt => (
           <div key={opt.k} style={{ display:"flex", alignItems:"center", justifyContent:"space-between", background:"#060d18", borderRadius:8, padding:"10px 14px", border:"1px solid #1e293b", marginBottom:8 }}>
-            <div><div style={{ fontSize:12, color:"#e2e8f0", fontWeight:600 }}>{opt.l}</div><div style={{ fontSize:10, color:"#475569" }}>{opt.d}</div></div>
+            <div><div style={{ fontSize:12, color:"#e2e8f0", fontWeight:600 }}>{opt.l}</div><div style={{ fontSize:10, color:"#94a3b8" }}>{opt.d}</div></div>
             <Toggle value={s[opt.k]} onChange={v => update(opt.k, v)} />
           </div>
         ))}
@@ -244,22 +244,22 @@ function ArchiveSection() {
     <div style={{ display:"flex", flexDirection:"column", gap:14 }}>
       <div style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:10 }}>
         {[ { l:"هذا الشهر", v:"6", c:"#3b82f6" }, { l:"إجمالي الأرشيف", v:"65", c:"#22c55e" }, { l:"للبيع", v:"3", c:"#f59e0b" }, { l:"الإيرادات", v:"$2,891", c:"#8b5cf6" } ].map(s => (
-          <Card key={s.l}><div style={{ fontSize:9, color:"#475569" }}>{s.l}</div><div style={{ fontSize:22, fontWeight:800, color:s.c, marginTop:4 }}>{s.v}</div></Card>
+          <Card key={s.l}><div style={{ fontSize:9, color:"#94a3b8" }}>{s.l}</div><div style={{ fontSize:22, fontWeight:800, color:s.c, marginTop:4 }}>{s.v}</div></Card>
         ))}
       </div>
       <Card>
-        <div style={{ fontSize:11, color:"#64748b", marginBottom:12, fontWeight:700 }}>📚 الأرشيف المتاح</div>
+        <div style={{ fontSize:11, color:"#94a3b8", marginBottom:12, fontWeight:700 }}>📚 الأرشيف المتاح</div>
         {MOCK_ARCHIVE.map(a => (
           <div key={a.id} style={{ display:"flex", alignItems:"center", gap:10, background:"#060d18", border:"1px solid #1e293b", borderRadius:8, padding:"10px 14px", marginBottom:6 }}>
             <div style={{ flex:1 }}>
               <div style={{ fontSize:12, fontWeight:700, color:"#e2e8f0" }}>{a.period}</div>
-              <div style={{ fontSize:9, color:"#475569" }}>{a.type==="annual"?"سنوي":"شهري"} — {a.reports} تقرير</div>
+              <div style={{ fontSize:9, color:"#94a3b8" }}>{a.type==="annual"?"سنوي":"شهري"} — {a.reports} تقرير</div>
             </div>
             <span style={{ background:a.status==="published"?"#22c55e22":"#f59e0b22", color:a.status==="published"?"#22c55e":"#f59e0b", border:`1px solid ${a.status==="published"?"#22c55e44":"#f59e0b44"}`, padding:"2px 8px", borderRadius:4, fontSize:10, fontWeight:700 }}>
               {a.status==="published"?"منشور":"جاري"}
             </span>
             <div style={{ fontSize:12, fontWeight:700, color:"#f8fafc" }}>${a.price}</div>
-            <div style={{ fontSize:11, color:"#64748b" }}>{a.downloads} تحميل</div>
+            <div style={{ fontSize:11, color:"#94a3b8" }}>{a.downloads} تحميل</div>
           </div>
         ))}
       </Card>
@@ -284,18 +284,18 @@ function TemplatesSection() {
         {templates.map(t => (
           <div key={t.id} onClick={() => { setActive(t.id); setEditing(false); }} style={{ padding:"10px 12px", borderRadius:8, cursor:"pointer", background:active===t.id?"#1e3a5f":"#0a1628", border:`1px solid ${active===t.id?"#3b82f6":"#1e293b"}` }}>
             <div style={{ fontSize:12, fontWeight:700, color:active===t.id?"#93c5fd":"#e2e8f0" }}>{t.name}</div>
-            <div style={{ fontSize:9, color:"#475569", marginTop:2 }}>{t.sends.toLocaleString("ar")} إرسال</div>
+            <div style={{ fontSize:9, color:"#94a3b8", marginTop:2 }}>{t.sends.toLocaleString("en-US")} إرسال</div>
           </div>
         ))}
       </div>
       <div style={{ flex:1, display:"flex", flexDirection:"column", gap:10 }}>
         <Card>
-          <label style={{ fontSize:10, color:"#64748b", display:"block", marginBottom:6 }}>العنوان (Subject)</label>
+          <label style={{ fontSize:10, color:"#94a3b8", display:"block", marginBottom:6 }}>العنوان (Subject)</label>
           <input value={tmpl.subject} onChange={e => update("subject", e.target.value)} style={{ width:"100%", background:"#060d18", border:"1px solid #1e293b", borderRadius:6, padding:"8px 12px", color:"#f8fafc", fontSize:12, fontFamily:"inherit", direction:"rtl" }} />
         </Card>
         <Card>
           <div style={{ display:"flex", justifyContent:"space-between", marginBottom:10 }}>
-            <span style={{ fontSize:10, color:"#64748b", fontWeight:700 }}>محتوى HTML</span>
+            <span style={{ fontSize:10, color:"#94a3b8", fontWeight:700 }}>محتوى HTML</span>
             <button onClick={() => setEditing(!editing)} style={{ padding:"4px 10px", borderRadius:5, fontSize:10, fontFamily:"inherit", cursor:"pointer", background:editing?"#22c55e18":"transparent", border:`1px solid ${editing?"#22c55e":"#334155"}`, color:editing?"#22c55e":"#64748b" }}>✏️ تعديل</button>
           </div>
           {editing
@@ -324,7 +324,7 @@ function SocialSection() {
     <div style={{ display:"flex", flexDirection:"column", gap:14 }}>
 
       <Card>
-        <div style={{ fontSize:11, color:"#64748b", marginBottom:6 }}>
+        <div style={{ fontSize:11, color:"#94a3b8", marginBottom:6 }}>
           إدارة حسابات وسائل التواصل الاجتماعي — تحكم في ظهورها في الـ Footer وفي صفحات الموقع
         </div>
       </Card>
@@ -345,19 +345,19 @@ function SocialSection() {
             </div>
             {/* Handle */}
             <div>
-              <label style={{ fontSize:9, color:"#475569", display:"block", marginBottom:4 }}>اسم المستخدم</label>
+              <label style={{ fontSize:9, color:"#94a3b8", display:"block", marginBottom:4 }}>اسم المستخدم</label>
               <input value={s.handle} onChange={e => update(s.id, "handle", e.target.value)}
                 style={{ width:"100%", background:"#060d18", border:"1px solid #1e293b", borderRadius:5, padding:"6px 10px", color:"#f8fafc", fontSize:12, fontFamily:"inherit", direction:"ltr", textAlign:"left" }} />
             </div>
             {/* URL */}
             <div>
-              <label style={{ fontSize:9, color:"#475569", display:"block", marginBottom:4 }}>الرابط الكامل</label>
+              <label style={{ fontSize:9, color:"#94a3b8", display:"block", marginBottom:4 }}>الرابط الكامل</label>
               <input value={s.url} onChange={e => update(s.id, "url", e.target.value)} placeholder="https://..."
                 style={{ width:"100%", background:"#060d18", border:"1px solid #1e293b", borderRadius:5, padding:"6px 10px", color:"#94a3b8", fontSize:11, fontFamily:"'Courier New',monospace", direction:"ltr", textAlign:"left" }} />
             </div>
             {/* Toggle */}
             <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:4 }}>
-              <div style={{ fontSize:9, color:"#475569" }}>إظهار في الموقع</div>
+              <div style={{ fontSize:9, color:"#94a3b8" }}>إظهار في الموقع</div>
               <Toggle value={s.active} onChange={v => update(s.id, "active", v)} />
             </div>
           </div>
@@ -366,7 +366,7 @@ function SocialSection() {
 
       {/* Preview */}
       <Card>
-        <div style={{ fontSize:10, color:"#475569", marginBottom:10, letterSpacing:2 }}>معاينة الـ Footer</div>
+        <div style={{ fontSize:10, color:"#94a3b8", marginBottom:10, letterSpacing:2 }}>معاينة الـ Footer</div>
         <div style={{ display:"flex", gap:10, flexWrap:"wrap", justifyContent:"center" }}>
           {socials.filter(s => s.active).map(s => (
             <a key={s.id} href={s.url || "#"} target="_blank" rel="noreferrer" style={{
@@ -398,7 +398,7 @@ function CompanySection() {
 
   const group = (title, icon, fields) => (
     <Card key={title}>
-      <div style={{ fontSize:11, color:"#64748b", marginBottom:14, fontWeight:700, display:"flex", alignItems:"center", gap:8 }}>
+      <div style={{ fontSize:11, color:"#94a3b8", marginBottom:14, fontWeight:700, display:"flex", alignItems:"center", gap:8 }}>
         <span>{icon}</span> {title}
       </div>
       <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:12 }}>
@@ -413,8 +413,8 @@ function CompanySection() {
     <div style={{ display:"flex", flexDirection:"column", gap:14 }}>
 
       <Card>
-        <div style={{ fontSize:11, color:"#64748b", marginBottom:4 }}>
-          هذه البيانات تظهر في الـ Landing Page وفي الفواتير فقط — وفق متطلبات هيئة الزكاة والضريبة والجمارك السعودية (ZATCA فاز ٢)
+        <div style={{ fontSize:11, color:"#94a3b8", marginBottom:4 }}>
+          هذه البيانات تظهر في الـ Landing Page وفي الفواتير فقط — وفق متطلبات هيئة الزكاة والضريبة والجمارك السعودية (ZATCA فاز 2)
         </div>
       </Card>
 
@@ -451,7 +451,7 @@ function CompanySection() {
 
       {/* Legal options */}
       <Card>
-        <div style={{ fontSize:11, color:"#64748b", marginBottom:14, fontWeight:700 }}>⚖️ الاشتراطات القانونية للفواتير (ZATCA)</div>
+        <div style={{ fontSize:11, color:"#94a3b8", marginBottom:14, fontWeight:700 }}>⚖️ الاشتراطات القانونية للفواتير (ZATCA)</div>
         <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:10 }}>
           {[
             { k:"show_vat_on_invoice", l:"إظهار الرقم الضريبي في الفواتير", d:"إلزامي وفق ZATCA فاز 2" },
@@ -460,7 +460,7 @@ function CompanySection() {
             <div key={opt.k} style={{ display:"flex", alignItems:"center", justifyContent:"space-between", background:"#060d18", borderRadius:8, padding:"10px 14px", border:"1px solid #1e293b" }}>
               <div>
                 <div style={{ fontSize:12, color:"#e2e8f0", fontWeight:600 }}>{opt.l}</div>
-                <div style={{ fontSize:10, color:"#475569" }}>{opt.d}</div>
+                <div style={{ fontSize:10, color:"#94a3b8" }}>{opt.d}</div>
               </div>
               <Toggle value={co[opt.k]} onChange={v => upd(opt.k, v)} />
             </div>
@@ -468,12 +468,12 @@ function CompanySection() {
         </div>
         <div style={{ marginTop:12, display:"grid", gridTemplateColumns:"1fr 1fr", gap:12 }}>
           <div>
-            <label style={{ fontSize:10, color:"#475569", display:"block", marginBottom:6 }}>بادئة رقم الفاتورة</label>
+            <label style={{ fontSize:10, color:"#94a3b8", display:"block", marginBottom:6 }}>بادئة رقم الفاتورة</label>
             <input value={co.invoice_prefix} onChange={e => upd("invoice_prefix", e.target.value)} style={{ width:"100%", background:"#060d18", border:"1px solid #1e293b", borderRadius:5, padding:"8px 12px", color:"#f8fafc", fontSize:12, fontFamily:"'Courier New',monospace", direction:"ltr" }} />
             <div style={{ fontSize:9, color:"#334155", marginTop:3 }}>مثال: {co.invoice_prefix}-2026-0001</div>
           </div>
           <div>
-            <label style={{ fontSize:10, color:"#475569", display:"block", marginBottom:6 }}>مرحلة ZATCA المفعّلة</label>
+            <label style={{ fontSize:10, color:"#94a3b8", display:"block", marginBottom:6 }}>مرحلة ZATCA المفعّلة</label>
             <select value={co.zatca_phase} onChange={e => upd("zatca_phase", e.target.value)} style={{ width:"100%", background:"#060d18", border:"1px solid #1e293b", borderRadius:5, padding:"8px 12px", color:"#f8fafc", fontSize:12, fontFamily:"inherit" }}>
               <option value="1">الفاز الأول (E-Invoicing أساسي)</option>
               <option value="2">الفاز الثاني (ربط منظومة ZATCA)</option>
@@ -484,12 +484,12 @@ function CompanySection() {
 
       {/* Preview landing info */}
       <Card>
-        <div style={{ fontSize:10, color:"#475569", marginBottom:10, letterSpacing:2 }}>معاينة ما يظهر في Landing Page</div>
+        <div style={{ fontSize:10, color:"#94a3b8", marginBottom:10, letterSpacing:2 }}>معاينة ما يظهر في Landing Page</div>
         <div style={{ background:"#060d18", border:"1px solid #1e293b", borderRadius:6, padding:14 }}>
           <div style={{ display:"flex", gap:16, flexWrap:"wrap" }}>
             <div>
               <div style={{ fontSize:16, fontWeight:800, color:"#22c55e" }}>{co.platform_name_en}<span style={{ color:"#f8fafc" }}></span></div>
-              <div style={{ fontSize:11, color:"#64748b" }}>{co.platform_tagline_ar}</div>
+              <div style={{ fontSize:11, color:"#94a3b8" }}>{co.platform_tagline_ar}</div>
             </div>
             <div style={{ flex:1 }} />
             <div style={{ textAlign:"left", direction:"ltr" }}>
@@ -565,7 +565,7 @@ function UsersSection() {
           { label:"أدمن", val:stats.admin, color:"#f59e0b" },
         ].map(s => (
           <div key={s.label} style={{ background:"#0a1628", border:"1px solid #1e293b", borderRadius:8, padding:"14px", textAlign:"center" }}>
-            <div style={{ fontSize:9, color:"#475569" }}>{s.label}</div>
+            <div style={{ fontSize:9, color:"#94a3b8" }}>{s.label}</div>
             <div style={{ fontSize:24, fontWeight:800, color:s.color }}>{s.val}</div>
           </div>
         ))}
@@ -583,7 +583,7 @@ function UsersSection() {
 
       {/* Users Table */}
       <div style={{ background:"#0a1628", border:"1px solid #1e293b", borderRadius:8, overflow:"hidden" }}>
-        <div style={{ display:"grid", gridTemplateColumns:"1fr 120px 80px 100px 100px", padding:"10px 14px", background:"#080f1c", borderBottom:"1px solid #1e293b", fontSize:10, color:"#475569", fontWeight:600 }}>
+        <div style={{ display:"grid", gridTemplateColumns:"1fr 120px 80px 100px 100px", padding:"10px 14px", background:"#080f1c", borderBottom:"1px solid #1e293b", fontSize:10, color:"#94a3b8", fontWeight:600 }}>
           <span>البريد / الاسم</span><span style={{ textAlign:"center" }}>الاسم</span><span style={{ textAlign:"center" }}>الدور</span><span style={{ textAlign:"center" }}>التسجيل</span><span style={{ textAlign:"center" }}>إجراءات</span>
         </div>
         {filtered.map(u => (
@@ -597,7 +597,7 @@ function UsersSection() {
                 {u.role==="admin"?"أدمن":u.role==="pro"?"خبير":"مجاني"}
               </span>
             </div>
-            <div style={{ fontSize:9, color:"#475569", textAlign:"center" }}>{u.created_at ? new Date(u.created_at).toLocaleDateString("ar-SA") : "—"}</div>
+            <div style={{ fontSize:9, color:"#94a3b8", textAlign:"center" }}>{u.created_at ? new Date(u.created_at).toLocaleDateString("ar-EG") : "—"}</div>
             <div style={{ textAlign:"center" }}>
               <select value={u.role || "free"} onChange={e => handleRoleChange(u.id, e.target.value)} style={{ background:"#0f1829", border:"1px solid #1e293b", borderRadius:4, padding:"3px 6px", color:"#e2e8f0", fontSize:10, cursor:"pointer" }}>
                 <option value="free">مجاني</option>
@@ -607,7 +607,7 @@ function UsersSection() {
             </div>
           </div>
         ))}
-        {filtered.length === 0 && <div style={{ padding:20, textAlign:"center", color:"#475569", fontSize:11 }}>لا توجد نتائج</div>}
+        {filtered.length === 0 && <div style={{ padding:20, textAlign:"center", color:"#94a3b8", fontSize:11 }}>لا توجد نتائج</div>}
       </div>
     </div>
   );
@@ -653,15 +653,15 @@ function PricingSection() {
           <div key={key} style={{ background:"#0a1628", border:`1px solid ${planColors[key]}44`, borderRadius:12, padding:20 }}>
             <div style={{ fontSize:14, fontWeight:800, color:planColors[key], marginBottom:12 }}>{planNames[key]}</div>
             <div style={{ marginBottom:12 }}>
-              <label style={{ fontSize:10, color:"#475569", display:"block", marginBottom:4 }}>السعر ($/شهر)</label>
+              <label style={{ fontSize:10, color:"#94a3b8", display:"block", marginBottom:4 }}>السعر ($/شهر)</label>
               <input type="number" value={plan.price} onChange={e => setPricing(p => ({ ...p, [key]:{ ...p[key], price:parseInt(e.target.value)||0 } }))} style={{ width:"100%", background:"#0f1829", border:"1px solid #1e293b", borderRadius:6, padding:"8px 10px", color:"#f8fafc", fontSize:18, fontWeight:700, textAlign:"center" }} />
             </div>
             <div style={{ marginBottom:12 }}>
-              <label style={{ fontSize:10, color:"#475569", display:"block", marginBottom:4 }}>حد AI يومي (-1 = غير محدود)</label>
+              <label style={{ fontSize:10, color:"#94a3b8", display:"block", marginBottom:4 }}>حد AI يومي (-1 = غير محدود)</label>
               <input type="number" value={plan.ai_limit} onChange={e => setPricing(p => ({ ...p, [key]:{ ...p[key], ai_limit:parseInt(e.target.value) } }))} style={{ width:"100%", background:"#0f1829", border:"1px solid #1e293b", borderRadius:6, padding:"6px 10px", color:"#e2e8f0", fontSize:12, textAlign:"center" }} />
             </div>
             <div>
-              <label style={{ fontSize:10, color:"#475569", display:"block", marginBottom:4 }}>الميزات (سطر لكل ميزة)</label>
+              <label style={{ fontSize:10, color:"#94a3b8", display:"block", marginBottom:4 }}>الميزات (سطر لكل ميزة)</label>
               <textarea value={(plan.features||[]).join("\n")} onChange={e => setPricing(p => ({ ...p, [key]:{ ...p[key], features:e.target.value.split("\n").filter(Boolean) } }))} rows={4} style={{ width:"100%", background:"#0f1829", border:"1px solid #1e293b", borderRadius:6, padding:"6px 10px", color:"#e2e8f0", fontSize:10, resize:"vertical", lineHeight:1.8 }} />
             </div>
           </div>
@@ -710,7 +710,7 @@ function AnalyticsSection() {
         {cards.map(c => (
           <div key={c.label} style={{ background:"#0a1628", border:"1px solid #1e293b", borderRadius:10, padding:"16px 14px", textAlign:"center" }}>
             <div style={{ fontSize:24, marginBottom:6 }}>{c.icon}</div>
-            <div style={{ fontSize:9, color:"#475569", marginBottom:4 }}>{c.label}</div>
+            <div style={{ fontSize:9, color:"#94a3b8", marginBottom:4 }}>{c.label}</div>
             <div style={{ fontSize:28, fontWeight:900, color:c.color }}>{c.val.toLocaleString()}</div>
           </div>
         ))}
@@ -790,7 +790,7 @@ export default function AdminDashboard() {
             </button>
           ))}
           <div style={{ marginTop:"auto", paddingTop:12, borderTop:"1px solid #1e293b" }}>
-            <button style={{ width:"100%", padding:"8px 12px", borderRadius:8, background:"transparent", border:"1px solid #1e293b", color:"#475569", fontSize:11, fontFamily:"inherit", cursor:"pointer", display:"flex", alignItems:"center", gap:8 }}>
+            <button style={{ width:"100%", padding:"8px 12px", borderRadius:8, background:"transparent", border:"1px solid #1e293b", color:"#94a3b8", fontSize:11, fontFamily:"inherit", cursor:"pointer", display:"flex", alignItems:"center", gap:8 }}>
               <span>🌍</span> العودة للموقع
             </button>
           </div>

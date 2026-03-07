@@ -158,7 +158,7 @@ export default function ResetPasswordPage() {
           <div style={{ textAlign: "center", marginBottom: 24 }}>
             <div style={{ fontSize: 28, marginBottom: 12 }}>🔐</div>
             <h1 style={{ fontSize: 22, fontWeight: 700, color: "#f8fafc", margin: 0 }}>تعيين كلمة مرور جديدة</h1>
-            <p style={{ fontSize: 14, color: "#64748b", marginTop: 8 }}>أدخل كلمة المرور الجديدة لحسابك</p>
+            <p style={{ fontSize: 14, color: "#94a3b8", marginTop: 8 }}>أدخل كلمة المرور الجديدة لحسابك</p>
           </div>
 
           {/* Loading */}
@@ -207,7 +207,7 @@ export default function ResetPasswordPage() {
                   type="password"
                   value={password}
                   onChange={e => setPassword(e.target.value)}
-                  placeholder="٦ أحرف على الأقل"
+                  placeholder="6 أحرف على الأقل"
                   style={inputStyle}
                 />
               </div>
@@ -273,13 +273,13 @@ export default function ResetPasswordPage() {
               }}>
                 ✅ تم تحديث كلمة المرور بنجاح!
               </div>
-              <p style={{ fontSize: 14, color: "#64748b" }}>جارٍ تحويلك لغرفة العمليات...</p>
+              <p style={{ fontSize: 14, color: "#94a3b8" }}>جارٍ تحويلك لغرفة العمليات...</p>
             </div>
           )}
         </div>
 
         <div style={{ marginTop: 16, textAlign: "center" }}>
-          <a href="/login" style={{ fontSize: 13, color: "#64748b", textDecoration: "none" }}>← العودة لتسجيل الدخول</a>
+          <a href="/login" style={{ fontSize: 13, color: "#94a3b8", textDecoration: "none" }}>← العودة لتسجيل الدخول</a>
         </div>
       </div>
     </div>

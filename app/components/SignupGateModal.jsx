@@ -135,7 +135,7 @@ export default function SignupGateModal() {
           borderRadius: "12px 12px 0 0",
         }}>
           <img src="/logo-sm.png" alt="MENA.Watch" style={{ height: 28 }} />
-          <span style={{ fontSize: 11, color: "#475569" }}>|</span>
+          <span style={{ fontSize: 11, color: "#94a3b8" }}>|</span>
           <span style={{ fontSize: 12, color: "#cbd5e1", fontWeight: 500 }}>
             منصة الذكاء الاستراتيجي للشرق الأوسط
           </span>

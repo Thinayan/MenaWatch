@@ -111,7 +111,7 @@ export default function ArchivePage() {
           <h1 style={{ fontSize: 22, fontWeight: 800, color: "#f8fafc", marginBottom: 6 }}>
             🏛️ الأرشيف التاريخي
           </h1>
-          <p style={{ fontSize: 12, color: "#64748b" }}>
+          <p style={{ fontSize: 12, color: "#94a3b8" }}>
             أحداث ومؤشرات تاريخية لمنطقة الشرق الأوسط مع تحليل "لماذا حدث" و"ماذا يعني لك"
           </p>
         </div>
@@ -147,7 +147,7 @@ export default function ArchivePage() {
                 {EVENT_TYPES.map(t => <option key={t.value} value={t.value}>{t.label}</option>)}
               </select>
               <input type="date" value={filterFrom} onChange={e => setFilterFrom(e.target.value)} style={{ ...selectStyle, width: 130 }} />
-              <span style={{ color: "#475569", fontSize: 10 }}>→</span>
+              <span style={{ color: "#94a3b8", fontSize: 10 }}>→</span>
               <input type="date" value={filterTo} onChange={e => setFilterTo(e.target.value)} style={{ ...selectStyle, width: 130 }} />
               <form onSubmit={handleSearch} style={{ display: "flex", gap: 4 }}>
                 <input

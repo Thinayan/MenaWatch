@@ -93,49 +93,49 @@ export default function TeamManager() {
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 10 }}>
           <div>
-            <label style={{ fontSize: 10, color: "#64748b" }}>الاسم (عربي) *</label>
+            <label style={{ fontSize: 10, color: "#94a3b8" }}>الاسم (عربي) *</label>
             <input style={inputStyle} value={form.name_ar} onChange={e => setForm({ ...form, name_ar: e.target.value })} placeholder="الاسم بالعربي" />
           </div>
           <div>
-            <label style={{ fontSize: 10, color: "#64748b" }}>الاسم (إنجليزي)</label>
+            <label style={{ fontSize: 10, color: "#94a3b8" }}>الاسم (إنجليزي)</label>
             <input style={inputStyle} value={form.name_en} onChange={e => setForm({ ...form, name_en: e.target.value })} placeholder="Name in English" />
           </div>
           <div>
-            <label style={{ fontSize: 10, color: "#64748b" }}>المسمى الوظيفي (عربي) *</label>
+            <label style={{ fontSize: 10, color: "#94a3b8" }}>المسمى الوظيفي (عربي) *</label>
             <input style={inputStyle} value={form.title_ar} onChange={e => setForm({ ...form, title_ar: e.target.value })} placeholder="المسمى بالعربي" />
           </div>
           <div>
-            <label style={{ fontSize: 10, color: "#64748b" }}>المسمى الوظيفي (إنجليزي)</label>
+            <label style={{ fontSize: 10, color: "#94a3b8" }}>المسمى الوظيفي (إنجليزي)</label>
             <input style={inputStyle} value={form.title_en} onChange={e => setForm({ ...form, title_en: e.target.value })} placeholder="Title in English" />
           </div>
         </div>
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 10 }}>
           <div>
-            <label style={{ fontSize: 10, color: "#64748b" }}>النبذة (عربي)</label>
+            <label style={{ fontSize: 10, color: "#94a3b8" }}>النبذة (عربي)</label>
             <textarea style={{ ...inputStyle, height: 60, resize: "vertical" }} value={form.bio_ar} onChange={e => setForm({ ...form, bio_ar: e.target.value })} placeholder="نبذة مختصرة..." />
           </div>
           <div>
-            <label style={{ fontSize: 10, color: "#64748b" }}>النبذة (إنجليزي)</label>
+            <label style={{ fontSize: 10, color: "#94a3b8" }}>النبذة (إنجليزي)</label>
             <textarea style={{ ...inputStyle, height: 60, resize: "vertical" }} value={form.bio_en} onChange={e => setForm({ ...form, bio_en: e.target.value })} placeholder="Short bio..." />
           </div>
         </div>
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 80px", gap: 10, marginBottom: 14 }}>
           <div>
-            <label style={{ fontSize: 10, color: "#64748b" }}>رابط الصورة</label>
+            <label style={{ fontSize: 10, color: "#94a3b8" }}>رابط الصورة</label>
             <input style={inputStyle} value={form.photo_url} onChange={e => setForm({ ...form, photo_url: e.target.value })} placeholder="https://..." />
           </div>
           <div>
-            <label style={{ fontSize: 10, color: "#64748b" }}>LinkedIn</label>
+            <label style={{ fontSize: 10, color: "#94a3b8" }}>LinkedIn</label>
             <input style={inputStyle} value={form.linkedin} onChange={e => setForm({ ...form, linkedin: e.target.value })} placeholder="https://linkedin.com/in/..." />
           </div>
           <div>
-            <label style={{ fontSize: 10, color: "#64748b" }}>X (تويتر)</label>
+            <label style={{ fontSize: 10, color: "#94a3b8" }}>X (تويتر)</label>
             <input style={inputStyle} value={form.twitter} onChange={e => setForm({ ...form, twitter: e.target.value })} placeholder="https://x.com/..." />
           </div>
           <div>
-            <label style={{ fontSize: 10, color: "#64748b" }}>الترتيب</label>
+            <label style={{ fontSize: 10, color: "#94a3b8" }}>الترتيب</label>
             <input type="number" style={inputStyle} value={form.display_order} onChange={e => setForm({ ...form, display_order: parseInt(e.target.value) || 0 })} />
           </div>
         </div>
@@ -164,9 +164,9 @@ export default function TeamManager() {
         </div>
 
         {loading ? (
-          <div style={{ textAlign: "center", padding: 30, color: "#475569", fontSize: 12 }}>⏳ جاري التحميل...</div>
+          <div style={{ textAlign: "center", padding: 30, color: "#94a3b8", fontSize: 12 }}>⏳ جاري التحميل...</div>
         ) : members.length === 0 ? (
-          <div style={{ textAlign: "center", padding: 30, color: "#475569", fontSize: 12 }}>
+          <div style={{ textAlign: "center", padding: 30, color: "#94a3b8", fontSize: 12 }}>
             لا يوجد أعضاء بعد. أضف أعضاء الفريق من النموذج أعلاه.
             <div style={{ fontSize: 10, color: "#334155", marginTop: 8 }}>
               ملاحظة: تأكد من تشغيل migrations المرحلة 2 في Supabase أولاً.
@@ -192,9 +192,9 @@ export default function TeamManager() {
                     {m.name_ar} {m.name_en ? `(${m.name_en})` : ""}
                   </div>
                   <div style={{ fontSize: 10, color: "#22c55e" }}>{m.title_ar}</div>
-                  {m.bio_ar && <div style={{ fontSize: 10, color: "#64748b", marginTop: 2 }}>{m.bio_ar.slice(0, 80)}...</div>}
+                  {m.bio_ar && <div style={{ fontSize: 10, color: "#94a3b8", marginTop: 2 }}>{m.bio_ar.slice(0, 80)}...</div>}
                 </div>
-                <div style={{ fontSize: 10, color: "#475569", flexShrink: 0 }}>#{m.display_order}</div>
+                <div style={{ fontSize: 10, color: "#94a3b8", flexShrink: 0 }}>#{m.display_order}</div>
                 <div style={{ display: "flex", gap: 4, flexShrink: 0 }}>
                   <button onClick={() => handleToggleActive(m)} style={{
                     padding: "4px 8px", borderRadius: 4, border: "1px solid #1e293b", background: "transparent",

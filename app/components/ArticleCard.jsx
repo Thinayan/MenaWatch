@@ -37,7 +37,7 @@ function timeAgo(dateStr) {
     if (diff < 3600) return `منذ ${Math.floor(diff / 60)} د`;
     if (diff < 86400) return `منذ ${Math.floor(diff / 3600)} س`;
     if (diff < 604800) return `منذ ${Math.floor(diff / 86400)} يوم`;
-    return date.toLocaleDateString("ar-SA", { month: "short", day: "numeric" });
+    return date.toLocaleDateString("ar-EG", { month: "short", day: "numeric" });
   } catch {
     return "";
   }
@@ -103,12 +103,12 @@ export default function ArticleCard({ article, compact = false, showMeta = true 
             {article.title}
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 4 }}>
-            <span style={{ fontSize: 10, color: "#64748b" }}>{article.source_name}</span>
-            <span style={{ fontSize: 10, color: "#475569" }}>·</span>
-            <span style={{ fontSize: 10, color: "#64748b" }}>{timeAgo(article.pub_date)}</span>
+            <span style={{ fontSize: 10, color: "#94a3b8" }}>{article.source_name}</span>
+            <span style={{ fontSize: 10, color: "#94a3b8" }}>·</span>
+            <span style={{ fontSize: 10, color: "#94a3b8" }}>{timeAgo(article.pub_date)}</span>
             {showMeta && (
               <>
-                <span style={{ fontSize: 10, color: "#475569" }}>·</span>
+                <span style={{ fontSize: 10, color: "#94a3b8" }}>·</span>
                 <span style={{ fontSize: 8 }}>{sentimentIcon}</span>
               </>
             )}
@@ -231,10 +231,10 @@ export default function ArticleCard({ article, compact = false, showMeta = true 
           paddingTop: 10,
           borderTop: "1px solid #1e293b",
         }}>
-          <span style={{ fontSize: 11, color: "#64748b", fontWeight: 500 }}>
+          <span style={{ fontSize: 11, color: "#94a3b8", fontWeight: 500 }}>
             {article.source_name}
           </span>
-          <span style={{ fontSize: 11, color: "#475569" }}>
+          <span style={{ fontSize: 11, color: "#94a3b8" }}>
             {timeAgo(article.pub_date)}
           </span>
         </div>
@@ -272,7 +272,7 @@ export function ArticleList({ articles = [], loading = false, compact = false, s
       <div style={{
         padding: "24px",
         textAlign: "center",
-        color: "#64748b",
+        color: "#94a3b8",
         fontSize: 13,
         background: "#0f172a",
         borderRadius: 8,

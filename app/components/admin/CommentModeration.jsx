@@ -73,9 +73,9 @@ export default function CommentModeration() {
 
       {/* Comments */}
       {loading ? (
-        <div style={{ textAlign: "center", padding: 24, color: "#64748b", fontSize: 13 }}>جارٍ التحميل...</div>
+        <div style={{ textAlign: "center", padding: 24, color: "#94a3b8", fontSize: 13 }}>جارٍ التحميل...</div>
       ) : filteredComments.length === 0 ? (
-        <div style={{ textAlign: "center", padding: 24, color: "#475569", fontSize: 13, background: "#0f172a", borderRadius: 8, border: "1px solid #1e293b" }}>
+        <div style={{ textAlign: "center", padding: 24, color: "#94a3b8", fontSize: 13, background: "#0f172a", borderRadius: 8, border: "1px solid #1e293b" }}>
           لا توجد تعليقات
         </div>
       ) : (
@@ -89,7 +89,7 @@ export default function CommentModeration() {
                 <span style={{ fontSize: 12, fontWeight: 600, color: "#e2e8f0" }}>
                   {comment.user_name || "مستخدم"}
                 </span>
-                <span style={{ fontSize: 10, color: "#475569" }}>{timeAgo(comment.created_at)}</span>
+                <span style={{ fontSize: 10, color: "#94a3b8" }}>{timeAgo(comment.created_at)}</span>
                 {comment.article_title && (
                   <span style={{ fontSize: 10, color: "#3b82f6" }}>على: {comment.article_title}</span>
                 )}

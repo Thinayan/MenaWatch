@@ -42,7 +42,7 @@ async function fetchDefconData() {
 
 // ── توليد التقرير بـ Claude ───────────────────────────────
 async function generateReport(market: any, defcon: any[]) {
-  const today = new Date().toLocaleDateString("ar-SA", {
+  const today = new Date().toLocaleDateString("ar-EG", {
     timeZone: "Asia/Riyadh",
     weekday: "long", year: "numeric", month: "long", day: "numeric",
   });
@@ -116,7 +116,7 @@ export async function GET(req: NextRequest) {
     console.log(`📧 إرسال لـ ${subscribers.length} مشترك`);
 
     // ٤. بناء قالب الإيميل
-    const today = new Date().toLocaleDateString("ar-SA", {
+    const today = new Date().toLocaleDateString("ar-EG", {
       timeZone: "Asia/Riyadh",
       weekday: "long", year: "numeric", month: "long", day: "numeric",
     });

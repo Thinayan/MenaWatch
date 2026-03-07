@@ -81,22 +81,22 @@ export default function ProfilePage() {
           <div style={{ fontSize: 13, fontWeight: 700, color: "#22c55e", marginBottom: 14 }}>معلومات الحساب</div>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
             <div>
-              <div style={{ fontSize: 10, color: "#475569", marginBottom: 4 }}>البريد الإلكتروني</div>
+              <div style={{ fontSize: 10, color: "#94a3b8", marginBottom: 4 }}>البريد الإلكتروني</div>
               <div style={{ fontSize: 12, color: "#e2e8f0" }}>{user?.email || "—"}</div>
             </div>
             <div>
-              <div style={{ fontSize: 10, color: "#475569", marginBottom: 4 }}>الاسم</div>
+              <div style={{ fontSize: 10, color: "#94a3b8", marginBottom: 4 }}>الاسم</div>
               <div style={{ fontSize: 12, color: "#e2e8f0" }}>{profile?.full_name || user?.email?.split("@")[0] || "—"}</div>
             </div>
             <div>
-              <div style={{ fontSize: 10, color: "#475569", marginBottom: 4 }}>الدور</div>
+              <div style={{ fontSize: 10, color: "#94a3b8", marginBottom: 4 }}>الدور</div>
               <span style={{ fontSize: 10, padding: "2px 8px", borderRadius: 4, fontWeight: 700, background: profile?.role === "admin" ? "#f59e0b22" : profile?.role === "pro" ? "#22c55e22" : "#3b82f622", color: profile?.role === "admin" ? "#f59e0b" : profile?.role === "pro" ? "#22c55e" : "#3b82f6" }}>
                 {profile?.role === "admin" ? "أدمن" : profile?.role === "pro" ? "خبير" : "مجاني"}
               </span>
             </div>
             <div>
-              <div style={{ fontSize: 10, color: "#475569", marginBottom: 4 }}>تاريخ التسجيل</div>
-              <div style={{ fontSize: 12, color: "#e2e8f0" }}>{profile?.created_at ? new Date(profile.created_at).toLocaleDateString("ar-SA") : "—"}</div>
+              <div style={{ fontSize: 10, color: "#94a3b8", marginBottom: 4 }}>تاريخ التسجيل</div>
+              <div style={{ fontSize: 12, color: "#e2e8f0" }}>{profile?.created_at ? new Date(profile.created_at).toLocaleDateString("ar-EG") : "—"}</div>
             </div>
           </div>
         </div>
@@ -104,7 +104,7 @@ export default function ProfilePage() {
         {/* Region Preferences */}
         <div style={{ background: "#0a1628", border: "1px solid #1e293b", borderRadius: 12, padding: 20, marginBottom: 16 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: "#22c55e", marginBottom: 14 }}>🌍 تفضيلات المناطق</div>
-          <div style={{ fontSize: 10, color: "#64748b", marginBottom: 12 }}>اختر المناطق التي تهمك لتلقي تنبيهات مخصصة</div>
+          <div style={{ fontSize: 10, color: "#94a3b8", marginBottom: 12 }}>اختر المناطق التي تهمك لتلقي تنبيهات مخصصة</div>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
             {MENA_COUNTRIES.map(c => {
               const active = regions.includes(c);
@@ -131,7 +131,7 @@ export default function ProfilePage() {
             <div key={n.key} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "12px 0", borderBottom: "1px solid #0f1829" }}>
               <div>
                 <div style={{ fontSize: 12, fontWeight: 600, color: "#e2e8f0" }}>{n.label}</div>
-                <div style={{ fontSize: 10, color: "#475569" }}>{n.desc}</div>
+                <div style={{ fontSize: 10, color: "#94a3b8" }}>{n.desc}</div>
               </div>
               <button onClick={() => setNotifications(prev => ({ ...prev, [n.key]: !prev[n.key] }))} style={{
                 width: 44, height: 24, borderRadius: 12, border: "none", cursor: "pointer",

@@ -70,7 +70,7 @@ export default function IndicatorCharts() {
       {loading ? (
         <div style={{ height: 300, background: "#0a1628", borderRadius: 10, animation: "pulse 1.5s infinite" }} />
       ) : data.length === 0 ? (
-        <div style={{ textAlign: "center", padding: 40, color: "#475569" }}>
+        <div style={{ textAlign: "center", padding: 40, color: "#94a3b8" }}>
           <div style={{ fontSize: 30, marginBottom: 8 }}>📊</div>
           <div style={{ fontSize: 13 }}>لا توجد بيانات مؤشرات لهذه الدولة</div>
           <div style={{ fontSize: 10, color: "#334155", marginTop: 4 }}>تأكد من تشغيل migrations المرحلة 4 وإضافة بيانات</div>
@@ -83,8 +83,8 @@ export default function IndicatorCharts() {
             <ResponsiveContainer width="100%" height={280}>
               <LineChart data={data}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
-                <XAxis dataKey="year" stroke="#475569" fontSize={10} />
-                <YAxis stroke="#475569" fontSize={10} />
+                <XAxis dataKey="year" stroke="#94a3b8" fontSize={10} />
+                <YAxis stroke="#94a3b8" fontSize={10} />
                 <Tooltip
                   contentStyle={{ background: "#0a1628", border: "1px solid #1e293b", borderRadius: 6, fontSize: 11, direction: "rtl" }}
                   labelStyle={{ color: "#f8fafc" }}
@@ -114,8 +114,8 @@ export default function IndicatorCharts() {
               <ResponsiveContainer width="100%" height={200}>
                 <AreaChart data={data}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
-                  <XAxis dataKey="year" stroke="#475569" fontSize={10} />
-                  <YAxis stroke="#475569" fontSize={10} />
+                  <XAxis dataKey="year" stroke="#94a3b8" fontSize={10} />
+                  <YAxis stroke="#94a3b8" fontSize={10} />
                   <Tooltip
                     contentStyle={{ background: "#0a1628", border: "1px solid #1e293b", borderRadius: 6, fontSize: 11 }}
                   />

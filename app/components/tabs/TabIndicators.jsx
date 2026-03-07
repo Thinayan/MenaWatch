@@ -28,7 +28,7 @@ export default function TabIndicators() {
       <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 8 }}>
         {MACRO_CARDS.map(m => (
           <div key={m.label} style={{ background: "#0a1628", border: "1px solid #1e293b", borderRadius: 8, padding: "12px 14px", textAlign: "center" }}>
-            <div style={{ fontSize: 9, color: "#475569" }}>{m.label}</div>
+            <div style={{ fontSize: 9, color: "#94a3b8" }}>{m.label}</div>
             <div style={{ fontSize: 22, fontWeight: 800, color: m.color }}>{m.val}</div>
             <div style={{ fontSize: 10, color: m.chg.includes("+") || m.chg.includes("↓") ? "#22c55e" : "#ef4444" }}>{m.chg}</div>
           </div>
@@ -37,9 +37,9 @@ export default function TabIndicators() {
 
       {/* Indicators Table */}
       <div>
-        <div style={{ fontSize: 11, color: "#64748b", marginBottom: 10 }}>📊 المؤشرات الاقتصادية لدول MENA</div>
+        <div style={{ fontSize: 11, color: "#94a3b8", marginBottom: 10 }}>📊 المؤشرات الاقتصادية لدول MENA</div>
         <div style={{ background: "#0a1628", border: "1px solid #1e293b", borderRadius: 8, overflow: "hidden" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "120px 80px 60px 60px 70px 70px", padding: "8px 14px", background: "#080f1c", borderBottom: "1px solid #1e293b", fontSize: 10, color: "#475569", fontWeight: 600 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "120px 80px 60px 60px 70px 70px", padding: "8px 14px", background: "#080f1c", borderBottom: "1px solid #1e293b", fontSize: 10, color: "#94a3b8", fontWeight: 600 }}>
             <span>الدولة</span><span style={{ textAlign: "center" }}>GDP</span><span style={{ textAlign: "center" }}>النمو</span><span style={{ textAlign: "center" }}>تضخم</span><span style={{ textAlign: "center" }}>بطالة</span><span style={{ textAlign: "center" }}>ميزان تجاري</span>
           </div>
           {INDICATORS.map(c => (

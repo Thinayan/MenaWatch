@@ -130,7 +130,7 @@ export default function SentimentWidget() {
 
         .sw-time {
           font-size: 10px;
-          color: #64748b;
+          color: #94a3b8;
         }
 
         /* ── Gauge ── */
@@ -224,7 +224,7 @@ export default function SentimentWidget() {
           display: flex;
           justify-content: space-between;
           font-size: 9px;
-          color: #64748b;
+          color: #94a3b8;
           margin-top: -4px;
           padding: 0 10px;
         }
@@ -359,7 +359,7 @@ export default function SentimentWidget() {
 
         .sw-cat-count {
           font-size: 9px;
-          color: #64748b;
+          color: #94a3b8;
           margin-top: 1px;
         }
 
@@ -367,7 +367,7 @@ export default function SentimentWidget() {
         .sw-loading {
           text-align: center;
           padding: 30px 0;
-          color: #64748b;
+          color: #94a3b8;
           font-size: 12px;
         }
 
@@ -431,7 +431,7 @@ export default function SentimentWidget() {
           </div>
           {lastUpdate && (
             <span className="sw-time">
-              {lastUpdate.toLocaleTimeString("ar-SA", { hour: "2-digit", minute: "2-digit" })}
+              {lastUpdate.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" })}
             </span>
           )}
         </div>

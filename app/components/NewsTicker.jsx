@@ -200,7 +200,7 @@ export default function NewsTicker() {
             }} />
             آخر الأخبار
           </span>
-          <span style={{ fontSize: 10, color: "#64748b" }}>
+          <span style={{ fontSize: 10, color: "#94a3b8" }}>
             {articles.length > 0 ? `${articles.length} خبر` : ""}
           </span>
         </div>
@@ -296,7 +296,7 @@ export default function NewsTicker() {
             padding: "32px 16px",
             textAlign: "center",
             fontSize: 12,
-            color: "#64748b",
+            color: "#94a3b8",
           }}>
             لا توجد أخبار في هذا القسم
           </div>
@@ -411,8 +411,8 @@ export default function NewsTicker() {
                         }} />
                         {src.nameAr}
                       </span>
-                      <span style={{ color: "#475569" }}>|</span>
-                      <span style={{ color: "#64748b" }}>
+                      <span style={{ color: "#94a3b8" }}>|</span>
+                      <span style={{ color: "#94a3b8" }}>
                         {timeAgo(article.pubDate)}
                       </span>
                     </div>

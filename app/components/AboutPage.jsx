@@ -65,7 +65,7 @@ export default function AboutPage() {
           {STATS.map(s => (
             <div key={s.label} style={{ textAlign: "center" }}>
               <div style={{ fontSize: 28, fontWeight: 800, color: s.color }}>{s.val}</div>
-              <div style={{ fontSize: 11, color: "#64748b" }}>{s.label}</div>
+              <div style={{ fontSize: 11, color: "#94a3b8" }}>{s.label}</div>
             </div>
           ))}
         </div>
@@ -204,7 +204,7 @@ export default function AboutPage() {
 
       {/* Footer */}
       <div style={{ borderTop: "1px solid #1e293b", padding: "20px", textAlign: "center" }}>
-        <div style={{ fontSize: 11, color: "#475569" }}>
+        <div style={{ fontSize: 11, color: "#94a3b8" }}>
           © 2026 MENA Watch — جميع الحقوق محفوظة
         </div>
       </div>
@@ -238,7 +238,7 @@ function ContactItem({ icon, label, value, href }) {
   return (
     <a href={href} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", textAlign: "center" }}>
       <div style={{ fontSize: 22, marginBottom: 4 }}>{icon}</div>
-      <div style={{ fontSize: 10, color: "#475569" }}>{label}</div>
+      <div style={{ fontSize: 10, color: "#94a3b8" }}>{label}</div>
       <div style={{ fontSize: 12, color: "#22c55e", fontWeight: 600 }}>{value}</div>
     </a>
   );

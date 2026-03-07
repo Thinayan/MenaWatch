@@ -132,9 +132,9 @@ export default function InteractiveMap() {
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 10 }}>
               <div>
                 <div style={{ fontSize: 14, fontWeight: 700, color: "#f8fafc" }}>{selected.name}</div>
-                <div style={{ fontSize: 10, color: "#64748b" }}>{selected.capital} • {selected.code}</div>
+                <div style={{ fontSize: 10, color: "#94a3b8" }}>{selected.capital} • {selected.code}</div>
               </div>
-              <button onClick={() => setSelected(null)} style={{ background: "none", border: "none", color: "#475569", cursor: "pointer", fontSize: 16, padding: 0 }}>×</button>
+              <button onClick={() => setSelected(null)} style={{ background: "none", border: "none", color: "#94a3b8", cursor: "pointer", fontSize: 16, padding: 0 }}>×</button>
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
               {[
@@ -144,7 +144,7 @@ export default function InteractiveMap() {
                 { label: "GDP", val: selected.gdp, color: "#3b82f6" },
               ].map(s => (
                 <div key={s.label} style={{ background: "#060d18", borderRadius: 6, padding: "6px 8px" }}>
-                  <div style={{ fontSize: 9, color: "#475569" }}>{s.label}</div>
+                  <div style={{ fontSize: 9, color: "#94a3b8" }}>{s.label}</div>
                   <div style={{ fontSize: 13, fontWeight: 700, color: s.color }}>{s.val}</div>
                 </div>
               ))}
@@ -155,11 +155,11 @@ export default function InteractiveMap() {
 
       {/* Legend */}
       <div style={{ padding: "8px 16px", background: "#080f1c", borderTop: "1px solid #1e293b", display: "flex", gap: 16, alignItems: "center" }}>
-        <span style={{ fontSize: 10, color: "#475569" }}>مستوى المخاطر:</span>
+        <span style={{ fontSize: 10, color: "#94a3b8" }}>مستوى المخاطر:</span>
         {[1,2,3,4,5].map(r => (
           <div key={r} style={{ display: "flex", alignItems: "center", gap: 4 }}>
             <div style={{ width: 10, height: 10, borderRadius: "50%", background: RC(r) }} />
-            <span style={{ fontSize: 9, color: "#64748b" }}>{r} - {RL(r)}</span>
+            <span style={{ fontSize: 9, color: "#94a3b8" }}>{r} - {RL(r)}</span>
           </div>
         ))}
       </div>

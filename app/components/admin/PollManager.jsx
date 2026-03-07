@@ -88,7 +88,7 @@ export default function PollManager() {
             <input value={form.question} onChange={(e) => setForm({ ...form, question: e.target.value })}
               placeholder="سؤال الاستطلاع" style={inputStyle} />
 
-            <div style={{ fontSize: 11, color: "#64748b" }}>الخيارات:</div>
+            <div style={{ fontSize: 11, color: "#94a3b8" }}>الخيارات:</div>
             {form.options.map((opt, idx) => (
               <div key={idx} style={{ display: "flex", gap: 8 }}>
                 <input value={opt.text} onChange={(e) => updateOption(idx, e.target.value)}
@@ -142,9 +142,9 @@ export default function PollManager() {
 
       {/* Polls List */}
       {loading ? (
-        <div style={{ textAlign: "center", padding: 24, color: "#64748b", fontSize: 13 }}>جارٍ التحميل...</div>
+        <div style={{ textAlign: "center", padding: 24, color: "#94a3b8", fontSize: 13 }}>جارٍ التحميل...</div>
       ) : polls.length === 0 ? (
-        <div style={{ textAlign: "center", padding: 24, color: "#475569", fontSize: 13, background: "#0f172a", borderRadius: 8, border: "1px solid #1e293b" }}>
+        <div style={{ textAlign: "center", padding: 24, color: "#94a3b8", fontSize: 13, background: "#0f172a", borderRadius: 8, border: "1px solid #1e293b" }}>
           لا توجد استطلاعات
         </div>
       ) : (
@@ -181,9 +181,9 @@ export default function PollManager() {
                   );
                 })}
 
-                <div style={{ marginTop: 8, fontSize: 10, color: "#475569" }}>
+                <div style={{ marginTop: 8, fontSize: 10, color: "#94a3b8" }}>
                   إجمالي الأصوات: {totalVotes}
-                  {poll.ends_at && ` · ينتهي: ${new Date(poll.ends_at).toLocaleDateString("ar-SA")}`}
+                  {poll.ends_at && ` · ينتهي: ${new Date(poll.ends_at).toLocaleDateString("ar-EG")}`}
                 </div>
               </div>
             );

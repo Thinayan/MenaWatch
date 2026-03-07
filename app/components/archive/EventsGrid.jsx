@@ -25,7 +25,7 @@ export default function EventsGrid({ events = [], loading = false, onLoadMore, h
 
   if (events.length === 0) {
     return (
-      <div style={{ textAlign: "center", padding: 40, color: "#475569" }}>
+      <div style={{ textAlign: "center", padding: 40, color: "#94a3b8" }}>
         <div style={{ fontSize: 30, marginBottom: 8 }}>📋</div>
         <div style={{ fontSize: 13 }}>لا توجد أحداث مطابقة</div>
       </div>
@@ -33,7 +33,7 @@ export default function EventsGrid({ events = [], loading = false, onLoadMore, h
   }
 
   const formatDate = (d) => {
-    try { return new Date(d).toLocaleDateString("ar-SA", { year: "numeric", month: "short" }); }
+    try { return new Date(d).toLocaleDateString("ar-EG", { year: "numeric", month: "short" }); }
     catch { return d; }
   };
 
@@ -67,7 +67,7 @@ export default function EventsGrid({ events = [], loading = false, onLoadMore, h
                 {ev.title_ar}
               </div>
 
-              <div style={{ fontSize: 10, color: "#64748b", marginBottom: 8 }}>
+              <div style={{ fontSize: 10, color: "#94a3b8", marginBottom: 8 }}>
                 📍 {ev.country_code} • {formatDate(ev.occurred_at)}
               </div>
 
@@ -80,7 +80,7 @@ export default function EventsGrid({ events = [], loading = false, onLoadMore, h
               {ev.tags && ev.tags.length > 0 && (
                 <div style={{ display: "flex", gap: 4, flexWrap: "wrap" }}>
                   {ev.tags.slice(0, 3).map(t => (
-                    <span key={t} style={{ fontSize: 8, padding: "1px 5px", borderRadius: 3, background: "#1e293b", color: "#475569" }}>
+                    <span key={t} style={{ fontSize: 8, padding: "1px 5px", borderRadius: 3, background: "#1e293b", color: "#94a3b8" }}>
                       #{t}
                     </span>
                   ))}

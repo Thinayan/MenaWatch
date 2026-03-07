@@ -74,7 +74,7 @@ export async function POST(req: NextRequest) {
       color: DEFCON_COLORS[newLevel],
       reason: reason || "تطورات ميدانية جديدة",
       source: source || "MENA Watch Monitoring",
-      timestamp: new Date().toLocaleString("ar-SA", { timeZone: "Asia/Riyadh" }),
+      timestamp: new Date().toLocaleString("en-US", { timeZone: "Asia/Riyadh" }),
     });
 
     // ٣. إرسال التنبيهات

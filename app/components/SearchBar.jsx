@@ -46,7 +46,7 @@ export default function SearchBar({ compact = true }) {
   const sentimentDot = (s) => {
     if (s === "positive") return "#22c55e";
     if (s === "negative") return "#ef4444";
-    return "#475569";
+    return "#94a3b8";
   };
 
   return (
@@ -57,7 +57,7 @@ export default function SearchBar({ compact = true }) {
           background: "#0a1628", border: "1px solid #1e293b", borderRadius: 6,
           padding: "5px 10px", transition: "border-color 0.2s",
         }}>
-          <span style={{ fontSize: 12, color: "#475569" }}>🔍</span>
+          <span style={{ fontSize: 12, color: "#94a3b8" }}>🔍</span>
           <input
             type="text"
             value={query}
@@ -70,7 +70,7 @@ export default function SearchBar({ compact = true }) {
               width: compact ? 120 : 200, direction: "rtl",
             }}
           />
-          {loading && <span style={{ fontSize: 10, color: "#475569", animation: "pulse 1s infinite" }}>⏳</span>}
+          {loading && <span style={{ fontSize: 10, color: "#94a3b8", animation: "pulse 1s infinite" }}>⏳</span>}
         </div>
       </form>
 
@@ -104,7 +104,7 @@ export default function SearchBar({ compact = true }) {
                 {r.sentiment && (
                   <span style={{ width: 6, height: 6, borderRadius: "50%", background: sentimentDot(r.sentiment) }} />
                 )}
-                <span style={{ fontSize: 9, color: "#475569", marginRight: "auto" }}>{r.source}</span>
+                <span style={{ fontSize: 9, color: "#94a3b8", marginRight: "auto" }}>{r.source}</span>
               </div>
               <div style={{ fontSize: 11, fontWeight: 600, color: "#e2e8f0", lineHeight: 1.4 }}>
                 {r.title?.slice(0, 80)}{r.title?.length > 80 ? "..." : ""}
