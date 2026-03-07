@@ -310,8 +310,8 @@ export default function MenaWatchMap() {
       {/* ── MAIN CONTENT ── */}
       <div style={{ display:"flex", flex:1, minHeight:0, overflow:"hidden" }}>
 
-        {/* LEFT SIDEBAR */}
-        <div style={{ width:280, background:"#0a1628", borderLeft:"1px solid #1e293b", display:"flex", flexDirection:"column", overflowY:"auto", flexShrink:0 }}>
+        {/* RIGHT SIDEBAR (RTL — appears on right) */}
+        <div style={{ width:280, background:"#0a1628", borderLeft:"1px solid #1e293b", display:"flex", flexDirection:"column", flexShrink:0, overflow:"hidden" }}>
 
           {/* Layer info */}
           <div style={{ padding:"12px 14px", borderBottom:"1px solid #1e293b" }}>
@@ -340,8 +340,8 @@ export default function MenaWatchMap() {
             </div>
           )}
 
-          {/* Spots list — scrollable with max height */}
-          <div style={{ padding:"10px 14px", maxHeight:220, overflowY:"auto", flexShrink:0 }}>
+          {/* Spots list — scrollable, takes remaining space between info and news */}
+          <div style={{ padding:"10px 14px", flex:1, minHeight:0, overflowY:"auto" }}>
             <div style={{ fontSize:11, color:"#94a3b8", marginBottom:8 }}>● {spots.length} نقطة رصد نشطة</div>
             {spots.map(s => (
               <div key={s.id} onClick={() => setSelected(s)} style={{
@@ -359,8 +359,8 @@ export default function MenaWatchMap() {
             ))}
           </div>
 
-          {/* Live RSS News Feed — takes remaining space */}
-          <div style={{ flex:1, minHeight:0, borderTop:"1px solid #1e293b", overflow:"hidden" }}>
+          {/* Live RSS News Feed — FIXED height, consistent across all tabs */}
+          <div style={{ height:250, flexShrink:0, borderTop:"1px solid #1e293b", overflow:"hidden" }}>
             <Suspense fallback={<div style={{ padding:14, color:"#94a3b8", fontSize:11 }}>جارٍ تحميل الأخبار...</div>}>
               <NewsTicker />
             </Suspense>
@@ -386,14 +386,14 @@ export default function MenaWatchMap() {
           </div>
 
           {/* LIVE BROADCAST PANEL + SENTIMENT 30% */}
-          <div style={{ flex:3, minWidth:280, maxWidth:420, display:"flex", flexDirection:"column", overflowY:"auto" }}>
-            <div style={{ flexShrink:0 }}>
+          <div style={{ flex:3, minWidth:280, maxWidth:420, display:"flex", flexDirection:"column", overflow:"hidden" }}>
+            <div style={{ flex:1, minHeight:0, overflowY:"auto" }}>
               <LiveBroadcastPanel />
-            </div>
-            <div style={{ flexShrink:0, borderTop:"1px solid #1e293b" }}>
-              <Suspense fallback={<div style={{ padding:12, color:"#94a3b8", fontSize:11 }}>جارٍ التحليل...</div>}>
-                <SentimentWidget />
-              </Suspense>
+              <div style={{ borderTop:"1px solid #1e293b" }}>
+                <Suspense fallback={<div style={{ padding:12, color:"#94a3b8", fontSize:11 }}>جارٍ التحليل...</div>}>
+                  <SentimentWidget />
+                </Suspense>
+              </div>
             </div>
           </div>
         </div>
