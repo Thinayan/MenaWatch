@@ -41,7 +41,7 @@ export async function middleware(request: NextRequest) {
 
   // إعادة توجيه المسجّل دخوله من صفحة تسجيل الدخول
   if (pathname === "/login" && user) {
-    return NextResponse.redirect(new URL("/ops", request.url));
+    return NextResponse.redirect(new URL("/map", request.url));
   }
 
   return supabaseResponse;

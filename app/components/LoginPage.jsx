@@ -15,7 +15,7 @@ export default function LoginPage() {
       if (mode === "login") {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
-        window.location.href = "/ops";
+        window.location.href = "/map";
       } else if (mode === "signup") {
         const { error } = await supabase.auth.signUp({ email, password, options: { emailRedirectTo: `${location.origin}/auth/callback` } });
         if (error) throw error;

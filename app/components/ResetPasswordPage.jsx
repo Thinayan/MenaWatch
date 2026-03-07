@@ -112,7 +112,7 @@ export default function ResetPasswordPage() {
       setDone(true);
       setMsg({ type: "success", text: "تم تحديث كلمة المرور بنجاح" });
       setTimeout(() => {
-        window.location.href = "/ops";
+        window.location.href = "/map";
       }, 2000);
     } catch (e) {
       setMsg({ type: "error", text: e.message });
