@@ -421,18 +421,36 @@ export default function MenaWatchMap() {
         )}
       </div>
 
-      {/* ── BOTTOM CTA ── */}
-      <div style={{ background:"#0a1628", borderTop:"1px solid #1e293b", padding:"10px 20px", display:"flex", alignItems:"center", justifyContent:"space-between" }}>
-        <div style={{ fontSize:12, color:"#94a3b8" }}>
-          🔒 احصل على التقرير الصباحي اليومي
+      {/* ── FLOATING CTA BADGE ── */}
+      {!showRegister && (
+        <div style={{
+          position:"fixed", bottom:16, left:16, zIndex:1000,
+          background:"linear-gradient(135deg,#0f172aee,#1e293bee)",
+          backdropFilter:"blur(10px)",
+          border:"1px solid #334155",
+          borderRadius:12,
+          padding:"10px 16px",
+          display:"flex", alignItems:"center", gap:10,
+          boxShadow:"0 4px 20px #0008",
+          cursor:"pointer",
+          transition:"all 0.2s",
+        }}
+          onClick={() => setShowRegister(true)}
+          onMouseEnter={e => { e.currentTarget.style.borderColor="#f59e0b"; e.currentTarget.style.transform="translateY(-2px)"; }}
+          onMouseLeave={e => { e.currentTarget.style.borderColor="#334155"; e.currentTarget.style.transform="translateY(0)"; }}
+        >
+          <span style={{ fontSize:14 }}>📩</span>
+          <div>
+            <div style={{ fontSize:11, fontWeight:700, color:"#e2e8f0" }}>التقرير الصباحي</div>
+            <div style={{ fontSize:9, color:"#94a3b8" }}>سجل مجاناً</div>
+          </div>
+          <div style={{
+            width:6, height:6, borderRadius:"50%",
+            background:"#f59e0b",
+            animation:"pulse-dot 2s infinite",
+          }} />
         </div>
-        <button onClick={() => setShowRegister(true)} style={{
-          background:"linear-gradient(135deg,#ef4444,#f59e0b)", color:"#fff", border:"none", borderRadius:8,
-          padding:"8px 24px", fontWeight:700, fontSize:13, cursor:"pointer",
-        }}>
-          سجل مجاناً الآن
-        </button>
-      </div>
+      )}
 
       {/* Register modal */}
       {showRegister && (
