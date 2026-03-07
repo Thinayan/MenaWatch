@@ -37,6 +37,36 @@ const RSS_SOURCES: Record<string, { url: string; name: string; nameAr: string }>
   ummalqura: { url: "https://www.uqn.gov.sa/rss", name: "Um Al-Qura", nameAr: "جريدة أم القرى" },
   sabq: { url: "https://sabq.org/rss", name: "Sabq", nameAr: "صحيفة سبق" },
   maaal: { url: "https://www.maaal.com/feed/", name: "Maaal", nameAr: "مال" },
+
+  // ── مصادر سعودية رسمية (حكومة + شركات) ──────────────────
+  sama_ar: { url: "https://www.sama.gov.sa/ar-sa/News/Pages/rss.aspx", name: "SAMA", nameAr: "البنك المركزي السعودي" },
+  royal_court: { url: "https://www.spa.gov.sa/rss/category/royalcourt", name: "Royal Court", nameAr: "الديوان الملكي" },
+  mof_sa: { url: "https://www.mof.gov.sa/RSS/Pages/default.aspx", name: "MOF Saudi", nameAr: "وزارة المالية السعودية" },
+  mci_sa: { url: "https://www.mc.gov.sa/ar/RSSFeeds/Pages/default.aspx", name: "MCI Saudi", nameAr: "وزارة التجارة السعودية" },
+  moe_sa: { url: "https://www.moe.gov.sa/ar/news/Pages/rss.aspx", name: "MOE Saudi", nameAr: "وزارة التعليم السعودية" },
+  moh_sa: { url: "https://www.moh.gov.sa/RSS/Pages/News.aspx", name: "MOH Saudi", nameAr: "وزارة الصحة السعودية" },
+  cma_sa: { url: "https://cma.org.sa/RSSFeeds/Pages/default.aspx", name: "CMA Saudi", nameAr: "هيئة السوق المالية" },
+  aramco_news: { url: "https://www.aramco.com/en/news-media/news/rss", name: "Aramco", nameAr: "أرامكو السعودية" },
+  sabic_news: { url: "https://www.sabic.com/en/rss", name: "SABIC", nameAr: "سابك" },
+  stc_news: { url: "https://www.stc.com.sa/wps/wcm/connect/english/stc/rss", name: "STC", nameAr: "الاتصالات السعودية" },
+  tadawul: { url: "https://www.saudiexchange.sa/wps/portal/saudiexchange/newsroom/rss", name: "Tadawul", nameAr: "تداول السعودية" },
+  gastat: { url: "https://www.stats.gov.sa/rss.xml", name: "GASTAT", nameAr: "الهيئة العامة للإحصاء" },
+
+  // ── مصادر دولية ──────────────────────────────────────────
+  un_news_ar: { url: "https://news.un.org/feed/subscribe/ar/news/region/middle-east/feed/rss.xml", name: "UN News Arabic", nameAr: "أخبار الأمم المتحدة" },
+  worldbank_mena: { url: "https://blogs.worldbank.org/en/arabvoices/rss.xml", name: "World Bank MENA", nameAr: "البنك الدولي — الشرق الأوسط" },
+  imf_mena: { url: "https://www.imf.org/en/News/rss?Language=ENG&Series=All&Category=Middle%20East", name: "IMF MENA", nameAr: "صندوق النقد الدولي" },
+  reuters_me: { url: "https://www.reuters.com/arc/outboundfeeds/rss/region/middle-east/", name: "Reuters Middle East", nameAr: "رويترز — الشرق الأوسط" },
+  ap_news: { url: "https://rsshub.app/apnews/topics/world-news", name: "Associated Press", nameAr: "أسوشيتد برس" },
+
+  // ── شركات استشارية عالمية (تقارير ورؤى مجانية) ────────────
+  mckinsey_me: { url: "https://www.mckinsey.com/rss/insights", name: "McKinsey Insights", nameAr: "ماكنزي" },
+  bcg_me: { url: "https://www.bcg.com/rss/insights", name: "BCG Insights", nameAr: "بوسطن كونسلتينج" },
+  pwc_me: { url: "https://www.pwc.com/m1/en/rss-feeds/insights-rss.xml", name: "PwC Middle East", nameAr: "برايس ووتر هاوس" },
+  kpmg_me: { url: "https://kpmg.com/sa/en/home/rss.xml", name: "KPMG Saudi", nameAr: "كي بي إم جي" },
+  strategyand_me: { url: "https://www.strategyand.pwc.com/m1/en/rss-feeds.xml", name: "Strategy& ME", nameAr: "ستراتيجي آند" },
+  deloitte_me: { url: "https://www2.deloitte.com/xe/en/rss.xml", name: "Deloitte ME", nameAr: "ديلويت" },
+  ey_me: { url: "https://www.ey.com/en_ae/rss", name: "EY Middle East", nameAr: "إرنست آند يونغ" },
 };
 
 // ── XML Parsing (same as /api/rss) ─────────────────────────
@@ -106,9 +136,9 @@ function parseRSSItems(xml: string, limit = 15): RawArticle[] {
 async function fetchAllRSS(): Promise<{ sourceKey: string; sourceName: string; articles: RawArticle[] }[]> {
   const results: { sourceKey: string; sourceName: string; articles: RawArticle[] }[] = [];
 
-  // Fetch feeds in batches of 5 to avoid overwhelming the server
+  // Fetch feeds in batches of 8 to balance speed and server load
   const entries = Object.entries(RSS_SOURCES);
-  const BATCH_SIZE = 5;
+  const BATCH_SIZE = 8;
 
   for (let i = 0; i < entries.length; i += BATCH_SIZE) {
     const batch = entries.slice(i, i + BATCH_SIZE);

@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import DateDisplay from "./DateDisplay";
 import StockTicker from "./StockTicker";
+import RSSNewsBars from "./RSSNewsBars";
 
 
 // ── نفس الـ Logo Base64 الموجود في OpsRoom ─────────────────────────────────
@@ -74,6 +75,9 @@ export default function LandingPage() {
 
       {/* ── STOCK TICKER ── */}
       <StockTicker />
+
+      {/* ── RSS NEWS BARS ── */}
+      <RSSNewsBars />
 
       {/* ── SUB BAR: Ticker + Markets + Time ── */}
       <div style={{

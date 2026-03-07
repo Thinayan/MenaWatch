@@ -117,7 +117,7 @@ export default function StockTicker() {
           animation: "pulse 1.5s infinite",
         }} />
         <span style={{ fontSize: 10, fontWeight: 700, color: isLive ? "#22c55e" : "#f59e0b" }}>
-          {isLive ? "LIVE" : "DEMO"}
+          {isLive ? "مباشر" : "متأخر"}
         </span>
       </div>
 

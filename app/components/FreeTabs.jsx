@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback } from "react";
 import BroadcastGrid from "./BroadcastGrid";
 import DateDisplay from "./DateDisplay";
 import StockTicker from "./StockTicker";
+import RSSNewsBars from "./RSSNewsBars";
 
 import TabHealth from "./tabs/TabHealth";
 import TabTransport from "./tabs/TabTransport";
@@ -480,6 +481,9 @@ export default function FreeTabs() {
 
       {/* Stock Ticker */}
       <StockTicker />
+
+      {/* RSS News Bars */}
+      <RSSNewsBars />
 
       {/* Sub Bar */}
       <div style={{ background: "#080f1c", borderBottom: "1px solid #1e293b", padding: "0 20px", display: "flex", alignItems: "center", gap: 14, height: 36, flexShrink: 0 }}>

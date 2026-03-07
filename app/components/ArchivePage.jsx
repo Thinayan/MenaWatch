@@ -5,12 +5,14 @@ import TimelineView from "./archive/TimelineView";
 import EventsGrid from "./archive/EventsGrid";
 import IndicatorCharts from "./archive/IndicatorCharts";
 import ComparisonDashboard from "./archive/ComparisonDashboard";
+import ConsultingReports from "./archive/ConsultingReports";
 
 const TABS = [
   { id: "timeline", label: "📅 الخط الزمني", desc: "عرض الأحداث بترتيب زمني" },
   { id: "events", label: "📋 الأحداث", desc: "شبكة أحداث مع فلاتر" },
   { id: "charts", label: "📊 المؤشرات", desc: "رسوم بيانية تفاعلية" },
   { id: "compare", label: "⚖️ مقارنة", desc: "مقارنة بين دولتين" },
+  { id: "reports", label: "📑 تقارير استشارية", desc: "تقارير من شركات عالمية" },
 ];
 
 const EVENT_TYPES = [
@@ -176,6 +178,8 @@ export default function ArchivePage() {
         {activeTab === "charts" && <IndicatorCharts />}
 
         {activeTab === "compare" && <ComparisonDashboard />}
+
+        {activeTab === "reports" && <ConsultingReports />}
       </div>
     </div>
   );
