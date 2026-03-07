@@ -85,13 +85,13 @@ export default function LandingPage() {
         borderBottom: "1px solid #1e293b",
         padding: "0 20px",
         display: "flex", alignItems: "center", gap: 12,
-        height: 36,
+        height: 42,
       }}>
         {/* Live ticker */}
         <div style={{ flex: 1, overflow: "hidden" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <span style={{ background: "#ef4444", color: "#fff", fontSize: 8, fontWeight: 700, padding: "2px 5px", borderRadius: 2, flexShrink: 0, letterSpacing: 1 }}>عاجل</span>
-            <div key={tickerIdx} style={{ fontSize: 11, color: "#94a3b8", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", animation: "ticker 0.3s ease" }}>
+            <span style={{ background: "#ef4444", color: "#fff", fontSize: 10, fontWeight: 700, padding: "3px 8px", borderRadius: 3, flexShrink: 0, letterSpacing: 1 }}>عاجل</span>
+            <div key={tickerIdx} style={{ fontSize: 14, color: "#cbd5e1", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", animation: "ticker 0.3s ease" }}>
               {NEWS_TICKER[tickerIdx]}
             </div>
           </div>
@@ -104,18 +104,18 @@ export default function LandingPage() {
           { l: "ذهب",  v: "$2,318", c: "+0.3%", up: true },
         ].map(s => (
           <div key={s.l} style={{ textAlign: "center", flexShrink: 0 }}>
-            <div style={{ fontSize: 9, color: "#475569" }}>{s.l}</div>
-            <div style={{ fontSize: 11, fontWeight: 700, color: "#f8fafc", fontVariantNumeric: "tabular-nums" }}>{s.v}</div>
-            <div style={{ fontSize: 9, color: s.up ? "#22c55e" : "#ef4444" }}>{s.c}</div>
+            <div style={{ fontSize: 11, color: "#64748b" }}>{s.l}</div>
+            <div style={{ fontSize: 14, fontWeight: 700, color: "#f8fafc", fontVariantNumeric: "tabular-nums" }}>{s.v}</div>
+            <div style={{ fontSize: 11, color: s.up ? "#22c55e" : "#ef4444", fontWeight: 600 }}>{s.c}</div>
           </div>
         ))}
 
-        <div style={{ width: 1, height: 20, background: "#1e293b", flexShrink: 0 }} />
+        <div style={{ width: 1, height: 24, background: "#1e293b", flexShrink: 0 }} />
 
         {/* Time */}
         <div style={{ textAlign: "center", flexShrink: 0 }}>
-          <div style={{ fontSize: 9, color: "#475569" }}>الرياض</div>
-          <div style={{ fontSize: 12, fontWeight: 700, color: "#22c55e", fontVariantNumeric: "tabular-nums" }}>{time}</div>
+          <div style={{ fontSize: 11, color: "#64748b" }}>الرياض</div>
+          <div style={{ fontSize: 14, fontWeight: 700, color: "#22c55e", fontVariantNumeric: "tabular-nums" }}>{time}</div>
         </div>
       </div>
 
@@ -152,10 +152,10 @@ export default function LandingPage() {
           <div style={{ background: "#0a1628", border: "1px solid #1e293b", borderRadius: 6, overflow: "hidden" }}>
             {/* Card header */}
             <div style={{ background: "#080f1c", borderBottom: "1px solid #1e293b", padding: "8px 16px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-              <span style={{ fontSize: 11, color: "#22c55e", fontWeight: 700, display: "flex", alignItems: "center", gap: 6 }}><img src="/logo-sm.png" alt="" style={{ height: 16 }} /> مباشر</span>
+              <span style={{ fontSize: 12, color: "#22c55e", fontWeight: 700, display: "flex", alignItems: "center", gap: 6 }}><img src="/logo-sm.png" alt="" style={{ height: 16 }} /> مباشر</span>
               <div style={{ display: "flex", gap: 8 }}>
                 {["اليمن 88", "السودان 80", "إيران 72"].map((t, i) => (
-                  <span key={t} style={{ background: ["#7f1d1d", "#7f1d1d", "#92400e"][i], color: ["#fca5a5", "#fca5a5", "#fcd34d"][i], fontSize: 9, padding: "2px 7px", borderRadius: 3, fontWeight: 700 }}>{t}</span>
+                  <span key={t} style={{ background: ["#7f1d1d", "#7f1d1d", "#92400e"][i], color: ["#fca5a5", "#fca5a5", "#fcd34d"][i], fontSize: 10, padding: "3px 8px", borderRadius: 3, fontWeight: 700 }}>{t}</span>
                 ))}
               </div>
             </div>
@@ -175,8 +175,8 @@ export default function LandingPage() {
                 </div>
               ))}
               <div style={{ position: "relative", textAlign: "center" }}>
-                <div style={{ fontSize: 11, color: "#334155", marginBottom: 8 }}>خريطة الشرق الأوسط التفاعلية</div>
-                <a href="/free" style={{ display: "inline-block", padding: "6px 16px", borderRadius: 4, background: "#22c55e", color: "#000", fontSize: 11, fontWeight: 700, textDecoration: "none" }}>افتح الخريطة</a>
+                <div style={{ fontSize: 12, color: "#475569", marginBottom: 8 }}>خريطة الشرق الأوسط التفاعلية</div>
+                <a href="/free" style={{ display: "inline-block", padding: "7px 18px", borderRadius: 4, background: "#22c55e", color: "#000", fontSize: 12, fontWeight: 700, textDecoration: "none" }}>افتح الخريطة</a>
               </div>
             </div>
           </div>
@@ -235,10 +235,10 @@ export default function LandingPage() {
 
       {/* ── FOOTER ── */}
       <div style={{ borderTop: "1px solid #1e293b", padding: "14px 40px", display: "flex", justifyContent: "space-between", alignItems: "center", background: "#080f1c" }}>
-        <div style={{ fontSize: 10, color: "#334155", display: "flex", alignItems: "center", gap: 6 }}><img src="/logo-sm.png" alt="" style={{ height: 14, opacity: 0.5 }} /> © 2025 MENA Watch — منصة الاستخبارات الإقليمية</div>
+        <div style={{ fontSize: 11, color: "#475569", display: "flex", alignItems: "center", gap: 6 }}><img src="/logo-sm.png" alt="" style={{ height: 14, opacity: 0.5 }} /> © 2025 MENA Watch — منصة الاستخبارات الإقليمية</div>
         <div style={{ display: "flex", gap: 16 }}>
           {["الخصوصية", "الشروط", "تواصل معنا"].map(l => (
-            <a key={l} href="#" style={{ fontSize: 10, color: "#334155", textDecoration: "none" }}>{l}</a>
+            <a key={l} href="#" style={{ fontSize: 11, color: "#475569", textDecoration: "none" }}>{l}</a>
           ))}
         </div>
       </div>

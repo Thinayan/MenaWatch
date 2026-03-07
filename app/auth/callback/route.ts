@@ -33,6 +33,6 @@ export async function GET(req: NextRequest) {
   }
 
   // Signup confirmation or OAuth → redirect to ops (or specified next)
-  const destination = next === "/" ? "/map" : next;
+  const destination = next === "/" ? "/ops" : next;
   return NextResponse.redirect(new URL(destination, req.url));
 }

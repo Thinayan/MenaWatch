@@ -112,7 +112,7 @@ export default function NavBar({ activePath = "/" }) {
             </span>
             {profile?.role && (
               <span style={{
-                fontSize: 10,
+                fontSize: 11,
                 padding: "3px 8px",
                 borderRadius: 4,
                 fontWeight: 700,
@@ -130,7 +130,7 @@ export default function NavBar({ activePath = "/" }) {
                 border: "none",
                 borderRadius: 6,
                 padding: "6px 14px",
-                color: "#ef4444",
+                color: "#ffffff",
                 fontSize: 12,
                 cursor: "pointer",
                 fontFamily: "inherit",

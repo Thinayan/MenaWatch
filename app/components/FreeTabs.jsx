@@ -128,7 +128,7 @@ function TabGeo() {
           const count = GEO.filter(c => c.risk===lvl).length;
           return <div key={lvl} style={{ background: RC(lvl)+"18", border: "1px solid "+RC(lvl)+"44", borderRadius: 8, padding: "10px", textAlign: "center" }}>
             <div style={{ fontSize: 18, fontWeight: 800, color: RC(lvl) }}>{count}</div>
-            <div style={{ fontSize: 10, fontWeight: 600, color: RC(lvl) }}>{RL(lvl)}</div>
+            <div style={{ fontSize: 11, fontWeight: 600, color: RC(lvl) }}>{RL(lvl)}</div>
           </div>;
         })}
       </div>
@@ -136,17 +136,17 @@ function TabGeo() {
         {[{id:"all",label:"الكل"},{id:"high",label:"🔴 مخاطر عالية"},{id:"stable",label:"🟢 مستقرة"}].map(f => (
           <button key={f.id} onClick={() => setFilter(f.id)} style={{
             padding: "5px 12px", borderRadius: 5, cursor: "pointer", border: "1px solid",
-            fontFamily: "inherit", fontSize: 11,
+            fontFamily: "inherit", fontSize: 12,
             background: filter===f.id?"#22c55e22":"#0a1628",
             borderColor: filter===f.id?"#22c55e":"#1e293b",
             color: filter===f.id?"#22c55e":"#64748b",
           }}>{f.label}</button>
         ))}
         <input value={search} onChange={e => setSearch(e.target.value)} placeholder="🔍 ابحث عن دولة..."
-          style={{ background: "#0a1628", border: "1px solid #1e293b", borderRadius: 6, padding: "5px 12px", color: "#e2e8f0", fontSize: 11, fontFamily: "inherit", outline: "none", width: 150, marginRight: "auto" }} />
+          style={{ background: "#0a1628", border: "1px solid #1e293b", borderRadius: 6, padding: "5px 12px", color: "#e2e8f0", fontSize: 12, fontFamily: "inherit", outline: "none", width: 150, marginRight: "auto" }} />
       </div>
       <div style={{ background: "#0a1628", border: "1px solid #1e293b", borderRadius: 8, overflow: "hidden" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 60px 80px 50px 50px", padding: "8px 14px", background: "#080f1c", borderBottom: "1px solid #1e293b", fontSize: 10, color: "#475569", fontWeight: 600 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 60px 80px 50px 50px", padding: "8px 14px", background: "#080f1c", borderBottom: "1px solid #1e293b", fontSize: 11, color: "#64748b", fontWeight: 600 }}>
           <span>الدولة</span><span style={{ textAlign: "center" }}>المستوى</span><span style={{ textAlign: "center" }}>الأحداث</span><span style={{ textAlign: "center" }}>الاتجاه</span><span style={{ textAlign: "center" }}>GDP</span>
         </div>
         {filtered.map(c => (
@@ -156,7 +156,7 @@ function TabGeo() {
               <div style={{ width: 10, height: 10, borderRadius: "50%", background: RC(c.risk), flexShrink: 0 }} />
               <div>
                 <div style={{ fontSize: 12, fontWeight: 600, color: "#e2e8f0" }}>{c.name}</div>
-                <div style={{ fontSize: 9, color: "#334155" }}>{c.code}</div>
+                <div style={{ fontSize: 10, color: "#475569" }}>{c.code}</div>
               </div>
             </div>
             <div style={{ textAlign: "center" }}>
@@ -202,8 +202,8 @@ function TabMarket() {
   return (
     <div style={{ padding: 16, display: "flex", flexDirection: "column", gap: 16 }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <span style={{ fontSize: 11, color: "#64748b" }}>🕐 آخر تحديث: {lastUpdate}</span>
-        <span style={{ fontSize: 9, padding: "2px 8px", borderRadius: 3, background: data?.source==="live"?"#14532d":"#1e293b", color: data?.source==="live"?"#22c55e":"#64748b" }}>
+        <span style={{ fontSize: 12, color: "#64748b" }}>🕐 آخر تحديث: {lastUpdate}</span>
+        <span style={{ fontSize: 10, padding: "3px 8px", borderRadius: 3, background: data?.source==="live"?"#14532d":"#1e293b", color: data?.source==="live"?"#22c55e":"#64748b" }}>
           {data?.source==="live" ? "بيانات حية" : "بيانات نموذجية"}
         </span>
       </div>
@@ -213,8 +213,8 @@ function TabMarket() {
           {mkts.map(m => (
             <div key={m.id} style={{ background: "#0a1628", border: "1px solid "+(m.up?"#22c55e22":"#ef444422"), borderRadius: 8, padding: "12px 14px" }}>
               <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 4 }}>
-                <span style={{ fontSize: 11, color: "#94a3b8" }}>{m.flag} {m.name}</span>
-                <span style={{ fontSize: 10, fontWeight: 700, color: m.up?"#22c55e":"#ef4444" }}>{m.chg}</span>
+                <span style={{ fontSize: 12, color: "#94a3b8" }}>{m.flag} {m.name}</span>
+                <span style={{ fontSize: 11, fontWeight: 700, color: m.up?"#22c55e":"#ef4444" }}>{m.chg}</span>
               </div>
               <div style={{ fontSize: 20, fontWeight: 800, color: "#f8fafc", fontVariantNumeric: "tabular-nums" }}>{m.val}</div>
             </div>
@@ -229,11 +229,11 @@ function TabMarket() {
               <div style={{ width: 36, height: 36, borderRadius: 8, background: s.up?"#14532d":"#7f1d1d", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 10, fontWeight: 700, color: s.up?"#22c55e":"#ef4444", flexShrink: 0 }}>{s.sym}</div>
               <div style={{ flex: 1 }}>
                 <div style={{ fontSize: 12, fontWeight: 700, color: "#e2e8f0" }}>{s.name}</div>
-                <div style={{ fontSize: 9, color: "#475569" }}>{s.sector}</div>
+                <div style={{ fontSize: 10, color: "#475569" }}>{s.sector}</div>
               </div>
               <div style={{ textAlign: "left" }}>
                 <div style={{ fontSize: 13, fontWeight: 700, color: "#f8fafc" }}>{s.val}</div>
-                <div style={{ fontSize: 10, color: s.up?"#22c55e":"#ef4444" }}>{s.chg}</div>
+                <div style={{ fontSize: 11, color: s.up?"#22c55e":"#ef4444" }}>{s.chg}</div>
               </div>
             </div>
           ))}
@@ -245,7 +245,7 @@ function TabMarket() {
           {currs.map(c => (
             <div key={c.pair} style={{ background: "#0a1628", border: "1px solid #1e293b", borderRadius: 6, padding: "8px 12px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
               <div>
-                <div style={{ fontSize: 10, color: "#64748b" }}>{c.pair}</div>
+                <div style={{ fontSize: 11, color: "#64748b" }}>{c.pair}</div>
                 <div style={{ fontSize: 14, fontWeight: 700, color: "#f8fafc", fontVariantNumeric: "tabular-nums" }}>{c.val}</div>
               </div>
               <span style={{ fontSize: 11, fontWeight: 700, color: c.up===true?"#22c55e":c.up===false?"#ef4444":"#64748b" }}>{c.chg}</span>
@@ -266,9 +266,9 @@ function TabEnergy() {
           {ENERGY.map(e => (
             <div key={e.name} style={{ background: "#0a1628", border: "1px solid "+(e.up?"#22c55e22":"#ef444422"), borderRadius: 8, padding: "12px 14px" }}>
               <div style={{ fontSize: 20, marginBottom: 4 }}>{e.icon}</div>
-              <div style={{ fontSize: 10, color: "#64748b" }}>{e.name}</div>
+              <div style={{ fontSize: 11, color: "#64748b" }}>{e.name}</div>
               <div style={{ fontSize: 22, fontWeight: 800, color: "#f8fafc" }}>{e.val}</div>
-              <div style={{ fontSize: 9, color: "#475569" }}>{e.unit}</div>
+              <div style={{ fontSize: 10, color: "#475569" }}>{e.unit}</div>
               <div style={{ fontSize: 11, fontWeight: 700, color: e.up?"#22c55e":"#ef4444", marginTop: 4 }}>{e.chg}</div>
             </div>
           ))}
@@ -279,9 +279,9 @@ function TabEnergy() {
         <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
           {OPEC.map((d,i) => (
             <div key={i} style={{ background: "#0a1628", border: "1px solid #1e293b", borderRadius: 6, padding: "10px 14px", display: "flex", gap: 12, alignItems: "flex-start" }}>
-              <div style={{ flexShrink: 0, width: 80, fontSize: 10, color: "#475569", paddingTop: 1 }}>{d.date}</div>
-              <div style={{ flex: 1, fontSize: 11, color: "#cbd5e1", lineHeight: 1.6 }}>{d.dec}</div>
-              <span style={{ flexShrink: 0, fontSize: 9, padding: "2px 8px", borderRadius: 3, background: d.impact==="صاعد"?"#14532d":"#1e293b", color: d.impact==="صاعد"?"#22c55e":"#64748b" }}>{d.impact}</span>
+              <div style={{ flexShrink: 0, width: 80, fontSize: 11, color: "#475569", paddingTop: 1 }}>{d.date}</div>
+              <div style={{ flex: 1, fontSize: 12, color: "#cbd5e1", lineHeight: 1.6 }}>{d.dec}</div>
+              <span style={{ flexShrink: 0, fontSize: 10, padding: "2px 8px", borderRadius: 3, background: d.impact==="صاعد"?"#14532d":"#1e293b", color: d.impact==="صاعد"?"#22c55e":"#64748b" }}>{d.impact}</span>
             </div>
           ))}
         </div>

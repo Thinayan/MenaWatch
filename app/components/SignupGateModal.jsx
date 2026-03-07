@@ -39,7 +39,7 @@ export default function SignupGateModal() {
 
       if (data?.session) {
         setStep("success");
-        window.location.href = "/map";
+        window.location.href = "/ops";
         return;
       } else if (data?.user && !data?.session) {
         const { error: loginErr } = await supabase.auth.signInWithPassword({
@@ -48,7 +48,7 @@ export default function SignupGateModal() {
         });
         if (!loginErr) {
           setStep("success");
-          window.location.href = "/map";
+          window.location.href = "/ops";
           return;
         } else {
           setStep("success");
@@ -75,7 +75,7 @@ export default function SignupGateModal() {
         setError("بريد أو كلمة مرور غير صحيحة");
       } else {
         setStep("success");
-        window.location.href = "/map";
+        window.location.href = "/ops";
         return;
       }
     } catch (e) {

@@ -15,7 +15,7 @@ export default function LoginPage() {
       if (mode === "login") {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
-        window.location.href = "/map";
+        window.location.href = "/ops";
       } else if (mode === "signup") {
         const { error } = await supabase.auth.signUp({ email, password, options: { emailRedirectTo: `${location.origin}/auth/callback` } });
         if (error) throw error;
@@ -67,7 +67,7 @@ export default function LoginPage() {
 
           <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
             <div style={{ flex: 1, height: 1, background: "#1e293b" }} />
-            <span style={{ fontSize: 11, color: "#475569" }}>أو</span>
+            <span style={{ fontSize: 12, color: "#64748b" }}>أو</span>
             <div style={{ flex: 1, height: 1, background: "#1e293b" }} />
           </div>
 
@@ -91,15 +91,15 @@ export default function LoginPage() {
           </button>
 
           <div style={{ marginTop: 14, display: "flex", justifyContent: "space-between" }}>
-            {mode === "login" && <button onClick={() => setMode("reset")} style={{ background: "none", border: "none", color: "#64748b", fontSize: 11, cursor: "pointer", fontFamily: "inherit" }}>نسيت كلمة المرور؟</button>}
-            {mode === "reset" && <button onClick={() => setMode("login")} style={{ background: "none", border: "none", color: "#64748b", fontSize: 11, cursor: "pointer", fontFamily: "inherit" }}>← العودة</button>}
+            {mode === "login" && <button onClick={() => setMode("reset")} style={{ background: "none", border: "none", color: "#64748b", fontSize: 12, cursor: "pointer", fontFamily: "inherit" }}>نسيت كلمة المرور؟</button>}
+            {mode === "reset" && <button onClick={() => setMode("login")} style={{ background: "none", border: "none", color: "#64748b", fontSize: 12, cursor: "pointer", fontFamily: "inherit" }}>← العودة</button>}
           </div>
         </div>
 
         <div style={{ marginTop: 20, textAlign: "center" }}>
           <div style={{ display: "flex", justifyContent: "center", gap: 20 }}>
             {["📡 بيانات فورية", "🔒 آمن 100%", "🆓 مجاني للبدء"].map(f => (
-              <span key={f} style={{ fontSize: 11, color: "#475569" }}>{f}</span>
+              <span key={f} style={{ fontSize: 12, color: "#64748b" }}>{f}</span>
             ))}
           </div>
         </div>

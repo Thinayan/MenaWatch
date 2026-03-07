@@ -427,6 +427,7 @@ export default function SentimentWidget() {
           <div className="sw-title">
             <div className="sw-live-dot" />
             <span>مؤشر المزاج العام</span>
+            <span style={{ fontSize: 9, color: "#f59e0b", background: "#f59e0b18", border: "1px solid #f59e0b33", borderRadius: 3, padding: "1px 6px", fontWeight: 600 }}>(تجريبي)</span>
           </div>
           {lastUpdate && (
             <span className="sw-time">

@@ -257,7 +257,7 @@ export default function OpsRoom() {
             <div style={{ fontSize: 13, fontWeight: 800, color: "#22c55e", letterSpacing: 1 }}>
               MENA<span style={{ color: "#f8fafc" }}>.Watch</span>
             </div>
-            <div style={{ fontSize: 9, color: "#475569", letterSpacing: 2 }}>غرفة العمليات</div>
+            <div style={{ fontSize: 11, color: "#475569", letterSpacing: 2 }}>غرفة العمليات</div>
           </div>
         </div>
 
@@ -271,9 +271,9 @@ export default function OpsRoom() {
           { l: "SAR",  v: "3.751",  c: "ثابت",  up: null },
         ].map(s => (
           <div key={s.l} style={{ textAlign: "center", flexShrink: 0 }}>
-            <div style={{ fontSize: 9, color: "#475569" }}>{s.l}</div>
-            <div style={{ fontSize: 12, fontWeight: 700, color: "#f8fafc", fontVariantNumeric: "tabular-nums" }}>{s.v}</div>
-            <div style={{ fontSize: 9, color: s.up === true ? "#22c55e" : s.up === false ? "#ef4444" : "#64748b" }}>{s.c}</div>
+            <div style={{ fontSize: 11, color: "#64748b" }}>{s.l}</div>
+            <div style={{ fontSize: 13, fontWeight: 700, color: "#f8fafc", fontVariantNumeric: "tabular-nums" }}>{s.v}</div>
+            <div style={{ fontSize: 11, color: s.up === true ? "#22c55e" : s.up === false ? "#ef4444" : "#64748b" }}>{s.c}</div>
           </div>
         ))}
 
@@ -289,17 +289,17 @@ export default function OpsRoom() {
           overflow: "hidden",
           display: "flex", alignItems: "center", gap: 8,
         }}>
-          <span style={{ background: "#ef4444", color: "#fff", fontSize: 8, fontWeight: 700, padding: "2px 5px", borderRadius: 2, flexShrink: 0, letterSpacing: 1 }}>عاجل</span>
-          <div className="slide-up" key={newsIdx} style={{ fontSize: 11, color: "#94a3b8", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+          <span style={{ background: "#ef4444", color: "#fff", fontSize: 10, fontWeight: 700, padding: "3px 7px", borderRadius: 3, flexShrink: 0, letterSpacing: 1 }}>عاجل</span>
+          <div className="slide-up" key={newsIdx} style={{ fontSize: 13, color: "#cbd5e1", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
             {allEvents[newsIdx]?.text}
           </div>
         </div>
 
         {/* Clock */}
         <div style={{ textAlign: "center", flexShrink: 0 }}>
-          <div style={{ fontSize: 9, color: "#475569" }}>توقيت الرياض</div>
+          <div style={{ fontSize: 11, color: "#64748b" }}>توقيت الرياض</div>
           <div style={{ fontSize: 14, fontWeight: 700, color: "#22c55e", fontVariantNumeric: "tabular-nums", letterSpacing: 1 }}>{saudiTime}</div>
-          <div style={{ fontSize: 8, color: "#334155" }}>{saudiDate}</div>
+          <div style={{ fontSize: 10, color: "#475569" }}>{saudiDate}</div>
         </div>
       </div>
 
@@ -310,7 +310,7 @@ export default function OpsRoom() {
         padding: "6px 20px",
         display: "flex", alignItems: "center", gap: 12, flexShrink: 0,
       }}>
-        <span style={{ fontSize: 10, color: "#475569", flexShrink: 0 }}>مؤشر DEFCON الإقليمي:</span>
+        <span style={{ fontSize: 12, color: "#64748b", flexShrink: 0 }}>مؤشر DEFCON الإقليمي:</span>
         <div style={{ display: "flex", gap: 6, flex: 1 }}>
           {DEFCON_REGIONS.map(r => {
             const dm = DEFCON_META[r.level];
@@ -333,17 +333,17 @@ export default function OpsRoom() {
                   background: dm.border,
                   ...(r.level <= 3 ? { animation: "pulse 1s infinite" } : {}),
                 }} />
-                <span style={{ fontSize: 10, color: isActive ? dm.color : "#64748b", fontWeight: isActive ? 700 : 400 }}>
+                <span style={{ fontSize: 11, color: isActive ? dm.color : "#64748b", fontWeight: isActive ? 700 : 400 }}>
                   {r.name}
                 </span>
                 <span style={{
-                  fontSize: 9, fontWeight: 700,
+                  fontSize: 10, fontWeight: 700,
                   color: dm.border,
                   background: dm.bg,
-                  padding: "1px 5px", borderRadius: 3,
+                  padding: "1px 6px", borderRadius: 3,
                 }}>D{r.level}</span>
-                {r.level < r.prev && <span style={{ fontSize: 8, color: "#ef4444" }}>↑</span>}
-                {r.level > r.prev && <span style={{ fontSize: 8, color: "#22c55e" }}>↓</span>}
+                {r.level < r.prev && <span style={{ fontSize: 10, color: "#ef4444" }}>↑</span>}
+                {r.level > r.prev && <span style={{ fontSize: 10, color: "#22c55e" }}>↓</span>}
               </div>
             );
           })}
@@ -353,7 +353,7 @@ export default function OpsRoom() {
           background: defcon.bg,
           border: `1px solid ${defcon.border}`,
           borderRadius: 4,
-          fontSize: 10, fontWeight: 700, color: defcon.color,
+          fontSize: 11, fontWeight: 700, color: defcon.color,
         }}>
           {region?.name}: {defcon.label} (D{region?.level})
         </div>

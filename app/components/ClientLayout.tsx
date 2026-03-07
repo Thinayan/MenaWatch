@@ -85,7 +85,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
     }
     if (wasShowingGate.current && isAuth === true) {
       wasShowingGate.current = false;
-      window.location.href = "/map";
+      window.location.href = "/ops";
     }
   }, [isAuth, showGate]);
 
