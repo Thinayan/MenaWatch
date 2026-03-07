@@ -15,13 +15,13 @@ export default function LoginPage() {
       if (mode === "login") {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
-        window.location.href = "/";
+        window.location.href = "/ops";
       } else if (mode === "signup") {
         const { error } = await supabase.auth.signUp({ email, password, options: { emailRedirectTo: `${location.origin}/auth/callback` } });
         if (error) throw error;
         setMsg({ type: "success", text: "✅ تم إرسال رابط التأكيد إلى بريدك الإلكتروني" });
       } else {
-        const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: `${location.origin}/auth/callback?next=/reset-password` });
+        const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: `${location.origin}/reset-password` });
         if (error) throw error;
         setMsg({ type: "success", text: "✅ تم إرسال رابط إعادة تعيين كلمة المرور" });
       }
