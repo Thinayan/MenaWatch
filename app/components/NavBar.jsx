@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import SearchBar from "./SearchBar";
 
 const NAV_ITEMS = [
   { href: "/", label: "الرئيسية", icon: "🏠" },
@@ -98,6 +99,9 @@ export default function NavBar({ activePath = "/" }) {
 
         {/* Spacer */}
         <div style={{ flex: 1 }} />
+
+        {/* Search Bar */}
+        <SearchBar compact />
 
         {/* Auth Section */}
         {user ? (
