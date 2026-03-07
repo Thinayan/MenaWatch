@@ -8,3 +8,9 @@ database/
 .env.local
 .claude/
 *.sql
+
+# Non-project directories
+Desktop/
+Downloads/
+menawatch-fixed/
+.vercel/
