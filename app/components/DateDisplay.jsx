@@ -1,13 +1,11 @@
 "use client";
 import { useState, useEffect } from "react";
 
-// ── تنسيق الأرقام الغربية ────────────────────────────────
-function toWestern(str) {
-  return str
-    .replace(/٠/g, "0").replace(/١/g, "1").replace(/٢/g, "2")
-    .replace(/٣/g, "3").replace(/٤/g, "4").replace(/٥/g, "5")
-    .replace(/٦/g, "6").replace(/٧/g, "7").replace(/٨/g, "8")
-    .replace(/٩/g, "9");
+// ── تحويل الأرقام الهندية إلى غربية ─────────────────────────
+export function toWestern(str) {
+  if (!str) return str;
+  return String(str)
+    .replace(/[٠-٩]/g, d => "٠١٢٣٤٥٦٧٨٩".indexOf(d).toString());
 }
 
 // ── التاريخ الهجري ────────────────────────────────────────
@@ -25,36 +23,36 @@ function getHijriDate() {
   }
 }
 
-// ── التاريخ الميلادي ──────────────────────────────────────
+// ── التاريخ الميلادي (اسم اليوم + التاريخ) ──────────────
 function getGregorianDate() {
-  return new Date().toLocaleDateString("ar-EG", {
+  const raw = new Date().toLocaleDateString("ar-EG", {
     timeZone: "Asia/Riyadh",
     weekday: "long",
     day: "numeric",
     month: "long",
     year: "numeric",
   });
+  return toWestern(raw);
 }
 
-// ── الوقت ─────────────────────────────────────────────────
+// ── الوقت (غربي) ───────────────────────────────────────
 function getTime() {
-  const t = new Date().toLocaleTimeString("en-US", {
+  return new Date().toLocaleTimeString("en-US", {
     timeZone: "Asia/Riyadh",
     hour: "2-digit",
     minute: "2-digit",
     second: "2-digit",
     hour12: false,
   });
-  return t;
 }
 
 /**
  * DateDisplay — مكون تاريخ هجري + ميلادي + ساعة حية
  *
  * @param {"compact"|"full"|"inline"} variant
- *   - compact: ساعة + هجري (سطر واحد)
+ *   - compact: ساعة + هجري + ميلادي (سطر واحد)
  *   - full: كل شيء مع خلفية
- *   - inline: نص بسيط بدون خلفية
+ *   - inline: هجري + ميلادي + ساعة (نص بسيط)
  */
 export default function DateDisplay({ variant = "compact" }) {
   const [time, setTime] = useState("");
@@ -74,16 +72,21 @@ export default function DateDisplay({ variant = "compact" }) {
 
   if (!time) return null;
 
-  // ── Inline (نص بسيط) ─────────────────────
+  // ── Inline (نص بسيط — هجري + ميلادي + ساعة) ──────
   if (variant === "inline") {
     return (
-      <span style={{ fontSize: 12, color: "#94a3b8", fontVariantNumeric: "tabular-nums" }}>
-        {hijri} — {time}
-      </span>
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 1, fontVariantNumeric: "tabular-nums" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+          <span style={{ fontSize: 13, color: "#22c55e", fontWeight: 700, letterSpacing: 1 }}>{time}</span>
+          <span style={{ fontSize: 11, color: "#1e293b" }}>|</span>
+          <span style={{ fontSize: 11, color: "#cbd5e1" }}>{hijri}</span>
+        </div>
+        <span style={{ fontSize: 10, color: "#94a3b8" }}>{greg}</span>
+      </div>
     );
   }
 
-  // ── Compact (سطر واحد) ────────────────────
+  // ── Compact (سطر واحد — ساعة + هجري + ميلادي) ─────
   if (variant === "compact") {
     return (
       <div style={{

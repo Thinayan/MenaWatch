@@ -81,7 +81,7 @@ export default function LandingPage() {
         borderBottom: "1px solid #1e293b",
         padding: "0 20px",
         display: "flex", alignItems: "center", gap: 12,
-        height: 42,
+        height: 58,
       }}>
         {/* Live ticker */}
         <div style={{ flex: 1, overflow: "hidden" }}>

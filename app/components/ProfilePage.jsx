@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { toWestern } from "./DateDisplay";
 
 
 const MENA_COUNTRIES = [
@@ -96,7 +97,7 @@ export default function ProfilePage() {
             </div>
             <div>
               <div style={{ fontSize: 10, color: "#94a3b8", marginBottom: 4 }}>تاريخ التسجيل</div>
-              <div style={{ fontSize: 12, color: "#e2e8f0" }}>{profile?.created_at ? new Date(profile.created_at).toLocaleDateString("ar-EG") : "—"}</div>
+              <div style={{ fontSize: 12, color: "#e2e8f0" }}>{profile?.created_at ? toWestern(new Date(profile.created_at).toLocaleDateString("ar-EG")) : "—"}</div>
             </div>
           </div>
         </div>

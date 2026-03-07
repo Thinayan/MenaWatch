@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { toWestern } from "../DateDisplay";
 
 const STATUS_MAP = {
   draft: { label: "مسودة", color: "#64748b", bg: "#64748b22" },
@@ -182,7 +183,7 @@ export default function EditorialCalendar() {
                     </span>
                   </div>
                   <div style={{ fontSize: 10, color: "#94a3b8", marginTop: 3 }}>
-                    {entry.category} · {entry.publish_at ? new Date(entry.publish_at).toLocaleDateString("ar-EG") : "بدون موعد"}
+                    {entry.category} · {entry.publish_at ? toWestern(new Date(entry.publish_at).toLocaleDateString("ar-EG")) : "بدون موعد"}
                   </div>
                 </div>
                 <div style={{ display: "flex", gap: 6 }}>

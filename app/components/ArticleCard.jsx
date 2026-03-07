@@ -1,4 +1,5 @@
 "use client";
+import { toWestern } from "./DateDisplay";
 
 /**
  * ArticleCard — Reusable article display card
@@ -37,7 +38,7 @@ function timeAgo(dateStr) {
     if (diff < 3600) return `منذ ${Math.floor(diff / 60)} د`;
     if (diff < 86400) return `منذ ${Math.floor(diff / 3600)} س`;
     if (diff < 604800) return `منذ ${Math.floor(diff / 86400)} يوم`;
-    return date.toLocaleDateString("ar-EG", { month: "short", day: "numeric" });
+    return toWestern(date.toLocaleDateString("ar-EG", { month: "short", day: "numeric" }));
   } catch {
     return "";
   }

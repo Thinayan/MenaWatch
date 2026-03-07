@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
+import { toWestern } from "./DateDisplay";
 
 
 const CATEGORIES = [
@@ -104,7 +105,7 @@ export default function SearchPage() {
   const formatDate = (d) => {
     if (!d) return "";
     try {
-      return new Date(d).toLocaleDateString("ar-EG", { year: "numeric", month: "short", day: "numeric" });
+      return toWestern(new Date(d).toLocaleDateString("ar-EG", { year: "numeric", month: "short", day: "numeric" }));
     } catch { return d; }
   };
 

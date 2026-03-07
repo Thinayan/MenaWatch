@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { toWestern } from "./DateDisplay";
 
 import EditorialCalendar from "./admin/EditorialCalendar";
 import PollManager from "./admin/PollManager";
@@ -597,7 +598,7 @@ function UsersSection() {
                 {u.role==="admin"?"أدمن":u.role==="pro"?"خبير":"مجاني"}
               </span>
             </div>
-            <div style={{ fontSize:9, color:"#94a3b8", textAlign:"center" }}>{u.created_at ? new Date(u.created_at).toLocaleDateString("ar-EG") : "—"}</div>
+            <div style={{ fontSize:9, color:"#94a3b8", textAlign:"center" }}>{u.created_at ? toWestern(new Date(u.created_at).toLocaleDateString("ar-EG")) : "—"}</div>
             <div style={{ textAlign:"center" }}>
               <select value={u.role || "free"} onChange={e => handleRoleChange(u.id, e.target.value)} style={{ background:"#0f1829", border:"1px solid #1e293b", borderRadius:4, padding:"3px 6px", color:"#e2e8f0", fontSize:10, cursor:"pointer" }}>
                 <option value="free">مجاني</option>

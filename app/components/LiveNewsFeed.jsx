@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { toWestern } from "./DateDisplay";
 
 /**
  * LiveNewsFeed — Drop-in component for tabs to show live articles
@@ -64,7 +65,7 @@ export default function LiveNewsFeed({
       if (diff < 3600) return `منذ ${Math.floor(diff / 60)} د`;
       if (diff < 86400) return `منذ ${Math.floor(diff / 3600)} س`;
       if (diff < 604800) return `منذ ${Math.floor(diff / 86400)} يوم`;
-      return new Date(dateStr).toLocaleDateString("ar-EG", { month: "short", day: "numeric" });
+      return toWestern(new Date(dateStr).toLocaleDateString("ar-EG", { month: "short", day: "numeric" }));
     } catch { return ""; }
   }
 

@@ -1,4 +1,5 @@
 "use client";
+import { toWestern } from "../DateDisplay";
 
 const TYPE_COLORS = {
   political: "#3b82f6", economic: "#22c55e", security: "#ef4444",
@@ -33,7 +34,7 @@ export default function EventsGrid({ events = [], loading = false, onLoadMore, h
   }
 
   const formatDate = (d) => {
-    try { return new Date(d).toLocaleDateString("ar-EG", { year: "numeric", month: "short" }); }
+    try { return toWestern(new Date(d).toLocaleDateString("ar-EG", { year: "numeric", month: "short" })); }
     catch { return d; }
   };
 

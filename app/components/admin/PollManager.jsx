@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { toWestern } from "../DateDisplay";
 
 export default function PollManager() {
   const [polls, setPolls] = useState([]);
@@ -183,7 +184,7 @@ export default function PollManager() {
 
                 <div style={{ marginTop: 8, fontSize: 10, color: "#94a3b8" }}>
                   إجمالي الأصوات: {totalVotes}
-                  {poll.ends_at && ` · ينتهي: ${new Date(poll.ends_at).toLocaleDateString("ar-EG")}`}
+                  {poll.ends_at && ` · ينتهي: ${toWestern(new Date(poll.ends_at).toLocaleDateString("ar-EG"))}`}
                 </div>
               </div>
             );

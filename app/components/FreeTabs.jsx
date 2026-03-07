@@ -184,7 +184,7 @@ function TabMarket() {
       .then(r => r.json())
       .then(d => {
         setData(d);
-        setLastUpdate(new Date().toLocaleTimeString("en-US", { timeZone: "Asia/Riyadh", hour: "2-digit", minute: "2-digit" }));
+        setLastUpdate(new Date().toLocaleTimeString("en-US", { timeZone: "Asia/Riyadh", hour: "2-digit", minute: "2-digit", hour12: false }));
         setLoading(false);
       })
       .catch(() => {

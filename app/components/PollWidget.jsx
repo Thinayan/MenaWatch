@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { toWestern } from "./DateDisplay";
 
 /**
  * PollWidget — Display a poll with voting and results
@@ -239,7 +240,7 @@ function SinglePoll({ poll, user, compact, onVoted }) {
         </span>
         {poll.ends_at && (
           <span style={{ fontSize: 11, color: "#94a3b8" }}>
-            ينتهي: {new Date(poll.ends_at).toLocaleDateString("ar-EG", { month: "short", day: "numeric" })}
+            ينتهي: {toWestern(new Date(poll.ends_at).toLocaleDateString("ar-EG", { month: "short", day: "numeric" }))}
           </span>
         )}
       </div>

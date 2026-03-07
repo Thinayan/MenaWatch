@@ -8,6 +8,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import { createClient } from "@supabase/supabase-js";
+import { toWestern } from "@/lib/format";
 
 // ── حالة تطوير المنصة (FEATURES_COMING) ─────────────────────
 const PLATFORM_FEATURES = [
@@ -181,6 +182,7 @@ async function gatherPlatformStats() {
       day: "numeric",
       hour: "2-digit",
       minute: "2-digit",
+      hour12: false,
     }),
   };
 }
@@ -204,7 +206,7 @@ function buildAdminStatsEmail(stats: Awaited<ReturnType<typeof gatherPlatformSta
   }).join("");
 
   const recentUsersRows = stats.users.recentSignups.map((u: any) => {
-    const date = new Date(u.created_at).toLocaleDateString("ar-EG", { timeZone: "Asia/Riyadh", month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" });
+    const date = toWestern(new Date(u.created_at).toLocaleDateString("ar-EG", { timeZone: "Asia/Riyadh", month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" }));
     const roleLabel = u.role === "admin" ? "أدمن" : u.role === "pro" ? "خبير" : "مجاني";
     const roleColor = u.role === "admin" ? "#f59e0b" : u.role === "pro" ? "#8b5cf6" : "#64748b";
     return `

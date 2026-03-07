@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { toWestern } from "../DateDisplay";
 
 const TYPE_COLORS = {
   political: "#3b82f6", economic: "#22c55e", security: "#ef4444",
@@ -36,7 +37,7 @@ export default function TimelineView({ events = [], loading = false }) {
   }
 
   const formatDate = (d) => {
-    try { return new Date(d).toLocaleDateString("ar-EG", { year: "numeric", month: "long", day: "numeric" }); }
+    try { return toWestern(new Date(d).toLocaleDateString("ar-EG", { year: "numeric", month: "long", day: "numeric" })); }
     catch { return d; }
   };
 

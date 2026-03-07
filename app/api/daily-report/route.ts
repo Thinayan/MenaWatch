@@ -10,6 +10,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import { Resend } from "resend";
 import { createClient } from "@supabase/supabase-js";
 import { buildDailyReportEmail } from "@/lib/email-templates";
+import { toWestern } from "@/lib/format";
 
 function getAnthropic() { return new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY! }); }
 function getResend() { return new Resend(process.env.RESEND_API_KEY!); }
@@ -42,10 +43,10 @@ async function fetchDefconData() {
 
 // ── توليد التقرير بـ Claude ───────────────────────────────
 async function generateReport(market: any, defcon: any[]) {
-  const today = new Date().toLocaleDateString("ar-EG", {
+  const today = toWestern(new Date().toLocaleDateString("ar-EG", {
     timeZone: "Asia/Riyadh",
     weekday: "long", year: "numeric", month: "long", day: "numeric",
-  });
+  }));
 
   const prompt = `
 أنت محلل استراتيجي رفيع في منصة MENA Watch. اكتب التقرير الصباحي اليومي ليوم ${today}.
@@ -116,10 +117,10 @@ export async function GET(req: NextRequest) {
     console.log(`📧 إرسال لـ ${subscribers.length} مشترك`);
 
     // ٤. بناء قالب الإيميل
-    const today = new Date().toLocaleDateString("ar-EG", {
+    const today = toWestern(new Date().toLocaleDateString("ar-EG", {
       timeZone: "Asia/Riyadh",
       weekday: "long", year: "numeric", month: "long", day: "numeric",
-    });
+    }));
 
     const emailHtml = buildDailyReportEmail({
       date: today,

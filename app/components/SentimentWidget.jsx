@@ -431,7 +431,7 @@ export default function SentimentWidget() {
           </div>
           {lastUpdate && (
             <span className="sw-time">
-              {lastUpdate.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" })}
+              {lastUpdate.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: false })}
             </span>
           )}
         </div>
