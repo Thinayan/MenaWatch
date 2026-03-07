@@ -228,10 +228,15 @@ export default function LandingPage() {
 
       {/* ── FOOTER ── */}
       <div style={{ borderTop: "1px solid #1e293b", padding: "14px 40px", display: "flex", justifyContent: "space-between", alignItems: "center", background: "#080f1c" }}>
-        <div style={{ fontSize: 11, color: "#94a3b8", display: "flex", alignItems: "center", gap: 6 }}><img src="/logo-sm.png" alt="" style={{ height: 14, opacity: 0.5 }} /> © 2025 MENA Watch — منصة التحليل والذكاء الاستراتيجي الإقليمية</div>
+        <div style={{ fontSize: 11, color: "#94a3b8", display: "flex", alignItems: "center", gap: 6 }}><img src="/logo-sm.png" alt="" style={{ height: 14, opacity: 0.5 }} /> © 2026 MENA Watch — منصة التحليل والذكاء الاستراتيجي الإقليمية</div>
         <div style={{ display: "flex", gap: 16 }}>
-          {["الخصوصية", "الشروط", "تواصل معنا"].map(l => (
-            <a key={l} href="#" style={{ fontSize: 11, color: "#94a3b8", textDecoration: "none" }}>{l}</a>
+          {[
+            { l: "من نحن", href: "/about" },
+            { l: "البحث", href: "/search" },
+            { l: "الأرشيف", href: "/archive" },
+            { l: "تواصل معنا", href: "/about#contact" },
+          ].map(item => (
+            <a key={item.l} href={item.href} style={{ fontSize: 11, color: "#94a3b8", textDecoration: "none" }}>{item.l}</a>
           ))}
         </div>
       </div>
