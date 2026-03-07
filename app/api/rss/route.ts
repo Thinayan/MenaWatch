@@ -26,6 +26,8 @@ const RSS_SOURCES: Record<string, { url: string; name: string; nameAr: string }>
   ummalqura: { url: "https://www.uqn.gov.sa/rss", name: "Um Al-Qura", nameAr: "جريدة أم القرى" },
   sabq: { url: "https://sabq.org/rss", name: "Sabq", nameAr: "صحيفة سبق" },
   maaal: { url: "https://www.maaal.com/feed/", name: "Maaal", nameAr: "مال" },
+  aawsat: { url: "https://aawsat.com/feed", name: "Asharq Al-Awsat", nameAr: "الشرق الأوسط" },
+  alekhbariya: { url: "https://www.alekhbariya.net/rss", name: "Al Ekhbariya", nameAr: "الإخبارية" },
 };
 
 const CORS_HEADERS = {
@@ -157,7 +159,7 @@ export async function GET(req: NextRequest) {
     const res = await fetch(feedConfig.url, {
       next: { revalidate: 300 }, // Cache for 5 minutes
       headers: {
-        "User-Agent": "MenaWatch-RSS/1.0",
+        "User-Agent": "Mozilla/5.0 (compatible; MenaWatch/1.0; +https://mena.watch)",
         Accept: "application/rss+xml, application/xml, text/xml, */*",
       },
     });

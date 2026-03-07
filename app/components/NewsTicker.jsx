@@ -3,6 +3,8 @@ import { useState, useEffect, useCallback } from "react";
 
 // ── Source Configuration ──────────────────────────────────
 const SOURCES = {
+  bbc_ar:     { nameAr: "BBC عربي",             color: "#bb1919" },
+  rt:         { nameAr: "RT عربي",              color: "#5c9e31" },
   alarabiya:  { nameAr: "العربية",              color: "#c4161c" },
   alhadath:   { nameAr: "الحدث",                color: "#1a73e8" },
   aljazeera:  { nameAr: "الجزيرة",              color: "#d4a843" },
@@ -10,17 +12,23 @@ const SOURCES = {
   ain:        { nameAr: "عين",                  color: "#2d8a4e" },
   okaz:       { nameAr: "عكاظ",                 color: "#8b5cf6" },
   aleqt:      { nameAr: "الاقتصادية",           color: "#1e3a5f" },
-  argaam:     { nameAr: "أرقام",                color: "#00bcd4" },
+  argaam:        { nameAr: "أرقام",                color: "#00bcd4" },
+  france24:      { nameAr: "فرانس 24",             color: "#0055a4" },
+  dw:            { nameAr: "DW عربية",             color: "#009ee0" },
+  alarabiya_biz: { nameAr: "العربية بزنس",         color: "#c4161c" },
+  aawsat:        { nameAr: "الشرق الأوسط",         color: "#1a1a6c" },
+  alekhbariya:   { nameAr: "الإخبارية",            color: "#00695c" },
 };
 
 const CATEGORIES = [
   { id: "all",      label: "الكل",    sources: null },
-  { id: "main",     label: "رئيسي",   sources: ["alarabiya", "alhadath", "aljazeera"] },
-  { id: "economy",  label: "اقتصاد",  sources: ["aleqt", "argaam"] },
-  { id: "saudi",    label: "سعودي",   sources: ["spa", "ain", "okaz"] },
+  { id: "main",     label: "رئيسي",   sources: ["bbc_ar", "rt", "alarabiya", "alhadath", "aljazeera", "france24", "dw"] },
+  { id: "economy",  label: "اقتصاد",  sources: ["aleqt", "argaam", "alarabiya_biz"] },
+  { id: "saudi",    label: "سعودي",   sources: ["spa", "ain", "okaz", "alekhbariya", "aawsat"] },
 ];
 
-const FETCH_SOURCES = ["alarabiya", "alhadath", "spa", "aljazeera", "aleqt", "argaam"];
+// BBC Arabic and RT work reliably on Vercel — others added as fallback
+const FETCH_SOURCES = ["bbc_ar", "rt", "france24", "dw", "aawsat", "alarabiya", "alarabiya_biz", "alhadath", "spa", "alekhbariya", "aljazeera", "aleqt", "argaam"];
 
 const REFRESH_INTERVAL = 5 * 60 * 1000; // 5 minutes
 
