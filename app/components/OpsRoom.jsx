@@ -201,7 +201,7 @@ export default function OpsRoom() {
   }, [panel]);
 
   return (
-    <div style={{
+    <div className="ops-root" style={{
       fontFamily: "\'IBM Plex Sans Arabic\', \'Tajawal\', sans-serif",
       background: "#060d18",
       minHeight: "100vh",
@@ -213,7 +213,7 @@ export default function OpsRoom() {
     }}>
       <style>{`
         @import url(\'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap\');
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        .ops-root, .ops-root * { box-sizing: border-box; margin: 0; padding: 0; }
         ::-webkit-scrollbar { width: 3px; }
         ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 2px; }
         @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }

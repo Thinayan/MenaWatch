@@ -61,10 +61,10 @@ export default function LandingPage() {
   };
 
   return (
-    <div style={BASE}>
+    <div className="landing-root" style={BASE}>
       <style>{`
         @import url('${FONT_URL}');
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        .landing-root, .landing-root * { box-sizing: border-box; margin: 0; padding: 0; }
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: #060d18; }
         ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 2px; }

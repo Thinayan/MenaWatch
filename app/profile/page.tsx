@@ -1,12 +1,13 @@
+"use client";
 import dynamic from "next/dynamic";
+import AuthGuard from "../components/AuthGuard";
 
 const ProfilePage = dynamic(() => import("../components/ProfilePage"), { ssr: false });
 
-export const metadata = {
-  title: "حسابي — MENA.Watch",
-  description: "إدارة الملف الشخصي والتفضيلات",
-};
-
 export default function Profile() {
-  return <ProfilePage />;
+  return (
+    <AuthGuard>
+      <ProfilePage />
+    </AuthGuard>
+  );
 }

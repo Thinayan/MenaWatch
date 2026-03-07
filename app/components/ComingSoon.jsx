@@ -34,7 +34,7 @@ export default function ComingSoon() {
   const t = useCountdown("2025-09-01T00:00:00");
 
   return (
-    <div style={{
+    <div className="coming-root" style={{
       direction: "rtl",
       minHeight: "100vh",
       background: "#060d18",
@@ -45,7 +45,7 @@ export default function ComingSoon() {
     }}>
       <style>{`
         @import url('${FONT_URL}');
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        .coming-root, .coming-root * { box-sizing: border-box; margin: 0; padding: 0; }
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-thumb { background: #1e293b; }
         @keyframes pulse { 0%,100%{opacity:0.6} 50%{opacity:1} }

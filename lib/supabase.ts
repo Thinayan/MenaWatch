@@ -1,7 +1,9 @@
-import { createClient, SupabaseClient } from "@supabase/supabase-js";
+import { createBrowserClient } from "@supabase/ssr";
+import { SupabaseClient } from "@supabase/supabase-js";
 
 // Lazy singleton — only initialized on first property access at runtime
-// Gracefully handles missing env vars (local dev without .env.local)
+// Uses createBrowserClient from @supabase/ssr to store auth tokens in cookies
+// so the middleware can read them for server-side auth checks
 let _client: SupabaseClient | null = null;
 
 function getClient(): SupabaseClient {
@@ -35,7 +37,7 @@ function getClient(): SupabaseClient {
         },
       }) as unknown as SupabaseClient;
     }
-    _client = createClient(url, key);
+    _client = createBrowserClient(url, key) as unknown as SupabaseClient;
   }
   return _client;
 }

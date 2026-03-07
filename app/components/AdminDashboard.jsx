@@ -762,10 +762,10 @@ export default function AdminDashboard() {
   const Comp = sec.comp;
 
   return (
-    <div style={{ fontFamily:"'IBM Plex Sans Arabic','Tajawal',sans-serif", background:"#060d18", minHeight:"100vh", color:"#e2e8f0", direction:"rtl", display:"flex", flexDirection:"column" }}>
+    <div className="admin-root" style={{ fontFamily:"'IBM Plex Sans Arabic','Tajawal',sans-serif", background:"#060d18", minHeight:"100vh", color:"#e2e8f0", direction:"rtl", display:"flex", flexDirection:"column" }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap');
-        * { box-sizing:border-box; margin:0; padding:0; }
+        .admin-root, .admin-root * { box-sizing:border-box; margin:0; padding:0; }
         ::-webkit-scrollbar { width:4px; }
         ::-webkit-scrollbar-thumb { background:#1e293b; border-radius:2px; }
         @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
