@@ -28,9 +28,11 @@ export default function SignupGateModal() {
     setLoading(true);
     try {
       const { supabase } = await import("../../lib/supabase");
+      const siteUrl = typeof window !== "undefined" ? window.location.origin : "https://www.mena.watch";
       const { data, error: signupErr } = await supabase.auth.signUp({
         email: email.trim(),
         password,
+        options: { emailRedirectTo: `${siteUrl}/auth/callback` },
       });
 
       if (signupErr) {
@@ -46,18 +48,18 @@ export default function SignupGateModal() {
       }
 
       if (data?.session) {
-        setCount(c => c + 1);
         setStep("success");
-        setTimeout(() => { window.location.href = "/map"; }, 1500);
+        window.location.href = "/map";
+        return;
       } else if (data?.user && !data?.session) {
         const { error: loginErr } = await supabase.auth.signInWithPassword({
           email: email.trim(),
           password,
         });
         if (!loginErr) {
-          setCount(c => c + 1);
           setStep("success");
-          setTimeout(() => { window.location.href = "/map"; }, 1500);
+          window.location.href = "/map";
+          return;
         } else {
           setStep("success");
           setError("");
@@ -83,7 +85,8 @@ export default function SignupGateModal() {
         setError("بريد أو كلمة مرور غير صحيحة");
       } else {
         setStep("success");
-        setTimeout(() => { window.location.href = "/map"; }, 1000);
+        window.location.href = "/map";
+        return;
       }
     } catch (e) {
       setError("خطأ في الاتصال");
@@ -96,8 +99,8 @@ export default function SignupGateModal() {
       position: "fixed",
       inset: 0,
       zIndex: 10000,
-      background: "rgba(3, 7, 18, 0.92)",
-      backdropFilter: "blur(12px)",
+      background: "rgba(3, 7, 18, 0.6)",
+      backdropFilter: "blur(4px)",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",

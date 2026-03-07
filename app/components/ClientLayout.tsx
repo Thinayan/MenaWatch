@@ -1,6 +1,6 @@
 "use client";
 import { usePathname } from "next/navigation";
-import { useState, useEffect, Suspense } from "react";
+import { useState, useEffect, useRef, Suspense } from "react";
 
 // Pages where NavBar should NOT appear
 const HIDE_NAVBAR_PATHS = ["/login", "/reset-password", "/auth/callback"];
@@ -56,6 +56,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
 
   // Check if user is authenticated — show signup gate if not
   const [isAuth, setIsAuth] = useState<boolean | null>(null);
+  const wasShowingGate = useRef(false);
 
   useEffect(() => {
     import("../../lib/supabase")
@@ -76,6 +77,17 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
 
   // While checking auth, show nothing (prevents flash)
   const showGate = !skipGate && isAuth === false;
+
+  // Track if gate was showing, redirect to /map when auth succeeds
+  useEffect(() => {
+    if (showGate) {
+      wasShowingGate.current = true;
+    }
+    if (wasShowingGate.current && isAuth === true) {
+      wasShowingGate.current = false;
+      window.location.href = "/map";
+    }
+  }, [isAuth, showGate]);
 
   return (
     <>
