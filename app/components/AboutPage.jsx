@@ -59,7 +59,7 @@ export default function AboutPage() {
           MENA <span style={{ color: "#22c55e" }}>Watch</span>
         </h1>
         <p style={{ fontSize: 14, color: "#94a3b8", maxWidth: 600, margin: "0 auto 24px", lineHeight: 1.8 }}>
-          منصة الاستخبارات الاستراتيجية للشرق الأوسط وشمال أفريقيا
+          منصة التحليل والذكاء الاستراتيجي للشرق الأوسط وشمال أفريقيا
         </p>
         <div style={{ display: "flex", justifyContent: "center", gap: 24, flexWrap: "wrap" }}>
           {STATS.map(s => (

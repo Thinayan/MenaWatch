@@ -5,7 +5,7 @@ import ClientLayout from "./components/ClientLayout";
 export const metadata: Metadata = {
   metadataBase: new URL("https://mena.watch"),
   title: "MENA.Watch — مراقبة الميدان",
-  description: "منصة الاستخبارات الجيوسياسية للشرق الأوسط وشمال أفريقيا",
+  description: "منصة التحليل والذكاء الاستراتيجي للشرق الأوسط وشمال أفريقيا",
   keywords: ["MENA", "Middle East", "geopolitics", "markets", "Saudi Arabia", "UAE"],
   openGraph: {
     title: "MENA.Watch — مراقب الشرق الأوسط",

@@ -169,7 +169,7 @@ export default function LandingPage() {
               ))}
               <div style={{ position: "relative", textAlign: "center" }}>
                 <div style={{ fontSize: 12, color: "#94a3b8", marginBottom: 8 }}>خريطة الشرق الأوسط التفاعلية</div>
-                <a href="/free" style={{ display: "inline-block", padding: "7px 18px", borderRadius: 4, background: "#22c55e", color: "#000", fontSize: 12, fontWeight: 700, textDecoration: "none" }}>افتح الخريطة</a>
+                <a href="/map" style={{ display: "inline-block", padding: "7px 18px", borderRadius: 4, background: "#22c55e", color: "#000", fontSize: 12, fontWeight: 700, textDecoration: "none" }}>افتح الخريطة</a>
               </div>
             </div>
           </div>
@@ -228,7 +228,7 @@ export default function LandingPage() {
 
       {/* ── FOOTER ── */}
       <div style={{ borderTop: "1px solid #1e293b", padding: "14px 40px", display: "flex", justifyContent: "space-between", alignItems: "center", background: "#080f1c" }}>
-        <div style={{ fontSize: 11, color: "#94a3b8", display: "flex", alignItems: "center", gap: 6 }}><img src="/logo-sm.png" alt="" style={{ height: 14, opacity: 0.5 }} /> © 2025 MENA Watch — منصة الاستخبارات الإقليمية</div>
+        <div style={{ fontSize: 11, color: "#94a3b8", display: "flex", alignItems: "center", gap: 6 }}><img src="/logo-sm.png" alt="" style={{ height: 14, opacity: 0.5 }} /> © 2025 MENA Watch — منصة التحليل والذكاء الاستراتيجي الإقليمية</div>
         <div style={{ display: "flex", gap: 16 }}>
           {["الخصوصية", "الشروط", "تواصل معنا"].map(l => (
             <a key={l} href="#" style={{ fontSize: 11, color: "#94a3b8", textDecoration: "none" }}>{l}</a>

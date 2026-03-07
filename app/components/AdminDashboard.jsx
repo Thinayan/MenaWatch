@@ -74,7 +74,7 @@ const DEFAULT_COMPANY = {
   // بيانات المنصة
   platform_name_en:     "MENA Watch",
   platform_name_ar:     "مينا ووتش",
-  platform_tagline_ar:  "منصة الاستخبارات الاستراتيجية للشرق الأوسط",
+  platform_tagline_ar:  "منصة التحليل والذكاء الاستراتيجي للشرق الأوسط",
   platform_tagline_en:  "Strategic Intelligence Platform for the Middle East",
   platform_url:         "https://mena.watch",
   platform_email:       "info@mena.watch",
