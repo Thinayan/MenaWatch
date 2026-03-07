@@ -3,26 +3,6 @@ import { useState, useEffect } from "react";
 
 const FONT_URL = "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap";
 
-function useCountdown(target) {
-  const [left, setLeft] = useState({ d: 0, h: 0, m: 0, s: 0 });
-  useEffect(() => {
-    const end = new Date(target).getTime();
-    const tick = () => {
-      const diff = Math.max(0, end - Date.now());
-      setLeft({
-        d: Math.floor(diff / 86400000),
-        h: Math.floor((diff % 86400000) / 3600000),
-        m: Math.floor((diff % 3600000) / 60000),
-        s: Math.floor((diff % 60000) / 1000),
-      });
-    };
-    tick();
-    const id = setInterval(tick, 1000);
-    return () => clearInterval(id);
-  }, [target]);
-  return left;
-}
-
 const FEATURES_COMING = [
   { icon: "🛡️", label: "خريطة أمنية تفاعلية", status: "جاهز 100%", color: "#22c55e", done: true },
   { icon: "⚡", label: "لوحة اقتصادية حية", status: "جاهز 100%", color: "#22c55e", done: true },
@@ -39,7 +19,6 @@ export default function SignupGateModal() {
   const [error, setError] = useState("");
   const [step, setStep] = useState("form");
   const [count, setCount] = useState(2347);
-  const t = useCountdown("2025-12-01T00:00:00");
 
   const handleSignup = async () => {
     setError("");
@@ -144,7 +123,7 @@ export default function SignupGateModal() {
         background: "#060d18",
         border: "1px solid #1e293b",
         borderRadius: 12,
-        maxWidth: 960,
+        maxWidth: 580,
         width: "100%",
         maxHeight: "90vh",
         overflow: "auto",
@@ -169,11 +148,11 @@ export default function SignupGateModal() {
           </span>
         </div>
 
-        {/* Main content — 2 columns */}
-        <div style={{ display: "flex", padding: "28px 24px", gap: 24, flexWrap: "wrap" }}>
+        {/* Main content */}
+        <div style={{ padding: "28px 32px" }}>
 
-          {/* RIGHT — Info + Form */}
-          <div style={{ flex: 1, minWidth: 300, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+          {/* Info + Form */}
+          <div style={{ maxWidth: 520, margin: "0 auto", display: "flex", flexDirection: "column", justifyContent: "center" }}>
             <div style={{
               display: "inline-flex", alignItems: "center", gap: 6,
               background: "#22c55e12", border: "1px solid #22c55e33", borderRadius: 3,
@@ -309,9 +288,6 @@ export default function SignupGateModal() {
                   </button>
                 )}
 
-                <div style={{ fontSize: 11, color: "#cbd5e1", marginTop: 12 }}>
-                  {"انضم لـ "}{count.toLocaleString("ar-SA")}{" في قائمة الانتظار"}
-                </div>
               </div>
             )}
 
@@ -331,55 +307,6 @@ export default function SignupGateModal() {
                   <span style={{ fontSize: 10, color: f.color, background: f.color + "18", padding: "2px 8px", borderRadius: 3, fontWeight: 700 }}>{f.status}</span>
                 </div>
               ))}
-            </div>
-          </div>
-
-          {/* LEFT — Countdown + Stats */}
-          <div style={{ width: 280, flexShrink: 0, display: "flex", flexDirection: "column", justifyContent: "center", gap: 14 }}>
-
-            {/* Countdown */}
-            <div style={{ background: "#0a1628", border: "1px solid #1e293b", borderRadius: 6, overflow: "hidden" }}>
-              <div style={{ background: "#080f1c", borderBottom: "1px solid #1e293b", padding: "8px 14px", fontSize: 11, color: "#cbd5e1", letterSpacing: 2 }}>
-                {"العد التنازلي للإطلاق"}
-              </div>
-              <div style={{ padding: "18px 14px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
-                {[
-                  { v: t.d, l: "يوم" },
-                  { v: t.h, l: "ساعة" },
-                  { v: t.m, l: "دقيقة" },
-                  { v: t.s, l: "ثانية" },
-                ].map(c => (
-                  <div key={c.l} style={{ background: "#080f1c", border: "1px solid #1e293b", borderRadius: 4, padding: "12px 8px", textAlign: "center" }}>
-                    <div style={{ fontSize: 30, fontWeight: 800, color: "#22c55e", fontVariantNumeric: "tabular-nums" }}>
-                      {String(c.v).padStart(2, "0")}
-                    </div>
-                    <div style={{ fontSize: 11, color: "#cbd5e1", marginTop: 4 }}>{c.l}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Waitlist by country */}
-            <div style={{ background: "#0a1628", border: "1px solid #1e293b", borderRadius: 6, padding: "14px" }}>
-              <div style={{ fontSize: 11, color: "#cbd5e1", letterSpacing: 2, marginBottom: 12 }}>
-                {"قائمة الانتظار"}
-              </div>
-              {[
-                { flag: "🇸🇦", label: "السعودية", n: "843" },
-                { flag: "🇦🇪", label: "الإمارات", n: "431" },
-                { flag: "🇶🇦", label: "قطر", n: "312" },
-                { flag: "🌍", label: "دول أخرى", n: "771" },
-              ].map(r => (
-                <div key={r.label} style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
-                  <span style={{ fontSize: 15 }}>{r.flag}</span>
-                  <span style={{ flex: 1, fontSize: 12, color: "#cbd5e1" }}>{r.label}</span>
-                  <span style={{ fontSize: 12, color: "#22c55e", fontWeight: 700 }}>{r.n}</span>
-                </div>
-              ))}
-              <div style={{ borderTop: "1px solid #1e293b", paddingTop: 8, marginTop: 4, display: "flex", justifyContent: "space-between" }}>
-                <span style={{ fontSize: 11, color: "#cbd5e1" }}>{"المجموع"}</span>
-                <span style={{ fontSize: 12, color: "#f8fafc", fontWeight: 700 }}>{count.toLocaleString("ar-SA")}</span>
-              </div>
             </div>
           </div>
         </div>
