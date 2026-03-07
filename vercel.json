@@ -26,6 +26,10 @@
       "schedule": "0 3 * * *"
     },
     {
+      "path": "/api/admin/daily-stats-email",
+      "schedule": "0 5 * * *"
+    },
+    {
       "path": "/api/content-sync",
       "schedule": "0 6 * * *"
     }
