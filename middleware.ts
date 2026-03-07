@@ -30,19 +30,13 @@ export async function middleware(request: NextRequest) {
     }
   );
 
-  const { data: { user } } = await supabase.auth.getUser();
+  // Refresh the session token (important for cookie-based auth)
+  await supabase.auth.getUser();
 
-  const { pathname } = request.nextUrl;
-
-  // حماية مسارات /ops و /admin و /profile
-  if ((pathname.startsWith("/ops") || pathname.startsWith("/admin") || pathname.startsWith("/profile")) && !user) {
-    return NextResponse.redirect(new URL("/login", request.url));
-  }
-
-  // إعادة توجيه المسجّل دخوله من صفحة تسجيل الدخول
-  if (pathname === "/login" && user) {
-    return NextResponse.redirect(new URL("/map", request.url));
-  }
+  // Note: Route protection for /ops, /admin, /profile is handled client-side
+  // by the AuthGuard component, since the Supabase client stores auth tokens
+  // in localStorage. The middleware cookie-based auth detection is unreliable
+  // until a full page refresh after login sets the cookies.
 
   return supabaseResponse;
 }
