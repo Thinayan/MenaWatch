@@ -12,6 +12,7 @@ import TabRealEstate from "./tabs/TabRealEstate";
 import TabTelecom from "./tabs/TabTelecom";
 import TabTourism from "./tabs/TabTourism";
 import TabFood from "./tabs/TabFood";
+import TabInteraction from "./tabs/TabInteraction";
 
 const FONT_URL = "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap";
 
@@ -446,6 +447,7 @@ const TABS = [
   { id: "telecom",    label: "الاتصالات",  icon: "📶", color: "#0ea5e9",  comp: TabTelecom },
   { id: "tourism",    label: "السياحة",    icon: "🏖️", color: "#a855f7",  comp: TabTourism },
   { id: "food",       label: "الأغذية",    icon: "🌾", color: "#84cc16",  comp: TabFood },
+  { id: "interact",   label: "تفاعل",      icon: "💬", color: "#f43f5e",  comp: TabInteraction },
 ];
 
 export default function FreeTabs() {

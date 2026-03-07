@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import LiveNewsFeed from "../LiveNewsFeed";
 
 const SAMPLE_REPORTS = [
   { id: 1, date: "6 مارس 2026", title: "التقرير اليومي — الخميس", summary: "أرامكو تتجاوز التوقعات • هدنة يمنية • تاسي صعود ثالث", status: "جديد" },
@@ -85,6 +86,12 @@ export default function TabReports() {
           </div>
         )}
       </div>
+
+      <LiveNewsFeed
+        category="political"
+        title="📰 آخر الأخبار السياسية"
+        limit={5}
+      />
     </div>
   );
 }
