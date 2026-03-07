@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import NavBar from "./NavBar";
+
 import TimelineView from "./archive/TimelineView";
 import EventsGrid from "./archive/EventsGrid";
 import IndicatorCharts from "./archive/IndicatorCharts";
@@ -103,7 +103,7 @@ export default function ArchivePage() {
         input:focus, select:focus { outline: 1px solid #22c55e55; }
       `}</style>
 
-      <NavBar activePath="/archive" />
+
 
       <div style={{ maxWidth: 960, margin: "0 auto", padding: "24px 20px" }}>
         {/* Header */}

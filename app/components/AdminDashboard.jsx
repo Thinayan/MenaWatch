@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import NavBar from "./NavBar";
+
 import EditorialCalendar from "./admin/EditorialCalendar";
 import PollManager from "./admin/PollManager";
 import CommentModeration from "./admin/CommentModeration";
@@ -775,8 +775,7 @@ export default function AdminDashboard() {
         input:focus,select:focus,textarea:focus { outline:1px solid #22c55e55; }
       `}</style>
 
-      {/* NavBar */}
-      <NavBar activePath="/admin" />
+
 
       <div style={{ flex:1, display:"flex", overflow:"hidden" }}>
         {/* Sidebar */}

@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
-import NavBar from "./NavBar";
+
 
 const CATEGORIES = [
   { value: "", label: "الكل" },
@@ -126,7 +126,7 @@ export default function SearchPage() {
         input:focus, select:focus { outline: 1px solid #22c55e55; }
       `}</style>
 
-      <NavBar activePath="/search" />
+
 
       <div style={{ maxWidth: 900, margin: "0 auto", padding: "30px 20px" }}>
         {/* Search Header */}

@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import NavBar from "./NavBar";
+
 
 const MENA_COUNTRIES = [
   "السعودية", "الإمارات", "قطر", "الكويت", "البحرين", "عمان",
@@ -71,7 +71,7 @@ export default function ProfilePage() {
   return (
     <div style={{ fontFamily: "'IBM Plex Sans Arabic',sans-serif", background: "#060d18", minHeight: "100vh", color: "#e2e8f0", direction: "rtl" }}>
       <style>{`@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap'); *{box-sizing:border-box;margin:0;padding:0}`}</style>
-      <NavBar activePath="/profile" />
+
 
       <div style={{ maxWidth: 700, margin: "0 auto", padding: "24px 20px" }}>
         <div style={{ fontSize: 18, fontWeight: 800, color: "#f8fafc", marginBottom: 20 }}>👤 الملف الشخصي</div>

@@ -235,8 +235,6 @@ export default function OpsRoom() {
         .defcon-region:hover { opacity: 0.85; transform: scale(1.02); }
       `}</style>
 
-      {/* NavBar is now rendered at page level in /ops/page.tsx */}
-
       {/* ── SCANLINE EFFECT ── */}
       <div className="scan" style={{
         position: "fixed", top: 0, left: 0, right: 0, height: "2px",

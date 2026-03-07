@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import NavBar from "./NavBar";
+
 
 // ── نفس الـ Logo Base64 الموجود في OpsRoom ─────────────────────────────────
 // يُستورد من الصفحات الأخرى — هنا نستخدم النص المباشر
@@ -77,8 +77,7 @@ export default function LandingPage() {
         .cta-primary:hover { opacity: 0.9; transform: translateY(-1px); }
       `}</style>
 
-      {/* ── NAVBAR ── */}
-      <NavBar activePath="/" />
+
 
       {/* ── SUB BAR: Ticker + Markets + Time ── */}
       <div style={{

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import ClientLayout from "./components/ClientLayout";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://mena.watch"),
@@ -30,7 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
       </head>
       <body style={{ margin: 0, padding: 0, background: "#060d18" }}>
-        {children}
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );

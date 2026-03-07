@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import NavBar from "./NavBar";
+
 
 // ── Fallback team (until Supabase is populated) ──
 const FALLBACK_TEAM = [
@@ -50,7 +50,7 @@ export default function AboutPage() {
         .about-fade { animation: fadeIn 0.4s ease forwards; }
       `}</style>
 
-      <NavBar activePath="/about" />
+
 
       {/* Hero Section */}
       <div style={{ background: "linear-gradient(135deg, #0a1628 0%, #0f2847 50%, #0a1628 100%)", padding: "60px 20px 50px", textAlign: "center", borderBottom: "1px solid #1e293b" }}>

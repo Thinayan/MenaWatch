@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
 import BroadcastGrid from "./BroadcastGrid";
-import NavBar from "./NavBar";
+
 import TabHealth from "./tabs/TabHealth";
 import TabTransport from "./tabs/TabTransport";
 import TabIndicators from "./tabs/TabIndicators";
@@ -478,8 +478,7 @@ export default function FreeTabs() {
         .fade-in{animation:fadeIn 0.3s ease}
       `}</style>
 
-      {/* NavBar */}
-      <NavBar activePath="/free" />
+
 
       {/* Sub Bar */}
       <div style={{ background: "#080f1c", borderBottom: "1px solid #1e293b", padding: "0 20px", display: "flex", alignItems: "center", gap: 14, height: 36, flexShrink: 0 }}>
