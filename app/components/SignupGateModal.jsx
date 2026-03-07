@@ -3,22 +3,12 @@ import { useState, useEffect } from "react";
 
 const FONT_URL = "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap";
 
-const FEATURES_COMING = [
-  { icon: "🛡️", label: "خريطة أمنية تفاعلية", status: "جاهز 100%", color: "#22c55e", done: true },
-  { icon: "⚡", label: "لوحة اقتصادية حية", status: "جاهز 100%", color: "#22c55e", done: true },
-  { icon: "🤖", label: "تحليل Claude AI", status: "جاهز 100%", color: "#22c55e", done: true },
-  { icon: "📡", label: "تنبيهات فورية", status: "قريباً", color: "#f59e0b", done: false },
-  { icon: "📊", label: "تقارير PDF تلقائية", status: "قريباً", color: "#f59e0b", done: false },
-  { icon: "🔗", label: "API للمطورين", status: "قريباً", color: "#3b82f6", done: false },
-];
-
 export default function SignupGateModal() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [step, setStep] = useState("form");
-  const [count, setCount] = useState(2347);
 
   const handleSignup = async () => {
     setError("");
@@ -294,23 +284,6 @@ export default function SignupGateModal() {
               </div>
             )}
 
-            {/* Progress bar */}
-            <div style={{ marginTop: 24, background: "#0a1628", border: "1px solid #1e293b", borderRadius: 6, padding: "14px 16px" }}>
-              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6 }}>
-                <span style={{ fontSize: 11, color: "#cbd5e1" }}>{"تقدم التطوير الكلي"}</span>
-                <span style={{ fontSize: 11, color: "#22c55e", fontWeight: 700 }}>87%</span>
-              </div>
-              <div style={{ height: 5, background: "#1e293b", borderRadius: 2, overflow: "hidden", marginBottom: 10 }}>
-                <div style={{ height: "100%", width: "87%", background: "#22c55e", borderRadius: 2 }} />
-              </div>
-              {FEATURES_COMING.map(f => (
-                <div key={f.label} style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 5 }}>
-                  <span style={{ fontSize: 13 }}>{f.icon}</span>
-                  <span style={{ flex: 1, fontSize: 12, color: "#cbd5e1" }}>{f.label}</span>
-                  <span style={{ fontSize: 10, color: f.color, background: f.color + "18", padding: "2px 8px", borderRadius: 3, fontWeight: 700 }}>{f.status}</span>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </div>
