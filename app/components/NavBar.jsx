@@ -6,6 +6,7 @@ const NAV_ITEMS = [
   { href: "/", label: "الرئيسية", icon: "🏠" },
   { href: "/map", label: "الخريطة", icon: "🗺️" },
   { href: "/free", label: "المجاني", icon: "📡" },
+  { href: "/about", label: "من نحن", icon: "ℹ️" },
   { href: "/ops", label: "غرفة العمليات", icon: "🛡️", requireAuth: true },
   { href: "/profile", label: "حسابي", icon: "👤", requireAuth: true },
   { href: "/admin", label: "الأدمن", icon: "⚙️", requireAdmin: true },
