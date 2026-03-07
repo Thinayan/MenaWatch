@@ -1,0 +1,10 @@
+# Dependencies
+node_modules/
+
+# Database migrations (not needed on Vercel)
+database/
+
+# Dev files
+.env.local
+.claude/
+*.sql
