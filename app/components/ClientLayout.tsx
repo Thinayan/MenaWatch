@@ -36,6 +36,19 @@ function NavBarLoader({ activePath }: { activePath: string }) {
   return <NavBar activePath={activePath} />;
 }
 
+function FooterLoader() {
+  const [Footer, setFooter] = useState<any>(null);
+
+  useEffect(() => {
+    import("./Footer")
+      .then((mod) => setFooter(() => mod.default))
+      .catch((err) => console.error("Footer load error:", err));
+  }, []);
+
+  if (!Footer) return null;
+  return <Footer />;
+}
+
 function SignupGateLoader() {
   const [Gate, setGate] = useState<any>(null);
 
@@ -78,21 +91,26 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   // While checking auth, show nothing (prevents flash)
   const showGate = !skipGate && isAuth === false;
 
-  // Track if gate was showing, redirect to /map when auth succeeds
+  // Track if gate was showing, redirect to / (map) when auth succeeds
   useEffect(() => {
     if (showGate) {
       wasShowingGate.current = true;
     }
     if (wasShowingGate.current && isAuth === true) {
       wasShowingGate.current = false;
-      window.location.href = "/ops";
+      window.location.href = "/";
     }
   }, [isAuth, showGate]);
+
+  // Hide footer on login/auth pages and full-screen dashboard pages
+  const HIDE_FOOTER_PATHS = ["/login", "/reset-password", "/auth/callback", "/ops", "/map"];
+  const showFooter = showNavBar && !HIDE_FOOTER_PATHS.some(p => pathname === p);
 
   return (
     <>
       {showNavBar && <NavBarLoader activePath={pathname} />}
       {children}
+      {showFooter && <FooterLoader />}
       {showGate && <SignupGateLoader />}
     </>
   );

@@ -9,6 +9,7 @@ export default function SignupGateModal() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [step, setStep] = useState("form");
+  const [agreedTerms, setAgreedTerms] = useState(false);
 
   const handleSignup = async () => {
     setError("");
@@ -39,7 +40,7 @@ export default function SignupGateModal() {
 
       if (data?.session) {
         setStep("success");
-        window.location.href = "/ops";
+        window.location.href = "/";
         return;
       } else if (data?.user && !data?.session) {
         const { error: loginErr } = await supabase.auth.signInWithPassword({
@@ -48,7 +49,7 @@ export default function SignupGateModal() {
         });
         if (!loginErr) {
           setStep("success");
-          window.location.href = "/ops";
+          window.location.href = "/";
           return;
         } else {
           setStep("success");
@@ -75,7 +76,7 @@ export default function SignupGateModal() {
         setError("بريد أو كلمة مرور غير صحيحة");
       } else {
         setStep("success");
-        window.location.href = "/ops";
+        window.location.href = "/";
         return;
       }
     } catch (e) {
@@ -89,8 +90,8 @@ export default function SignupGateModal() {
       position: "fixed",
       inset: 0,
       zIndex: 10000,
-      background: "rgba(3, 7, 18, 0.6)",
-      backdropFilter: "blur(4px)",
+      background: "rgba(6, 13, 24, 0.75)",
+      backdropFilter: "blur(8px)",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
@@ -206,6 +207,47 @@ export default function SignupGateModal() {
                   }}
                 />
 
+                {/* Terms Checkbox (signup only) */}
+                {step !== "login" && (
+                  <label style={{
+                    display: "flex", alignItems: "center", gap: 8,
+                    fontSize: 12, color: "#94a3b8", marginBottom: 10,
+                    cursor: "pointer", userSelect: "none",
+                  }}>
+                    <input
+                      type="checkbox"
+                      checked={agreedTerms}
+                      onChange={e => setAgreedTerms(e.target.checked)}
+                      style={{
+                        accentColor: "#22c55e",
+                        width: 16, height: 16,
+                        cursor: "pointer",
+                        flexShrink: 0,
+                      }}
+                    />
+                    <span>
+                      {"أوافق على "}
+                      <a
+                        href="/terms"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ color: "#3b82f6", textDecoration: "underline" }}
+                      >
+                        {"الشروط والأحكام"}
+                      </a>
+                      {" و"}
+                      <a
+                        href="/privacy"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ color: "#3b82f6", textDecoration: "underline" }}
+                      >
+                        {"سياسة الخصوصية"}
+                      </a>
+                    </span>
+                  </label>
+                )}
+
                 {/* Error */}
                 {error && (
                   <div style={{
@@ -253,11 +295,13 @@ export default function SignupGateModal() {
                     <button
                       className="gate-btn"
                       onClick={handleSignup}
-                      disabled={loading}
+                      disabled={loading || !agreedTerms}
                       style={{
                         flex: 1, padding: "12px 20px", borderRadius: 6,
-                        background: "#22c55e", color: "#000", fontWeight: 700,
-                        fontSize: 15, border: "none", cursor: loading ? "wait" : "pointer",
+                        background: !agreedTerms ? "#1e293b" : "#22c55e",
+                        color: !agreedTerms ? "#475569" : "#000", fontWeight: 700,
+                        fontSize: 15, border: "none",
+                        cursor: loading || !agreedTerms ? (loading ? "wait" : "not-allowed") : "pointer",
                         fontFamily: "inherit", transition: "all 0.15s",
                         opacity: loading ? 0.7 : 1,
                       }}

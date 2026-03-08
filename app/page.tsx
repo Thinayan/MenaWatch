@@ -1,12 +1,8 @@
+"use client";
 import dynamic from "next/dynamic";
 
-const LandingPage = dynamic(() => import("./components/LandingPage"), { ssr: false });
-
-export const metadata = {
-  title: "MENA.Watch — منصة الذكاء الاستراتيجي للشرق الأوسط",
-  description: "تحليلات جيوسياسية فورية، خرائط تفاعلية، ومؤشرات أمنية واقتصادية لصانعي القرار في المنطقة",
-};
+const MenaWatchMap = dynamic(() => import("./components/MenaWatchMap"), { ssr: false });
 
 export default function HomePage() {
-  return <LandingPage />;
+  return <MenaWatchMap />;
 }
