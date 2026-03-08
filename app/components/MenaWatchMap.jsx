@@ -84,6 +84,7 @@ export default function MenaWatchMap() {
   const [loadingAI, setLoadingAI] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
   const [showCta, setShowCta] = useState(false);
+  const [showNews, setShowNews] = useState(true);
   const [ctaDismissed, setCtaDismissed] = useState(false);
   const mapRef = useRef(null);
   const leafletMap = useRef(null);
@@ -366,8 +367,8 @@ export default function MenaWatchMap() {
           <div style={{ flex:7, position:"relative", minWidth:0 }}>
             <div ref={mapRef} style={{ width:"100%", height:"100%" }} />
 
-            {/* Risk legend — bottom-right of map (near sidebar) */}
-            <div style={{ position:"absolute", bottom:20, right:20, background:"#0a162899", backdropFilter:"blur(10px)", border:"1px solid #1e293b", borderRadius:10, padding:"10px 14px", zIndex:1000 }}>
+            {/* Risk legend — bottom-left of map (original position) */}
+            <div style={{ position:"absolute", bottom:20, left:20, background:"#0a162899", backdropFilter:"blur(10px)", border:"1px solid #1e293b", borderRadius:10, padding:"10px 14px", zIndex:1000 }}>
               <div style={{ fontSize:10, color:"#94a3b8", marginBottom:6 }}>مستوى المخاطر</div>
               {[{c:"#ef4444",l:"مرتفع +70"},{c:"#f59e0b",l:"متوسط 45-69"},{c:"#3b82f6",l:"منخفض 20-44"},{c:"#10b981",l:"مستقر 0-19"}].map(r=>(
                 <div key={r.l} style={{ display:"flex", alignItems:"center", gap:6, marginBottom:4 }}>
@@ -377,20 +378,43 @@ export default function MenaWatchMap() {
               ))}
             </div>
 
-            {/* NEWS BOX — bottom-left of map (near broadcast panel) */}
-            <div style={{
-              position:"absolute", bottom:20, left:20,
-              width:300, height:220,
-              background:"#0a1628ee", backdropFilter:"blur(12px)",
-              border:"1px solid #1e293b", borderRadius:10,
-              zIndex:1000, overflow:"hidden",
-              display:"flex", flexDirection:"column",
-              direction:"rtl",
-            }}>
-              <Suspense fallback={<div style={{ padding:14, color:"#94a3b8", fontSize:11 }}>جارٍ تحميل الأخبار...</div>}>
-                <NewsTicker />
-              </Suspense>
-            </div>
+            {/* NEWS BOX — bottom-right of map */}
+            {showNews ? (
+              <div style={{
+                position:"absolute", bottom:20, right:20,
+                width:300, height:240,
+                background:"#0a1628ee", backdropFilter:"blur(12px)",
+                border:"1px solid #1e293b", borderRadius:10,
+                zIndex:1000, overflow:"hidden",
+                display:"flex", flexDirection:"column",
+                direction:"rtl",
+              }}>
+                {/* Close button overlaid on top-left */}
+                <button onClick={() => setShowNews(false)} style={{
+                  position:"absolute", top:6, left:8, zIndex:10,
+                  background:"#1e293b", border:"1px solid #334155", color:"#94a3b8", fontSize:12,
+                  cursor:"pointer", padding:"2px 6px", lineHeight:1, borderRadius:4,
+                }}>✕</button>
+                {/* News content with visible scrollbar */}
+                <div style={{ flex:1, overflow:"auto" }}>
+                  <Suspense fallback={<div style={{ padding:14, color:"#94a3b8", fontSize:11 }}>جارٍ تحميل الأخبار...</div>}>
+                    <NewsTicker />
+                  </Suspense>
+                </div>
+              </div>
+            ) : (
+              <button onClick={() => setShowNews(true)} style={{
+                position:"absolute", bottom:20, right:20, zIndex:1000,
+                background:"#0a1628ee", backdropFilter:"blur(12px)",
+                border:"1px solid #1e293b", borderRadius:8,
+                padding:"8px 14px", cursor:"pointer",
+                display:"flex", alignItems:"center", gap:6,
+                direction:"rtl",
+              }}>
+                <span style={{ width:6, height:6, borderRadius:"50%", background:"#ef4444", animation:"pulse-dot 2s infinite" }} />
+                <span style={{ fontSize:11, fontWeight:600, color:"#e2e8f0" }}>آخر الأخبار</span>
+              </button>
+            )}
           </div>
 
           {/* LIVE BROADCAST PANEL + SENTIMENT 30% */}
